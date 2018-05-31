@@ -1,0 +1,181 @@
+﻿@model BanroWebApp.Models.t_logger
+@{
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    //  ViewBag.Title = "SearchDepartement";
+}
+@{
+
+    ViewBag.Title = "AddBonCommand";
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    BanroWebApp.Models.Authenticate auth2 = null;
+    if (Session["userinfo"] != null)
+    {
+        auth2 = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+}
+
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">
+                Add a new Login <i class="fa fa-users" style="float:right;"></i>
+            </h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    @using (@Html.BeginForm())
+    {
+        @*<div class="form-group input-group">
+
+                <form method="get">
+
+                    <input type="text" name="idsucc" id="idsucc" class="form-control" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" style="height:34px;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+
+
+                </form>
+            </div>*@
+    }
+    <!-- /.row -->
+    <div style="width:100%;position:relative;left:0px;margin-left:0px;" id="page-wrapper" ng-app="app" ng-controller="CtrlHome">
+        @{
+            if (Request.HttpMethod.Equals("POST") && ViewBag.response == "200")
+            {
+                <div class="alert alert-success" id="alertSubSucc">
+                    Successfull Registration
+                </div>
+            }
+            else if (Request.HttpMethod.Equals("POST") && ViewBag.response == "202")
+            {
+                <div class="alert alert-danger" id="alertSubSucc">
+                   Login exist
+                </div>
+            }
+            else
+            {
+                <label>
+
+                    @ViewBag.response
+                </label>
+            }
+
+        }
+    
+        @using (@Html.BeginForm())
+        {
+            
+     
+        <!-- /.row -->
+        <div class="form-group">
+            <label>List Companies</label>
+            <select class="form-control" id="select_users" ng-model="cboEtatCivil" ng-change="SelectCompanyUsers()">
+
+                @{
+                    BanroWebApp.Models.BANROEntities dbCtx = new BanroWebApp.Models.BANROEntities();
+                    var Query = from ds in dbCtx.t_succursales
+                                select ds;
+                    foreach (var item in Query)
+                    {
+                        <option>
+                            @item.C_name
+                        </option>
+                    }
+                }
+            </select>
+            <div style="padding-bottom:3em" ng-show="usersVisible">
+                <label>List of employees</label>
+                <div class="dropdown" style="width:100%;">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width:100%;text-align:left">
+                    <span id="textCurrent">Employee List</span>
+                    <span class="caret" style="float:right;margin-top:5px;"></span>
+                    </button>
+                    <ul class="dropdown-menu" style="height:300px;width:100%;overflow:auto">
+                        <li>
+                            <input type="text" ng-model="query" placeholder="Search here" class="form-control" name="name" value=" " />
+                        </li>
+                        <li ng-repeat="employee in ListEmployeeUsers | filter:query">
+                            <a href="#" ng-click="getNameEmployee(employee)">{{employee.name}}</a>
+                        </li>
+                    </ul>
+
+                </div>
+                
+            </div>
+          
+            <div class="col-lg-6" ng-show="usersFormVisible">
+                <label>Form Login</label>
+                <hr />
+                <div class="form-group">
+                    <label>Username</label>
+                    @Html.TextBoxFor(Model => Model.C_username, new { Class = "form-control",@Id="username"})
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    @Html.TextBoxFor(Model => Model.password, new { Class = "form-control", @Id = "pwd1",type="password" })
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    @Html.TextBoxFor(Model => Model.password, new { Class = "form-control",@Id="pwd2",type="password" })
+                </div>
+                <div class="form-group" style="display:none;">
+                    <label>Priority</label>
+                    @Html.TextBoxFor(Model => Model.C_priority, new { Class = "form-control",data_ng_model="priorityUser" })
+                </div>
+                <div class="form-group" style="display:none;">
+                    <label>Id Company</label>
+                    @Html.TextBoxFor(Model => Model.C_idSucc, new { Class = "form-control", data_ng_model = "idCompanyUser" })
+                </div>
+                <div class="form-group" style="display:none;">
+                    <label>Id User</label>
+                    @Html.TextBoxFor(Model => Model.C_employeeId, new { Class = "form-control", data_ng_model = "idUser" })
+                </div>
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select class="form-control" ng-change="SelectPriority()" ng-model="cbopriority">
+                        <option>Administrator</option>
+                        @*<option>Middle</option>*@
+                        <option>User</option>
+                    </select>
+                </div>
+                <div class="form-group" ng-show="usersFormVisible">
+                    <button id="btnLogger" style="display:none" class="btn btn-success">Register Account</button>
+                    <button class="btn btn-success" type="button" ng-click="confirmPassword()" ng-model="btnnn">Register Account</button>
+                </div>
+            </div>
+            
+        </div>
+   
+        }
+       
+    </div>
+      
+</div>
+@{
+    <script type="text/javascript">
+        document.querySelector('#username').value = "";
+        document.querySelector('#pwd1').value = "";
+    </script>
+}
+<!-- /#page-wrapper -->
+<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+<script>
+    function test() {
+        alert('LAMA')
+    }
+    $(document).ready(function () {
+        //console.log("jQuery Test");
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+
+</script>

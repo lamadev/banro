@@ -1,0 +1,94 @@
+﻿@model BanroWebApp.Models.DateFinding
+@{
+    ViewBag.Title = "MedicalCrusherIssued";
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    BanroWebApp.Models.Authenticate auth = null;
+    if (Session["userinfo"] != null)
+    {
+        auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">
+                History of Medical Vouchers and Cost<i class="fa fa-print" style="float:right;"></i>
+            </h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Per Dependecies
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form method="post">
+                                <div data-ng-app="app" ng-controller="CtrlHome">
+                                    @using (Html.BeginForm())
+                                    {
+                                        @Html.AntiForgeryToken()
+
+
+                                        <div class="form-group">
+                                            <label>Starting Date</label>
+                                            <div class="input-group date dp" style="" data-provider="datepicker">
+                                                @Html.TextBoxFor(Model => Model.from, new { Class="form-control",placeholder="From",@Id="dateFromDependecy"})
+                                                @*<input id="dateCmd1" style="" ng-model="dateCmd1" placeholder="From" type="text" name="name" class="form-control" />*@
+                                                <div class="input-group-addon">
+                                                    <span class="fa fa-th"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Ending Date</label>
+                                            <div class="input-group date dp" style="" data-provider="datepicker">
+                                                @*<input id="dateCmd2" ng-model="dateCmd2" style="" type="text" placeholder="To" name="name" class="form-control" />*@
+                                                @Html.TextBoxFor(Model => Model.to, new { Class = "form-control", placeholder = "From", @Id = "dateToDependecy" })
+                                                <div class="input-group-addon">
+                                                    <span class="fa fa-th"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div style="width:100%;text-align:left;">
+
+                                            <button type="submit" id="btnSubmitHMVCE2" style="display:none;">ok</button>
+                                            <button type="button" ng-click="checkdate2()" class="btn btn-success"><i class="fa fa-file-excel-o"></i> Generate File</button>
+                                        </div>
+
+                                    }
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- /.col-lg-6 (nested) -->
+                        <div class="col-lg-6">
+                            @* <img src="~/Content/img/user2-160x160.jpg" alt="Alternate Text" style="width:260px;height:180px;" />*@
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->

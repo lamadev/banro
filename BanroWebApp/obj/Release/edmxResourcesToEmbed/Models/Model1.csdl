@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BANROModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BANROEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="employee_contractor" EntityType="BANROModel.employee_contractor" />
+    <EntitySet Name="sysdiagrams" EntityType="BANROModel.sysdiagrams" />
+    <EntitySet Name="t_beneficiaires" EntityType="BANROModel.t_beneficiaires" />
+    <EntitySet Name="t_bon_commandes" EntityType="BANROModel.t_bon_commandes" />
+    <EntitySet Name="t_categories" EntityType="BANROModel.t_categories" />
+    <EntitySet Name="t_centre_soins" EntityType="BANROModel.t_centre_soins" />
+    <EntitySet Name="t_contractor" EntityType="BANROModel.t_contractor" />
+    <EntitySet Name="t_departement" EntityType="BANROModel.t_departement" />
+    <EntitySet Name="t_factures" EntityType="BANROModel.t_factures" />
+    <EntitySet Name="t_logger" EntityType="BANROModel.t_logger" />
+    <EntitySet Name="t_sickness" EntityType="BANROModel.t_sickness" />
+    <EntitySet Name="t_succursales" EntityType="BANROModel.t_succursales" />
+    <EntitySet Name="t_test" EntityType="BANROModel.t_test" />
+    <EntitySet Name="t_vouchers_casuals" EntityType="BANROModel.t_vouchers_casuals" />
+    <EntitySet Name="t_vouchers_contractor" EntityType="BANROModel.t_vouchers_contractor" />
+    <AssociationSet Name="FK_employee_contractor_t_contractor" Association="BANROModel.FK_employee_contractor_t_contractor">
+      <End Role="t_contractor" EntitySet="t_contractor" />
+      <End Role="employee_contractor" EntitySet="employee_contractor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_vouchers_contractor_employee_contractor" Association="BANROModel.FK_t_vouchers_contractor_employee_contractor">
+      <End Role="employee_contractor" EntitySet="employee_contractor" />
+      <End Role="t_vouchers_contractor" EntitySet="t_vouchers_contractor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_beneficiaires_t_succursales" Association="BANROModel.FK_t_beneficiaires_t_succursales">
+      <End Role="t_succursales" EntitySet="t_succursales" />
+      <End Role="t_beneficiaires" EntitySet="t_beneficiaires" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_bon_commandes_t_centre_soins" Association="BANROModel.FK_t_bon_commandes_t_centre_soins">
+      <End Role="t_centre_soins" EntitySet="t_centre_soins" />
+      <End Role="t_bon_commandes" EntitySet="t_bon_commandes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_factures_t_bon_commandes" Association="BANROModel.FK_t_factures_t_bon_commandes">
+      <End Role="t_bon_commandes" EntitySet="t_bon_commandes" />
+      <End Role="t_factures" EntitySet="t_factures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_vouchers_casuals_t_centre_soins" Association="BANROModel.FK_t_vouchers_casuals_t_centre_soins">
+      <End Role="t_centre_soins" EntitySet="t_centre_soins" />
+      <End Role="t_vouchers_casuals" EntitySet="t_vouchers_casuals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_vouchers_contractor_t_centre_soins" Association="BANROModel.FK_t_vouchers_contractor_t_centre_soins">
+      <End Role="t_centre_soins" EntitySet="t_centre_soins" />
+      <End Role="t_vouchers_contractor" EntitySet="t_vouchers_contractor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_contractor_t_succursales" Association="BANROModel.FK_t_contractor_t_succursales">
+      <End Role="t_succursales" EntitySet="t_succursales" />
+      <End Role="t_contractor" EntitySet="t_contractor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_departement_t_succursales" Association="BANROModel.FK_t_departement_t_succursales">
+      <End Role="t_succursales" EntitySet="t_succursales" />
+      <End Role="t_departement" EntitySet="t_departement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_vouchers_casuals_t_succursales" Association="BANROModel.FK_t_vouchers_casuals_t_succursales">
+      <End Role="t_succursales" EntitySet="t_succursales" />
+      <End Role="t_vouchers_casuals" EntitySet="t_vouchers_casuals" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="employee_contractor">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_idContractor" Type="Int32" />
+    <NavigationProperty Name="t_contractor" Relationship="BANROModel.FK_employee_contractor_t_contractor" FromRole="employee_contractor" ToRole="t_contractor" />
+    <NavigationProperty Name="t_vouchers_contractor" Relationship="BANROModel.FK_t_vouchers_contractor_employee_contractor" FromRole="employee_contractor" ToRole="t_vouchers_contractor" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="t_beneficiaires">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_id_succ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_datenais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_sex" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="C_statusmaritalk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="C_picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="C_id_partenaire" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_id_parent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_id_categorie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_id_depart" Type="Int32" />
+    <Property Name="C_statusChild" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_id_visitor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_motif_visit" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="t_succursales" Relationship="BANROModel.FK_t_beneficiaires_t_succursales" FromRole="t_beneficiaires" ToRole="t_succursales" />
+  </EntityType>
+  <EntityType Name="t_bon_commandes">
+    <Key>
+      <PropertyRef Name="C_id_bon" />
+    </Key>
+    <Property Name="C_id_bon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_id_bene" Type="Int32" />
+    <Property Name="C_id_centre" Type="Int32" />
+    <Property Name="C_datedeb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_datefin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_namedoctor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_approuve" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_motif" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="t_centre_soins" Relationship="BANROModel.FK_t_bon_commandes_t_centre_soins" FromRole="t_bon_commandes" ToRole="t_centre_soins" />
+    <NavigationProperty Name="t_factures" Relationship="BANROModel.FK_t_factures_t_bon_commandes" FromRole="t_bon_commandes" ToRole="t_factures" />
+  </EntityType>
+  <EntityType Name="t_categories">
+    <Key>
+      <PropertyRef Name="C_id_categ" />
+    </Key>
+    <Property Name="C_id_categ" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_centre_soins">
+    <Key>
+      <PropertyRef Name="C_id_centre" />
+    </Key>
+    <Property Name="C_id_centre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="t_bon_commandes" Relationship="BANROModel.FK_t_bon_commandes_t_centre_soins" FromRole="t_centre_soins" ToRole="t_bon_commandes" />
+    <NavigationProperty Name="t_vouchers_casuals" Relationship="BANROModel.FK_t_vouchers_casuals_t_centre_soins" FromRole="t_centre_soins" ToRole="t_vouchers_casuals" />
+    <NavigationProperty Name="t_vouchers_contractor" Relationship="BANROModel.FK_t_vouchers_contractor_t_centre_soins" FromRole="t_centre_soins" ToRole="t_vouchers_contractor" />
+  </EntityType>
+  <EntityType Name="t_contractor">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_idSucc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="employee_contractor" Relationship="BANROModel.FK_employee_contractor_t_contractor" FromRole="t_contractor" ToRole="employee_contractor" />
+    <NavigationProperty Name="t_succursales" Relationship="BANROModel.FK_t_contractor_t_succursales" FromRole="t_contractor" ToRole="t_succursales" />
+  </EntityType>
+  <EntityType Name="t_departement">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_id_depart" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_id_succ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="t_succursales" Relationship="BANROModel.FK_t_departement_t_succursales" FromRole="t_departement" ToRole="t_succursales" />
+  </EntityType>
+  <EntityType Name="t_factures">
+    <Key>
+      <PropertyRef Name="C_id_fact" />
+    </Key>
+    <Property Name="C_id_fact" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_id_bon" Type="Int32" />
+    <Property Name="C_datefacture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_timefacture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_cout" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="C_fileupload" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="t_bon_commandes" Relationship="BANROModel.FK_t_factures_t_bon_commandes" FromRole="t_factures" ToRole="t_bon_commandes" />
+  </EntityType>
+  <EntityType Name="t_logger">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="C_priority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_idSucc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_employeeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="t_sickness">
+    <Key>
+      <PropertyRef Name="C_Name" />
+    </Key>
+    <Property Name="C_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_succursales">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="C_adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="C_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="t_beneficiaires" Relationship="BANROModel.FK_t_beneficiaires_t_succursales" FromRole="t_succursales" ToRole="t_beneficiaires" />
+    <NavigationProperty Name="t_contractor" Relationship="BANROModel.FK_t_contractor_t_succursales" FromRole="t_succursales" ToRole="t_contractor" />
+    <NavigationProperty Name="t_departement" Relationship="BANROModel.FK_t_departement_t_succursales" FromRole="t_succursales" ToRole="t_departement" />
+    <NavigationProperty Name="t_vouchers_casuals" Relationship="BANROModel.FK_t_vouchers_casuals_t_succursales" FromRole="t_succursales" ToRole="t_vouchers_casuals" />
+  </EntityType>
+  <EntityType Name="t_test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_vouchers_casuals">
+    <Key>
+      <PropertyRef Name="C_id_voucher" />
+    </Key>
+    <Property Name="C_id_voucher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_name_casual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_company_casual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_date_casual" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_motif" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_id_centre" Type="Int32" />
+    <Property Name="C_id_company" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_cause" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="C_cout" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="t_centre_soins" Relationship="BANROModel.FK_t_vouchers_casuals_t_centre_soins" FromRole="t_vouchers_casuals" ToRole="t_centre_soins" />
+    <NavigationProperty Name="t_succursales" Relationship="BANROModel.FK_t_vouchers_casuals_t_succursales" FromRole="t_vouchers_casuals" ToRole="t_succursales" />
+  </EntityType>
+  <EntityType Name="t_vouchers_contractor">
+    <Key>
+      <PropertyRef Name="C_id_voucher" />
+    </Key>
+    <Property Name="C_id_voucher" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_id_Employed" Type="Int32" />
+    <Property Name="C_id_centre" Type="Int32" />
+    <Property Name="C_datedeb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_datefin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_namedoctor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_approuve" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_motif" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="C_cout" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="employee_contractor" Relationship="BANROModel.FK_t_vouchers_contractor_employee_contractor" FromRole="t_vouchers_contractor" ToRole="employee_contractor" />
+    <NavigationProperty Name="t_centre_soins" Relationship="BANROModel.FK_t_vouchers_contractor_t_centre_soins" FromRole="t_vouchers_contractor" ToRole="t_centre_soins" />
+  </EntityType>
+  <Association Name="FK_employee_contractor_t_contractor">
+    <End Type="BANROModel.t_contractor" Role="t_contractor" Multiplicity="0..1" />
+    <End Type="BANROModel.employee_contractor" Role="employee_contractor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_contractor">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="employee_contractor">
+        <PropertyRef Name="C_idContractor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_vouchers_contractor_employee_contractor">
+    <End Type="BANROModel.employee_contractor" Role="employee_contractor" Multiplicity="0..1" />
+    <End Type="BANROModel.t_vouchers_contractor" Role="t_vouchers_contractor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee_contractor">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="t_vouchers_contractor">
+        <PropertyRef Name="C_id_Employed" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_beneficiaires_t_succursales">
+    <End Type="BANROModel.t_succursales" Role="t_succursales" Multiplicity="0..1" />
+    <End Type="BANROModel.t_beneficiaires" Role="t_beneficiaires" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_succursales">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="t_beneficiaires">
+        <PropertyRef Name="C_id_succ" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_bon_commandes_t_centre_soins">
+    <End Type="BANROModel.t_centre_soins" Role="t_centre_soins" Multiplicity="0..1" />
+    <End Type="BANROModel.t_bon_commandes" Role="t_bon_commandes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_centre_soins">
+        <PropertyRef Name="C_id_centre" />
+      </Principal>
+      <Dependent Role="t_bon_commandes">
+        <PropertyRef Name="C_id_centre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_factures_t_bon_commandes">
+    <End Type="BANROModel.t_bon_commandes" Role="t_bon_commandes" Multiplicity="0..1" />
+    <End Type="BANROModel.t_factures" Role="t_factures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_bon_commandes">
+        <PropertyRef Name="C_id_bon" />
+      </Principal>
+      <Dependent Role="t_factures">
+        <PropertyRef Name="C_id_bon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_vouchers_casuals_t_centre_soins">
+    <End Type="BANROModel.t_centre_soins" Role="t_centre_soins" Multiplicity="0..1" />
+    <End Type="BANROModel.t_vouchers_casuals" Role="t_vouchers_casuals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_centre_soins">
+        <PropertyRef Name="C_id_centre" />
+      </Principal>
+      <Dependent Role="t_vouchers_casuals">
+        <PropertyRef Name="C_id_centre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_vouchers_contractor_t_centre_soins">
+    <End Type="BANROModel.t_centre_soins" Role="t_centre_soins" Multiplicity="0..1" />
+    <End Type="BANROModel.t_vouchers_contractor" Role="t_vouchers_contractor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_centre_soins">
+        <PropertyRef Name="C_id_centre" />
+      </Principal>
+      <Dependent Role="t_vouchers_contractor">
+        <PropertyRef Name="C_id_centre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_contractor_t_succursales">
+    <End Type="BANROModel.t_succursales" Role="t_succursales" Multiplicity="0..1" />
+    <End Type="BANROModel.t_contractor" Role="t_contractor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_succursales">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="t_contractor">
+        <PropertyRef Name="C_idSucc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_departement_t_succursales">
+    <End Type="BANROModel.t_succursales" Role="t_succursales" Multiplicity="0..1" />
+    <End Type="BANROModel.t_departement" Role="t_departement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_succursales">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="t_departement">
+        <PropertyRef Name="C_id_succ" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_vouchers_casuals_t_succursales">
+    <End Type="BANROModel.t_succursales" Role="t_succursales" Multiplicity="0..1" />
+    <End Type="BANROModel.t_vouchers_casuals" Role="t_vouchers_casuals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_succursales">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="t_vouchers_casuals">
+        <PropertyRef Name="C_id_company" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

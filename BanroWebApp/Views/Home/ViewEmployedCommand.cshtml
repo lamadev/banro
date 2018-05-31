@@ -1,0 +1,741 @@
+﻿@model BanroWebApp.Models.t_bon_commandes
+@{
+                String month = (DateTime.Now.Month.ToString().Length == 2 ? DateTime.Now.Month.ToString() : "0" + DateTime.Now.Month.ToString());
+                String year = DateTime.Now.Year.ToString().Substring(2,2) ;
+                BanroWebApp.Models.Authenticate auth = null;
+                if (Session["userinfo"]!=null)
+                {
+                    auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+                }
+                else
+                {
+                    Response.Redirect("~/Home");
+                }
+            }
+@{
+    ViewBag.Title = "ViewEmployedCommand";
+}
+
+<h2 ng-show="isVisiblebcEmployed">
+    {{titleBonCommand}}
+    <button class="btn btn-primary" data-toggle="modal" data-target="#myModalEmployed" style="float:right;margin-top:-.5em;" id="btnEmployed" ng-model="btnEmployed"><i class="fa fa-search"></i> Search</button>
+    @if (!auth.Priority.Equals("middle"))
+    {
+    <button class="btn btn-success" ng-click="addBonCommand()" style="float:right;margin-top:-.5em;margin-right:0.5em;"><i class="fa fa-pencil"></i> Register</button>
+        
+    }
+</h2>
+<div class="modal fade" id="myModalEmployed" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-show="isVisiblebcEmployed">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Search a Beneficiary</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" ng-model="nameEmployed" id="voucherSearch" placeholder="Write name...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" ng-click="SearchBonCommand('Master')" style="height:35px;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-6" style="width:100%;">
+                        <div class="panel panel-default">
+
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                                                @*TABLE VISITOR*@
+                                <div class="table-responsive" ng-show="isVisibleTableVisitor">
+                                <table class="table" style="font-size:12px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Visitor's</th>
+                                            <th>Gender</th>
+                                            <th>Phone number</th>
+                                            <th>Company</th>
+                                            <th>Company Visitor</th>
+                                            <th>Account status</th>
+                                            <th>Picture</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="employed in tabSearchEmployed" ng-click="selectedEmployedBCmd(employed)" style="cursor:pointer;">
+                                            <td>{{employed.name}}</td>
+                                            <td>{{employed.sex}}</td>
+                                            <td>{{employed.Phone}}</td>
+                                            <td>{{employed.ComapnyName}}</td>
+                                            <td>{{employed.CompanyVisitor}}</td>
+                                            <td>{{employed.status}}</td>
+                                            <td>
+                                                <img src="~/Images/{{employed.picture}}" alt="image profil" style="height:70px;width:70px;" />
+                                            </td>
+
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+    <div class="table-responsive" ng-show="isVisibleTableEmployed">
+        <table class="table" style="font-size:12px;">
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Sex</th>
+                    <th>Phone</th>
+                    <th>Company</th>
+                    <th>Department</th>
+                    <th>Picture</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employed in tabSearchEmployed" ng-click="selectedEmployedBCmd(employed)" style="cursor:pointer;">
+                    <td>{{employed.name}}</td>
+                    <td>{{employed.sex}}</td>
+                    <td>{{employed.phone}}</td>
+                    <td>{{employed.ID_Succursale}}</td>
+                    <td>{{employed.ID_Departement}}</td>
+                    <td>
+                        <img src="~/Images/{{employed.picture}}" alt="image profil" style="height:70px;width:70px;" />
+                    </td>
+
+
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    @*TABLEAU CONJOINT*@
+                                <div class="table-responsive" ng-show="isVisibleTablePartner">
+                                    <table class="table" style="font-size:12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Partner</th>
+                                                <th>Sex</th>
+                                                <th>Phone number</th>
+                                                <th>Account status</th>
+                                                <th>Picture</th>
+                                                @*<th>ID Partner</th>*@
+                                                <th>Employee</th>
+                                                <th>Company</th>
+                                                <th>Department</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="employed in tabSearchEmployed" ng-click="selectedEmployedBCmd(employed)" style="cursor:pointer;">
+                                                <td>{{employed.partner.name}}</td>
+                                                <td>{{employed.partner.sex}}</td>
+                                                <td>{{employed.partner.phone}}</td>
+                                                <td>{{employed.partner.account_system}}</td>
+                                                <td>
+                                                    <img src="~/Images/{{employed.partner.picture}}" alt="image profil" style="height:70px;width:70px;" />
+                                                </td>
+                                               @* <td>{{employed.id}}</td>*@
+                                                <td>{{employed.name}}</td>
+                                                <td>{{employed.ID_Succursale}}</td>
+                                                <td>{{employed.ID_Departement}}</td>
+                                               
+                                                <td></td>
+                                                <td></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                                <div class="table-responsive" ng-show="isVisibleTableChild">
+                                    @*<h5 style="text-align:center;"><b>{{oldChild}}</b></h5>*@
+                                    <table class="table" style="font-size:12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Child's Name</th>
+                                                <th>Sex</th>
+                                                <th>Born On</th>
+                                                <th>Account status</th>
+                                                <th>Picture</th>
+                                                @*<th>ID Parent</th>*@
+                                                <th>Employee Name</th>
+                                                <th>Company</th>
+                                                <th>Depart Parent</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="employed in tabSearchEmployed" ng-click="selectedEmployedBCmd(employed,$index)" style="cursor:pointer;">
+                                                <td>{{employed.Childs[$index].name}}</td>
+                                                <td>{{employed.Childs[$index].sex}}</td>
+                                                <td>{{employed.Childs[$index].datenais}}</td>
+                                                <td>{{employed.Childs[$index].account_system}}</td>
+                                                <td>
+                                                    <img src="~/Images/{{employed.Childs[$index].picture}}" alt="image profil" style="height:70px;width:70px;" />
+                                                </td>
+                                                <td>{{employed.name}}</td>
+                                                <td>{{employed.ID_Succursale}}</td>
+                                                <td>{{employed.ID_Departement}}</td>
+                                                
+                                             
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="alert alert-success" id="alertSucc" style="display:none;float:left;width:70px;background-color:white;">
+                        Modification éffectuée avec succès!
+                    </div>
+                    <button type="button" class="btn btn-default" style="display:none" data-dismiss="modal" id="btnCloseIt">Close</button>
+                    <button type="button" style="display:none;" ng-click="AddPartner()" id="" class="btn btn-primary"><i class="fa fa-plus"></i>Ajouter</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="panel-body" ng-show="isVisiblebcEmployed">
+    <div class="row">
+        <div class="alert alert-warning" id="alertWarnning" style="display:none;text-align:center;">
+            Patientez, traitement en cours....
+        </div>
+        <div class="alert alert-success" id="alertSuccessBC" style="display:none;text-align:center;">
+            Enregistrement effectué avec succès....
+        </div>
+        <div class="alert alert-success" id="alertSuccess2" ng-show="isModify" style="text-align:center;">
+            Modification effectué avec succès....
+        </div>
+        <img id="pictureEmployedBC" src="data:image/png;base64,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" alt="Alternate Text" style="width:150px;height:150px;border:1px solid silver;" />
+
+
+        <hr />
+
+        <div class="col-lg-6">
+
+
+
+            <div class="form-group">
+                <label>Beneficiary's Name</label>
+                <input type="text" name="nameEmployedBC" value="" disabled class="form-control" ng-model="nameEmployedBC" />
+            </div>
+            @*<div class="form-group">
+                <label>Nom médecin</label>
+                <input type="text" name="namedoctor" value="" class="form-control" ng-model="namedoctor" />
+            </div>*@
+
+            <div class="form-group" ng-show="viewMarital">
+                <label>Marital Status</label>
+                <input type="text" ng-model="cboEtatCivilBC" disabled class="form-control" name="name" value=" " />
+            </div>
+            <div class="form-group" style="">
+                <label>Approve</label>
+                <select class="form-control" ng-model="cboApprouve">
+                    <option>OUI</option>
+
+                </select>
+            </div>
+            <div class="form-group" style="display:none">
+                <label>Motivation</label>
+                @{
+                    BanroWebApp.Models.BANROEntities db = new BanroWebApp.Models.BANROEntities();
+                    var Query = from ds in db.t_sickness
+                                orderby ds.C_Name
+                                select ds;
+
+                                <select ng-model="tmotif" ng-change="changeMotif()" class="form-control">
+
+
+                                    @foreach (var item in Query)
+                                    {
+                                        <option>  @item.C_Name</option>
+                                    }
+                                </select>
+                }
+
+
+               
+            </div>
+            <div class="form-group" style="display:none;" id="ctrMotif">
+                <label>Others Sicknesses</label>
+                <input type="text" id="tmotif2" name="name" class="form-control" value=" " />
+            </div>
+            <div>
+                <label>Comments</label>
+                <textarea style="width:100%;" rows="5" ng-model="tmotif" class="form-control" placeholder="Write Comments here"></textarea>
+            </div>
+            @*<div class="row" style="">
+
+
+                    <div class="col-lg-6" style="width:100%;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                La famille <button class="btn btn-primary" data-toggle="modal" data-target="#myModalChild" style="float:right;margin-top:-.5em;" id="btnChild" ng-click="ClearChild()"><i class="fa fa-plus"></i> Ajouter</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#myModalChild" style="float:right;margin-top:-.5em;display:none;" id="btnChild2"><i class="fa fa-plus"></i> Ajouter</button>
+
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table" style="font-size:12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Datenais</th>
+                                                <th>Sexe</th>
+                                                <th>Etat</th>
+                                                <th>Edition</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="children in tabChild">
+                                                <td>{{children.name}}</td>
+                                                <td>{{children.datenais}}</td>
+                                                <td>{{children.sex}}</td>
+                                                <td>{{children.status}}</td>
+                                                <td><a href="#/employed" ng-click="editChild(children)">editer</a></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                </div>*@
+            <!-- /.row -->
+
+
+
+        </div>
+        <div class="col-lg-6" style="float:right;">
+
+            <div class="form-group">
+                <label>Starting date</label>
+                <table style="width:100%">
+                    <tr>
+                        <td>
+                            <select class="form-control" ng-model="cbodayDeb" id="cbodayDeb">
+                                <option ng-repeat="day in arrayDay">
+                                    {{day}}
+                                </option>
+
+                            </select>
+                        </td>
+                        <td>
+                            <select ng-model="cbomonthDeb" id="cbomonthDeb" class="form-control">
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+
+                            </select>
+                        </td>
+                        <td>
+                            <select ng-model="cboyearDeb" id="cboyearDeb" class="form-control">
+                                <option ng-repeat="year in arrayYear">
+                                    {{year}}
+                                </option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="form-group">
+                <label>Medical Services</label>
+                <select ng-model="cboservices" id="cboservices" class="form-control">
+                    <optgroup label="HOSPITALISATION">
+                        <option>
+                            GENERALISTE
+                        </option>
+                        <option>
+                            CHIRURGIE
+                        </option>
+                        <option>
+                            NEURO CHIRURGIE
+                        </option>
+                        <option>
+                            PEDIATRIE
+                        </option>
+                        <option>
+                            DENTISTERIE
+                        </option>
+                        <option>
+                            OBSTETRIQUE
+                        </option>
+                        <option>
+                            OPHTAMOLOGIE
+                        </option>
+                        <option>
+                             PLATRAGE
+                        </option>
+                        <option>
+                            ORL
+                        </option>
+                        <option>
+                            DERMATOLOGIE
+                        </option>
+                        <option>
+                            KINESIHERAPEUTE
+                        </option>
+                        <option>
+                            PSYCHIATRIE
+                        </option>
+
+                    </optgroup>
+                    <optgroup label="CONSULTATION PRENATALE">
+                        <option>
+                            GYNECHOLOGUE
+                        </option>
+                        <option>
+                            OBSTETRIQUE
+                        </option>
+                        <option>
+                            CPN
+                        </option>
+                    </optgroup>
+                    <optgroup label="IMAGERIE MEDICALE">
+                        <option>
+                            RADIOLOGIE
+                        </option>
+                        <option>
+                            ECHOGRAPHIE
+                        </option>
+                        <option>
+                              ECG (Electrocardiogramme)
+                        </option>
+                        <option>
+                            EGG (Electroencephalogramme)
+                        </option>
+                        <option>
+                            SCANNER
+                        </option>
+                    </optgroup>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label>Age</label>
+                <input type="text" disabled id="datepicker" ng-model="oldEmployed" class="form-control" />
+            </div>
+            <div class="form-group" style="">
+                <label>Medical Facility</label>
+                <select class="form-control" ng-model="cboCenterHealth" ng-change="CenterHealth()">
+                    <option ng-repeat="healthcenter in tabListHealths">
+                        {{healthcenter.C_name}}
+                    </option>
+
+
+                </select>
+            </div>
+            <div class="row" style="">
+
+
+                @*<div class="col-lg-6" style="width:100%;">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Conjoint(e)s
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#myModalSearchConjoint" id="btnaddSearchPartner" style="float:right;margin-top:-.5em;display:none;"><i class="fa fa-search"></i> Chercher</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#myModalPartner" id="btnaddPartner" style="float:right;margin-top:-.5em;margin-right:0.5em;" ng-show="btnAddPartner" ng-click="cleanConjoint()"><i class="fa fa-plus"></i> Ajouter</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#myModalPartner" id="btnaddPartner2" style="float:right;margin-top:-.5em;margin-right:0.5em;display:none;"><i class="fa fa-plus"></i> Ajouter</button>
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table" style="font-size:12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Sexe</th>
+                                                <th>Phone</th>
+                                                <th>Edition</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="partner in tabPartner">
+                                                <td>{{partner.name}}</td>
+                                                <td>{{partner.sex}}</td>
+                                                <td>{{partner.phone}}</td>
+                                                <td><a href="#/employed" ng-click="editPartner(partner)">Editer</a></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>*@
+                <!-- /.col-lg-6 -->
+            </div>
+
+            <!-- /.row -->
+        </div>
+       
+        <!-- /.col-lg-6 (nested) -->
+        <!-- /.col-lg-6 (nested) -->
+    </div>
+    <!-- /.row (nested) -->
+</div>
+<div class="panel-body" ng-show="isVisiblePrintable" style="margin-top:-3em">
+    <button name="name" class="btn btn-success" id="btnPrint" ng-click="Printable()" style="float:right;"><i class="fa fa-print"></i>Effectuer Impréssion</button>
+    <div style="text-align:center;width:100%;display:inline-block;">
+        
+        <br />
+        <div style="display:inline-block;width:100%">
+            
+            <h5 style="font-weight:bold;text-align:center">
+                <img src="~/BanroWebAppp/Images/logo2.jpg" style="float:left;" alt="Alternate Text" />
+                <u style="font-size:25px">{{entreprise}}</u>
+                <p>
+                    Filiale de Banro Corporation
+                    <br />
+                    
+                </p>
+                
+            </h5>
+
+        </div>
+        
+        <div style="float:left;position:relative;display:block;text-align:left;padding:5px">
+            <span><b>PHOTO DU MALADE</b></span><br />
+            <img src="~/images/{{picturePrinter}}" alt="Alternate Text" style="height:150px;width:130px;" />
+            <div style="display:block;float:right;position:relative;left:15em">
+                <h4 style="color:darkred;font-size:20px"><b>BON DE SOINS</b></h4>
+                <h6>N° :{{idVoucher}}/@month/@year </h6>
+                <h5 style="text-align:center;"><input type="radio" checked name="name" value=" " />{{cboCenterHealth}}</h5>
+            </div>
+           
+        </div>
+        
+        
+    </div>
+    
+    <div style="padding-top:0px;padding-bottom:0px">
+        <table style="width:100%; ">
+            <tr>
+                <td style="width: 10%; font-size: 13px;">
+                    <b>
+                        MOTIF
+                    </b>
+                </td>
+                <td style="width:40%;">
+
+                    <p style="font-size: 10px;border-bottom:1px solid black;">
+                        : {{tmotif|uppercase}}
+                    </p>
+
+
+
+                </td>
+
+                <td style="width: 10%; font-size: 13px;">
+                    <b>
+                        SERVICE
+                    </b>
+                </td>
+                <td style="width:40%;">
+
+                    <p style="font-size: 10px;border-bottom:1px solid black;">
+                        : {{cboservices}}
+                    </p>
+
+
+
+                </td>
+            </tr>
+        </table>
+        <h6 style="text-align:center;">Veuillez examiner puis donner le traitement nécessaire à la personnnes suivante:</h6>
+    </div>
+    <div class="col-lg-6" style="width:100%;">
+
+        <div class="form-group">
+            <table style="width:inherit;font-size:11px;width:100%;">
+                <tr style="width:40%;">
+                    <td style="padding-bottom: 10px;">
+                        Nom du Malade
+                    </td>
+                    <td style="width: auto; padding-bottom: 10px;">: {{nameEmployedBC}}</td>
+                    <td>
+                        Nom de l'agent
+                    </td>
+                    <td style="width: auto; padding-bottom: 10px;">:{{EmployeeScope}}</td>
+                </tr>
+
+                <tr style="width:40%;">
+                    <td>
+                        Identifiant
+                    </td>
+                    <td style="width: auto; padding-bottom: 10px;">:{{typeUser}}</td>
+                    <td>
+                        Departement
+                    </td>
+                    <td style="width: auto; padding-bottom: 10px;">: {{departement}}</td>
+                </tr>
+
+                <tr style="width:40%;">
+                    <td>
+                        Age du malade
+                    </td>
+                    <td style="width: auto; padding-bottom: 10px;">: {{oldEmployed}}</td>
+                    <td>
+                        N° Matricule 
+                    </td>
+                    <td style="width: auto; padding-bottom: 10px;">: {{matrAgent}}</td>
+                </tr>
+                <tr style="width:40%;">
+                    <td>
+                        Rep. de BANRO
+                    </td>
+                    <td style="width: auto; padding-bottom: 10px;">:@auth.username</td>
+                    <td>
+                        Date
+                    </td>
+                    <td style="width: auto; padding-bottom: 10px;">: {{datedeb}}</td>
+                </tr>
+                <tr style="width:40%;">
+                    <td>
+                        Signature
+                    </td>
+                    <td style="width: auto; padding-bottom: 10px;">: ..........</td>
+                    <td>
+                        
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+
+
+    </div>
+    <div class="panel-body">
+        <h6 style="text-align:center;font-size:8px;">
+            ID. NAT. 01-128-N40946U / RCCM. CD/KIN/RCCM/14 – B – 4004 / BP 13896 KINSHASA – RDC
+            SIEGE SOCIAL: Avenue SERGENT MOKE N0. 14, CONCESSION SAFRICAS, COMMUNE DE NGALIEMA, KINSHASA – RDC
+            SIEGE ADMINISTRATIF: VILLA BRUPPACHER, Avenue MWANGA N0. 15, COMMUNE D’IBANDA, BUKAVU/ SUD-KIVU – RDC
+            TEL. : +243 (0) 994059133 -      +243 (0) 998665952 -     +243 (0) 816942373 – FAX: 00243 (0) 812 616 096
+            SITEWEB: http://www.BANRO.COM
+
+
+        </h6>
+        <h6 style="text-align: center;font-size:8px;">
+            Siège Social:14, avenue Sergent Moke, Concession Safricas, commune de Ngaliema, Kinshasa, République Démocratique du Congo
+
+        </h6>
+ 
+        <div style="text-align:center;border:4px dotted black">
+            <p style="font-size:12px;">
+                Cette partie du feuillet est réservée au service Administratif de l’hopital – Date Réception du bon: ............................
+            </p>
+            <p style="font-size:12px;">
+                Services visités par le Malade :………................................              Signature de réception: .............................
+
+            </p>
+
+        </div>
+    </div>
+    <div style="border-bottom:1px solid black;"></div>
+    <h6 style="text-align:center;font-size:8px;">
+        Après examenn veuillez détacher puis retourner cette partie du feuillet auprès du département et des Ressources Humaines de Manoya Mining SA.
+    </h6>
+
+    <p>
+        <p style="color:red;text-align:center;font-size:8px;">AVERTISSEMENT- ANGALISHO</p>
+        <ul>
+            <li style="list-style:none;font-size:8px;">
+                - Retirer un bon de soins en faveur d’une personne qui n’est pas reconnue par la compagnie est une tentative de fraude et par conséquent une faute lourde. Art. 74. Code du Travail
+
+            </li>
+            <li style="list-style:none;font-size:8px;">
+                - Unapo cukuwa  iyi bon de soins hakikisha kama matunzo ni ya mtu anaye stahili kutunzwa kwa na anjulikana na Kampuni.  Kutunza mtu asiye julikana na kampuni ni wizi ama kosa kubwa mu kazi. art.74. code du travail.
+            </li>
+        </ul>
+
+
+        <br /><span style="font-size:8px;">Nom de l’agent  : ………………………  Signature de l’Agent  ou son délégué :………...............</span>
+
+        <br />
+
+      <label style="color:red;font-size:8px;">N.B : la Signature de l’agent ou son délégué est obligatoire.</label>  
+        <table style="border-bottom:1px dotted black;border-top:1px dotted black;width:100%;font-size:8px;">
+            <tr>
+                <td>
+                    Cette partie du feuillet est réservée au service Administratif de l’hopital 
+                </td>
+                <td>
+                    – Date Réception du bon: ............................
+                </td>
+              
+            </tr>
+            <tr>
+                <td>
+                    Services visités par le Malade :………................................
+                </td>
+                <td>
+                    Signature de réception: .............................
+                </td>
+            </tr>
+        </table>
+
+    </p>
+    <p style="font-size:8px;">Apres examen, veuillez détacher puis retourner cette partie du feuillet aupres de responsable H.R de Banro</p>
+    <p>Résultat & Detail du Traitement :    .…………………………………………………………………………...... ……………………………………………………………………………………………………………….……</p>
+    <table style="width:100%;font-size:8px;">
+        <tr>
+            <td>Rep. de Banro:  ………………………………</td>
+            <td>Nom de Médecin: ………………………………………….</td>
+        </tr>
+    </table>
+    <p style="text-align:right;font-size:8px;">
+        Date:  ……………………………………………………..
+    </p>
+    <p style="font-size:8px;">
+        Nombre de jours de répos:  ………………………………………………………………………………
+
+    </p>
+    <p style="text-align:center;font-size:8px;">
+        ID. NAT. 01-128-N40946U / RCCM. CD/KIN/RCCM/14 – B – 4004 / BP 13896 KINSHASA – RDC
+        Villa Bruppacher, Avenue Mwanga N0. 15, Commune Dd’Ibanda, BUKAVU/ SUD-KIVU – RDC +243 (0) 816942373 – FAX: 00243 (0) 812 616 096  /  http:/www.banro.com
+
+    </p>
+  
+</div>
+
+    
+

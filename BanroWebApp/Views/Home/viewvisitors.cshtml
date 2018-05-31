@@ -1,0 +1,388 @@
+﻿@model BanroWebApp.Models.AccountStatus
+@{
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    //  ViewBag.Title = "SearchDepartement";
+}
+@{
+
+    ViewBag.Title = "AddBonCommand";
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    BanroWebApp.Models.Authenticate auth2 = null;
+    if (Session["userinfo"] != null)
+    {
+        auth2 = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">
+                Visitor's List<i class="fa fa-bank" style="float:right;"></i>
+            </h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    @using (@Html.BeginForm())
+    {
+        <div class="form-group" style="display:none">
+            <button id="send">Go</button>
+            @Html.TextAreaFor(Models => Models.value, new { Class = "form-control", @Id = "valueAccount" })
+        </div>
+    }
+    <!-- /.row -->
+    <div style="width:100%;position:relative;left:0px;margin-left:0px;" id="page-wrapper" ng-app="app" ng-controller="CtrlHome">
+        <div class="row">
+
+            <div class="col-lg-12">
+                @{
+
+                    if (Request.HttpMethod.Equals("POST"))
+                    {
+                        if (ViewBag.message == "1")
+                        {
+                            <div class="alert alert-success" id="alertDep">
+                                Successfully Modify
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="alert alert-danger" id="alertDep">
+                                No Action, Please check a value
+                            </div>
+                        }
+
+                    }
+                }
+            </div>
+
+
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row" onload="" style="font-size:10px;">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="display:inline-block;width:100%">
+                        @{
+                            if (auth2.Priority.ToLower().Equals("administrator"))
+                            {
+                                <button type="button" onclick="go()" class="btn btn-danger" style="float:right;display:inline-block"><i class="fa fa-lock"></i> Change</button>
+                            }
+                        }
+                       
+                        <a href="AddBeneficiaire#/visitor" class="btn btn-success" style="float:right;display:inline-block"><i class="fa fa-pencil"></i> Add new</a>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="dataTable_wrapper">
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:10px;">
+                                <thead>
+                                    <tr>
+                                        <th style="display:none">ID</th>
+                                        <th>Visitor's Name</th>
+                                        <th>Phone</th>
+                                        <th>Gender</th>
+                                        <th>Company Visitor</th>
+                                        <th>Company Visited</th>
+                                        <th>Motivation</th>
+                                        <th>
+                                            @{
+                                                if (auth2.Priority.ToLower().Equals("administrator"))
+                                                {
+                                                    <input type="checkbox" name="name" value=" " id="statusCheck" onclick="allCheck('list')" />
+                                                }
+                                            }
+                                            Account Status
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        System.Web.Script.Serialization.JavaScriptSerializer jserial = new System.Web.Script.Serialization.JavaScriptSerializer();
+                                        int index = 0;
+
+                                        BanroWebApp.Models.BANROEntities dbx = new BanroWebApp.Models.BANROEntities();
+                                        BanroWebApp.Models.Authenticate auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+                                        if (auth.Priority.Equals("administrator"))
+                                        {
+
+                                            var QueryAdmin = from visitor in dbx.t_beneficiaires
+                                                             join company in dbx.t_succursales on visitor.C_company_visited equals company.C_id
+                                                             where !visitor.C_id_visitor.Equals(null)
+
+                                                             select new { visitor, company };
+
+                                            foreach (var item in QueryAdmin)
+                                            {
+                                                String currentStatus = (item.visitor.C_status_system.Equals("1") ? "Enabled" : "Disabled");
+                                                String company = dbx.t_succursales.Where(e => e.C_company.Equals(item.visitor.C_company_visited)).FirstOrDefault().C_name;
+                                                BanroWebApp.Models.SerialVisitor sVisitor = new BanroWebApp.Models.SerialVisitor()
+                                                {
+                                                    id = item.visitor.C_id,
+                                                    name = item.visitor.C_name,
+                                                    phone = item.visitor.C_phone,
+                                                    gender = item.visitor.C_sex,
+                                                    company = item.visitor.C_company_visited,
+                                                    companyvisitor = item.visitor.C_company_visitor,
+                                                    status = currentStatus,
+                                                    motif = item.visitor.C_motif_visit
+                                                };
+                                                Dictionary<String, String> dict = new Dictionary<string, string>();
+                                                dict.Add("id", sVisitor.id.ToString());
+                                                dict.Add("status", item.visitor.C_status_system);
+                                                String dataJSON = jserial.Serialize(sVisitor);
+                                                string ctr = jserial.Serialize(dict);
+                                                String id = "t" + index;
+                                                <tr class="odd gradeX" style="cursor:pointer">
+                                                    <td style="display:none">@item.visitor.C_id</td>
+                                                    <td onclick="viewVisitor(@dataJSON)">@item.visitor.C_name</td>
+                                                    <td style="cursor:pointer" onclick="viewVisitor(@dataJSON)">@item.visitor.C_phone</td>
+                                                    <td style="cursor:pointer" onclick="viewVisitor(@dataJSON)">@item.visitor.C_sex</td>
+                                                    <td onclick="viewVisitor(@dataJSON)" style="cursor:pointer">@item.visitor.C_company_visitor</td>
+                                                    <td class="center" onclick="viewVisitor(@dataJSON)" style="cursor:pointer">@company</td>
+                                                    <td class="center" onclick="viewVisitor(@dataJSON)" style="cursor:pointer">@item.visitor.C_motif_visit</td>
+
+                                                    <td class="center" style="cursor:pointer"><input type="checkbox" onclick="fillTab(@ctr,@index)" id="@id" name="name" value=" " />@currentStatus</td>
+
+                                                </tr>
+                                                index++;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            var QueryAdmin = from visitor in dbx.t_beneficiaires
+                                                             join company in dbx.t_succursales on visitor.C_company_visited equals company.C_id
+                                                             where !visitor.C_id_visitor.Equals(auth2.Succursale)
+
+                                                             select new { visitor, company };
+
+                                            foreach (var item in QueryAdmin)
+                                            {
+                                                String currentStatus = (item.visitor.C_status_system.Equals("1") ? "Enabled" : "Disabled");
+                                                String company = dbx.t_succursales.Where(e => e.C_company.Equals(item.visitor.C_company_visited)).FirstOrDefault().C_name;
+                                                BanroWebApp.Models.SerialVisitor sVisitor = new BanroWebApp.Models.SerialVisitor()
+                                                {
+                                                    id = item.visitor.C_id,
+                                                    name = item.visitor.C_name,
+                                                    phone = item.visitor.C_phone,
+                                                    gender = item.visitor.C_sex,
+                                                    company = item.visitor.C_company_visited,
+                                                    companyvisitor = item.visitor.C_company_visitor,
+                                                    status = currentStatus,
+                                                    motif = item.visitor.C_motif_visit
+                                                };
+                                                Dictionary<String, String> dict = new Dictionary<string, string>();
+                                                dict.Add("id", sVisitor.id.ToString());
+                                                dict.Add("status", item.visitor.C_status_system);
+                                                String dataJSON = jserial.Serialize(sVisitor);
+                                                string ctr = jserial.Serialize(dict);
+                                                String id = "t" + index;
+                                                <tr class="odd gradeX" style="cursor:pointer">
+                                                    <td style="display:none">@item.visitor.C_id</td>
+                                                    <td onclick="viewVisitor(@dataJSON)">@item.visitor.C_name</td>
+                                                    <td style="cursor:pointer" onclick="viewVisitor(@dataJSON)">@item.visitor.C_phone</td>
+                                                    <td style="cursor:pointer" onclick="viewVisitor(@dataJSON)">@item.visitor.C_sex</td>
+                                                    <td onclick="viewVisitor(@dataJSON)" style="cursor:pointer">@item.visitor.C_company_visitor</td>
+                                                    <td class="center" onclick="viewVisitor(@dataJSON)" style="cursor:pointer">@company</td>
+                                                    <td class="center" onclick="viewVisitor(@dataJSON)" style="cursor:pointer">@item.visitor.C_motif_visit</td>
+
+                                                    <td class="center" style="cursor:pointer">
+                                                        @{
+                                                            if (auth2.Priority.ToLower().Equals("administrator"))
+                                                            {
+                                                                <input type="checkbox" onclick="fillTab(@ctr,@index)" id="@id" name="name" value=" " />
+
+                                                            }
+                                                        }
+                                                            @currentStatus
+                                                    
+                                                    </td>
+
+                                                </tr>
+                                                index++;
+                                            }
+                                        }
+                                    }
+
+
+                                </tbody>
+                            </table>
+                           
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display:none;" id="Btnmodal">
+                        Launch Demo Modal
+                    </button>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color: #337ab7;color:white;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">Modify Visitor</h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="form-group" style="display:none">
+                                        <label>id Visitor</label>
+                                        <input type="text" class="form-control" name="name" ng-model="ivisitor" id="ivisitor" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Name Visitor</label>
+                                        <input type="text" class="form-control" name="name" ng-model="nvisitor" id="nvisitor" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-group">Gender</label>
+                                        <select class="form-control" id="gvisitor">
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone Visitor</label>
+                                        <input type="text" class="form-control" name="name" ng-model="pvisitor" id="pvisitor" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Company Visitor</label>
+                                        <input type="text" class="form-control" name="name" ng-model="cvisitor" id="cvisitor" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Motivation</label>
+                                        <input type="text" class="form-control" name="name" ng-model="mvisitor" id="mvisitor" />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="alert alert-success" id="alertdep" style="display:none;float:left;width:70px;background-color:white;">
+                                        Successfull modify
+                                    </div>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    @if (auth2.Priority.Equals("administrator") || auth2.Priority.Equals("user"))
+                                    {
+                                        <button type="button" ng-click="updateVisitor()" class="btn btn-primary">Save</button>
+
+                                    }
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+                <!-- /.row -->
+                <!-- /.row -->
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /#page-wrapper -->
+<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+<script>
+    function viewVisitor(object) {
+        console.log(object)
+        document.querySelector('#ivisitor').value=object.id;
+        document.querySelector('#nvisitor').value=object.name;
+        document.querySelector('#pvisitor').value=object.phone;
+        document.querySelector('#gvisitor').value=object.gender;
+        document.querySelector('#cvisitor').value=object.companyvisitor;
+        document.querySelector('#mvisitor').value=object.motif;
+        document.querySelector('#Btnmodal').click();
+    }
+        
+    var Table=[];
+    var ctrlAccount=document.querySelector('#valueAccount');
+    var ctr=0;
+    function fillTab(object, index) {
+        document.querySelector('#alertDep').style="display:none;"
+        ctrlAccount.value = "";
+        var t='#t'+index;
+        if (document.querySelector(t).checked){
+            Table.push(object);
+            ctrlAccount.value = JSON.stringify(Table);
+        }else {
+            var i=Table.indexOf(object);
+            Table.splice(i,1);
+            console.log(Table.length)
+            if (Table.length>0) {
+                ctrlAccount.value = JSON.stringify(Table);
+            } else {
+                ctrlAccount.value = "";
+            }
+
+        }
+
+        console.log(JSON.stringify(Table));
+    }
+    var allValue = true;
+    function allCheck(listDatas) {
+        document.querySelector('#alertDep').style = "display:none;"
+        
+        var td = document.querySelector('#td');
+        var statusCheck = document.querySelector('#statusCheck');
+        if (statusCheck.checked==true) {
+            Table=[];
+            var table = $('#dataTables-example').DataTable();
+            var data = table.rows()
+                            .data();
+            for (var i = 0; i < table.rows({ page: 'current' }).nodes().length; i++) {
+                var currentTab=table.rows({ page: 'current' }).data()[i];
+                var k=currentTab[7].toString().lastIndexOf(' ');
+                var status=currentTab[7].toString().substring(k);
+                var id=currentTab[7].toString().substring(currentTab[7].toString().indexOf('id=')).trim();
+             
+                id='#'+id.split('"')[1];
+                document.querySelector(id).checked=true;
+                console.log("Id Cell :",id);
+                var index=status.lastIndexOf('>');
+                status=status.substring(index+1);
+                var obj=
+                    {
+                        id:currentTab[0].trim(),
+                        status:(status.trim()=="Enabled"?"1":"0")
+                    }
+                   
+                console.log('Object  :',obj)
+                Table.push(obj);
+            }
+            
+            ctrlAccount.value = JSON.stringify(Table);
+        } else {
+            var table = $('#dataTables-example').DataTable();
+            var data = table.rows()
+                            .data();
+            for (var i = 0; i < table.rows({ page: 'current' }).nodes().length; i++) {
+                var currentTab=table.rows({ page: 'current' }).data()[i];
+                var k=currentTab[7].toString().lastIndexOf(' ');
+                var status=currentTab[7].toString().substring(k);
+                var id=currentTab[7].toString().substring(currentTab[7].toString().indexOf('id=')).trim();
+             
+                id='#'+id.split('"')[1];
+                document.querySelector(id).checked=false;
+              
+
+            }
+            ctrlAccount.value="";
+
+        }
+        
+
+    }
+    function go() {
+        document.querySelector('#send').click();
+    }
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true,
+            'ordering':false
+        });
+    });
+
+</script>

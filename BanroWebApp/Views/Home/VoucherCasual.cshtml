@@ -1,0 +1,444 @@
+﻿@model BanroWebApp.Models.t_vouchers_casuals
+@{
+    ViewBag.Title = "MedicalCrusherIssued";
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    BanroWebApp.Models.Authenticate auth = null;
+    if (Session["userinfo"] != null)
+    {
+        auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+}
+<body>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                    New voucher <i class="fa fa-bank" style="float:right;"></i>
+                </h3>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        @{
+            System.Web.Script.Serialization.JavaScriptSerializer serial = new System.Web.Script.Serialization.JavaScriptSerializer();
+            if (Request.HttpMethod.Equals("POST"))
+            {
+                <div class="alert alert-success" id="alertDep">
+                    @ViewBag.message
+                </div>
+            }
+        }
+
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <button style="float:right;margin-top:-.5em" class="btn btn-primary" onclick="refreshing()"><i class="fa fa-refresh"></i> Refresh</button>
+
+                        Add new   <button id="btnModalContractor" ng-click="fillCasual()" style="float:right;margin-top:-.5em" class="btn btn-success" data-toggle="modal" data-target="#myModalCasual"><i class="fa fa-search"></i> Search</button>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <form method="post">
+
+
+                                <div data-ng-app="app" ng-controller="CtrlHome">
+                                    <div class="modal fade" id="myModalCasual" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="">
+                                        <div class="modal-dialog" style="width:90%;height:70%;">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background-color: #337ab7;color:white;">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title" id="myModalLabel">Search Casual</h4>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                    <table class="table" style="font-size:12px;">
+                                                        <thead>
+                                                            <tr>
+
+
+                                                                <th colspan="7">
+
+                                                                    <button class="btn btn-success" type="button" ng-click="searchCasual()">Search</button>
+
+                                                                    <button class="btn btn-default" type="button" ng-click="resetCasual()">Reset filter</button>
+
+
+
+                                                                    <select class="form-control" ng-model="CasualExport" style="width:20%;float:right;">
+                                                                        @*<option value="CSV">CSV</option>*@
+                                                                        <option value="PDF">PDF</option>
+
+                                                                    </select>
+
+
+                                                                </th>
+                                                                <th colspan="8">
+                                                                    <button type="button" class="btn btn-warning" ng-click="exportationCasual()" style="">Export data</button>
+                                                                </th>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="text" ng-model="idVoucherCasual" placeholder="Voucher Id..." class="form-control" name="name" />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" ng-model="NameCasual" placeholder="Name casual" class="form-control" name="name" />
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control" ng-model="CompanyCasual" name="name" placeholder="Company" />
+                                                                </td>
+                                                                <td>
+                                                                    <div class="input-group date dp" style="width:100px;" data-provider="datepicker">
+                                                                        <input id="dateStarting" style="width:100px;" ng-model="dateStarting" placeholder="From" type="text" name="name" class="form-control" />
+                                                                        <div class="input-group-addon">
+                                                                            <span class="fa fa-th"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="input-group date dp" style="width:100px;" data-provider="datepicker">
+                                                                        <input id="dateEnding" ng-model="dateEnding" style="width:100px;" type="text" placeholder="To" name="name" class="form-control" />
+                                                                        <div class="input-group-addon">
+                                                                            <span class="fa fa-th"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    -
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" ng-model="hospitalCasual">
+                                                                        <option ng-repeat="hospital in tabListHealths">
+                                                                            {{hospital.C_name}}
+                                                                        </option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-control" ng-model="companyCasual" ng-show="cboVoucherCasualCompany">
+                                                                        <option ng-repeat="company in ListSuccursales">
+                                                                            {{company.name}}
+                                                                        </option>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="font-weight:bold;font-size:15px;">
+                                                                <td>
+                                                                    Voucher Id
+                                                                </td>
+                                                                <td>
+                                                                    Name
+                                                                </td>
+                                                                <td>
+                                                                    Company
+                                                                </td>
+                                                                <td>
+                                                                    Date
+                                                                </td>
+
+                                                                <td>
+                                                                    Hospital
+                                                                </td>
+                                                                <td>
+                                                                    Company Visited
+                                                                </td>
+                                                                <td>
+                                                                    Cause
+                                                                </td>
+                                                                <td>
+                                                                    Cost
+                                                                </td>
+                                                            </tr>
+                                                            <tr ng-repeat="casual in ListCasual" style="cursor:pointer;" ng-click="casualSelected(casual)">
+
+                                                                <td>
+                                                                    {{casual.idVoucher}}
+                                                                </td>
+                                                                <td>
+                                                                    {{casual.NameCasual}}
+                                                                </td>
+                                                                <td>
+                                                                    {{casual.CompanyCasual}}
+                                                                </td>
+                                                                <td>
+                                                                    {{casual.DateCasual}}
+                                                                </td>
+
+                                                                <td>
+                                                                    {{casual.idHospital}}
+                                                                </td>
+                                                                <td>
+                                                                    {{casual.idCompanyVisited}}
+                                                                </td>
+                                                                <td>
+                                                                    {{casual.Cause}}
+                                                                </td>
+                                                                <td>
+                                                                    {{casual.Cost}}
+                                                                </td>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr></tr>
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @using (Html.BeginForm())
+                                    {
+                                        <div class="col-lg-6">
+
+
+                                            @Html.AntiForgeryToken()
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                @Html.TextBoxFor(Model => Model.C_name_casual, new { Class = "form-control", placholder = "Casual name", @Id = "NameCasual" })
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Born Date</label>
+                                                <table style="width:100%">
+                                                    <tr>
+                                                        <td>
+                                                            <select class="form-control"  id="cboday">
+                                                                <optgroup label="Day"></optgroup>
+                                                                @for (int i = 1; i <= 31; i++)
+                                                                {
+                                                                    <option>@i</option>
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control"  id="cbomonth">
+                                                                <optgroup label="Month"></optgroup>
+                                                                @foreach (var item in new BanroWebApp.Models.MonthList().getMonths())
+                                                                {
+                                                                    <option value="@item.id">@item.name</option>
+                                                                }
+
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select class="form-control"  id="cboyear">
+                                                                <optgroup label="Month"></optgroup>
+                                                                @for (int i = DateTime.Now.Year - 150; i <= DateTime.Now.Year; i++)
+                                                                {
+                                                                    <option>@i</option>
+                                                                }
+                                                            </select>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <div class="form-group" style="display:none;">
+                                                    @Html.TextBoxFor(Model => Model.C_datenaiss, new { Class = "form-control", placeholder = "", @Id = "datenaiss" })
+                                               
+
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label>Company</label>
+                                                @Html.TextBoxFor(Model => Model.C_company_casual, new { Class = "form-control", placeholder = "", @Id = "AddressHome" })
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Department</label>
+                                                @Html.TextBoxFor(Model => Model.C_department, new { Class = "form-control", placeholder = "", @Id = "AddressHome" })
+
+                                            </div>
+
+
+
+
+                                            @*<div class="form-group" >
+                                                    <label>Motif</label>
+                                                    @Html.TextAreaFor(Model => Model.C_motif, new { Class = "form-control", placeholder = "Why was he/she on the site", @Id = "ValidateFrom" })
+
+                                                </div>*@
+
+
+                                            <div style="width:100%;text-align:center;">
+                                                @{
+                                                    if (auth.Priority.Equals("user") || auth.Priority.Equals("administrator"))
+                                                    {
+                                                        <button type="button" onclick="datePrepare()" class="btn btn-default">Register</button>
+                                                        <button type="submit" class="btn btn-default" id="btnSenderC" style="color:#0094ff;width:25%;display:none;">Register</button>
+                                                    }
+                                                }
+
+
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>Date voucher</label>
+                                                <div class="input-group date dp" style="" data-provider="datepicker">
+                                                    @Html.TextBoxFor(Model => Model.C_date_casual, new { Class = "form-control", placeholder = "", @Id = "ValidateFrom" })
+                                                    @*<input id="date1Export" style="" placeholder="rom" type="text" name="name" class="form-control" />*@
+                                                    <div class="input-group-addon">
+                                                        <span class="fa fa-th"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Medical Services</label>
+                                                <select id="cboservices" onchange="servicechange()" class="form-control">
+                                                    <optgroup label="HOSPITALISATION">
+                                                        <option></option>
+                                                        <option>
+                                                            GENERALISTE
+                                                        </option>
+                                                        <option>
+                                                            CHIRURGIE
+                                                        </option>
+                                                        <option>
+                                                            NEURO CHIRURGIE
+                                                        </option>
+                                                        <option>
+                                                            PEDIATRIE
+                                                        </option>
+                                                        <option>
+                                                            DENTISTERIE
+                                                        </option>
+                                                        <option>
+                                                            OBSTETRIQUE
+                                                        </option>
+                                                        <option>
+                                                            OPHTAMOLOGIE
+                                                        </option>
+                                                        <option>
+                                                            PLATRAGE
+                                                        </option>
+                                                        <option>
+                                                            ORL
+                                                        </option>
+                                                        <option>
+                                                            DERMATOLOGIE
+                                                        </option>
+                                                        <option>
+                                                            KINESIHERAPEUTE
+                                                        </option>
+                                                        <option>
+                                                            PSYCHIATRIE
+                                                        </option>
+
+                                                    </optgroup>
+                                                    <optgroup label="CONSULTATION PRENATALE">
+                                                        <option>
+                                                            GYNECHOLOGUE
+                                                        </option>
+                                                        <option>
+                                                            OBSTETRIQUE
+                                                        </option>
+                                                        <option>
+                                                            CPN
+                                                        </option>
+                                                    </optgroup>
+                                                    <optgroup label="IMAGERIE MEDICALE">
+                                                        <option>
+                                                            RADIOLOGIE
+                                                        </option>
+                                                        <option>
+                                                            ECHOGRAPHIE
+                                                        </option>
+                                                        <option>
+                                                            ECG (Electrocardiogramme)
+                                                        </option>
+                                                        <option>
+                                                            EGG (Electroencephalogramme)
+                                                        </option>
+                                                        <option>
+                                                            SCANNER
+                                                        </option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Motivation</label>
+                                                @Html.TextAreaFor(Model => Model.C_cause, new { Class = "form-control", placeholder = "Why was he/she taken in charge ", @Id = "tapprouve" })
+                                                @*@Html.TextBoxFor(Model => Model.C_phone, new { Class = "form-control", placeholder = "N° phone de la société", @id = "phoneContractor" })*@
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Hospital</label>
+                                                @Html.DropDownListFor(Model => Model.C_id_centre, (IEnumerable<SelectListItem>)ViewBag.listHospital, new { Class = "form-control", @Id = "idHospital" })
+                                            </div>
+
+                                            <div class="form-group" style="display:none;">
+                                                <label>Code Services</label>
+                                                @Html.TextBoxFor(Model => Model.C_service, new { Class = "form-control", @Id = "idservices" })
+                                            </div>
+                                        </div>
+                                                    }
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+</body>
+<!-- /.row -->
+
+
+                <!-- /#page-wrapper -->
+<script src="~/banrowebapp/Scripts/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+
+    $(function() {
+        $('.dp').datepicker({
+            dateFormat:'m/dd/yyyy'
+        })
+    });
+    var today = new Date(2017, 08, 25).toLocaleDateString("en-US");
+
+    var yesterday = new Date(2017, 08, 24).toLocaleDateString("en-US");
+    if (today>yesterday) {
+        console.log('Cooooool');
+    } else {
+        console.log(':(');
+    }
+    console.log();
+
+
+    function servicechange() {
+        var cbo = document.querySelector('#cboservices');
+        document.querySelector('#idservices').value = cbo.value.toString().trim();
+    }
+    function refreshing() {
+        window.location.reload(true);
+    }
+    var dayBirth = "";
+    var monthBirth = "";
+    var yearBirth = "";
+    function datePrepare() {
+        var borndate = document.querySelector('#cboday').value + '/' + document.querySelector('#cbomonth').value + '/' + document.querySelector('#cboyear').value;
+        $('#datenaiss').val(borndate)
+        $('#btnSenderC').click();
+    }
+   
+</script>

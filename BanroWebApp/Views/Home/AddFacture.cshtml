@@ -1,0 +1,864 @@
+﻿@model BanroWebApp.Models.t_factures
+@{
+    ViewBag.Title = "AddBonCommand";
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    BanroWebApp.Models.Authenticate auth = null;
+    if (Session["userinfo"]!=null)
+    {
+        auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+}
+
+
+
+   
+    <!-- /.row -->
+    @*<div class="input-group date" data-provider="datepicker" id="dp">
+            <input type="text" name="name" class="form-control" value=" " />
+            <div class="input-group-addon">
+                <span class="fa fa-th"></span>
+            </div>
+        </div>*@
+
+
+
+                        <form method="post">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+    <div data-ng-app="app" ng-controller="CtrlHome">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    @{
+                                if (Request.HttpMethod.Equals("POST") && ViewBag.messageFacture == "200")
+                                {
+                                    <div class="alert alert-success" id="alertDep" style="text-align:center;">
+                                        <i class="fa fa-check"></i> Successfull Registration
+                                    </div>
+                                }
+                                else
+                                {
+                                    @ViewBag.messageFacture;
+                                }
+                    }
+                    @if (auth.Priority.Equals("middle"))
+                    {
+                        <h3 class="page-header">
+                                View Invoices  <i class="fa fa-paperclip" style="float:right;"></i>
+                        </h3>    
+                    }
+                    else
+                    {
+                        <h3 class="page-header">
+                          Add a  New Invoice  <a style="float:right;" href="AddFacture"  class="btn btn-default"><i class="fa fa-refresh"></i></a>
+                        </h3>
+                    }
+
+                    
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <div class="alert alert-success hide" id="alertImport" style="text-align:center;">
+                <i class="fa fa-check"></i> <span id="messageImport">Importation des données en cours.....</span>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="panel panel-default">
+
+                        @if (auth.Priority.Equals("middle"))
+                        {
+                            <div class="panel-heading">
+                            Invoice Form
+                              <button style="float:right;margin-top:-.60em" type="button" data-toggle="modal" ng-click="SearchBCmdForFacture()" data-target="#myModalEmployed" id="btnSearchCmd" class="btn btn-primary"><i class="fa fa-search"></i>Search Vouchers</button>
+                          @*  <button style="float:right;margin-top:-.60em;margin-right:1em;" type="button" id="btnSearchFile" class="btn btn-success"><i class="fa fa-file"></i> Upload file</button>*@
+                        </div>
+                        }
+                        else
+                        {
+                            
+                            <div class="panel-heading">
+                                Invoice Form
+                                <button style="float:right;margin-top:-.60em" type="button" data-toggle="modal" ng-click="SearchBCmdForFacture()" data-target="#myModalEmployed" id="btnSearchCmd" class="btn btn-primary"><i class="fa fa-search"></i>Search Vouchers</button>
+                                
+
+                                <button  style="float:right;margin-top:-.60em;display:none;" type="button" id="btnSearchFile" class="btn btn-success"><i class="fa fa-file"></i> Upload file</button>
+                            </div>
+                        }
+
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="modal fade" id="myModalEmployed" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-show="isVisiblebcEmployed" style="">
+                                    <div class="modal-dialog" style="width:90%;height:70%;">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: #337ab7;color:white;">
+                                                @*<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>*@
+                                                <h4 class="modal-title" id="myModalLabel">Search Vouchers</h4>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                @*<div class="form-group input-group">
+                                                    <input type="text" class="form-control" ng-model="nameUser" placeholder="Entrez le nom de l'employé(e)">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-primary" type="button" ng-click="" style="height:35px;">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                                <hr />*@
+
+                                                <div class="row">
+                                                    <div class="col-lg-6" style="width:100%;">
+                                                        <div class="panel panel-default">
+                                                            <!-- /.panel-heading -->
+                                                            <div class="panel-body">
+
+                                                                <div class="table-responsive">
+                                                                    <h5 ng-show="loading" class="center-block" style="text-align:center;">Loading data, please wait...</h5>
+                                                                    <h5 ng-show="loading2" class="center-block" style="text-align:center;">DATA NOT FOUND</h5>
+                                                                    <table class="table" style="font-size:12px;" ng-show="isVisibleTabFactureEmployee">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    <input data-toggle="modal" id="validate" data-target="#myModalEmployed" type="button" name="name" class="btn btn-primary" value="Validate" />
+                                                                                </th>
+                                                                                <th>
+                                                                                    <input type="button" name="name" value="Cancel" ng-click="cancelValidate()" class="btn btn-default" />
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    <button class="btn btn-success" type="button" ng-click="lama()">Search</button>
+                                                                                </th>
+                                                                                <th>
+                                                                                    <button class="btn btn-default" type="button" ng-click="resetCmd()">Reset filter</button>
+                                                                                </th>
+
+                                                                                <th colspan="5">
+                                                                                    <div style="width:auto;float:right;padding-right:3em;" class="form-group">
+                                                                                        <label> Categories</label>
+                                                                                        <select class="form-control" ng-change="changeFacture()" id="cbofacture" ng-model="cbofacture">
+                                                                                            <optgroup label="Beneficiaries"></optgroup>
+                                                                                            <option>Employee</option>
+                                                                                            <option>Dependents</option>
+                                                                                            <option>Visitor</option>
+                                                                                            <optgroup label="Others"></optgroup>
+                                                                                            <option>Casual</option>
+                                                                                            <option>Contractor</option>
+                                                                                        </select>
+
+                                                                                    </div>
+
+                                                                                </th>
+                                                                                <th colspan="2">
+
+
+                                                                                    <button type="button" class="btn btn-warning" ng-click="exportationData()" ng-disabled="btnDisabled" style="float:right;">Export data</button>
+                                                                                    <select class="form-control" ng-model="cboCategExport" style="float:right;width:100px;">
+                                                                                        <option value="PDF">PDF</option>
+                                                                                    </select>
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th> <input type="checkbox" id="check_employee" ng-click="checkAllInvoiceEmployee()" name="name" value=" " />
+                                                                                Select
+                                                                                </th>
+                                                                                <th>Voucher id</th>
+                                                                                <th>Date</th>
+                                                                                <th>Name</th>
+                                                                                <th>Gender</th>
+                                                                                <th>Phone (#)</th>
+                                                                                <th>Company</th>
+                                                                                <th>Department</th>
+                                                                                <th>Hospital</th>
+                                                                                @*<th>Photo</th>*@
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td></td>
+                                                                                
+                                                                                <td>
+                                                                                    <input type="text" class="form-control" ng-model="idCmd" style="width:100%" name="name" value=" " />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="input-group date dp" style="width:100px;" data-provider="datepicker">
+                                                                                        <input id="dateCmd1" style="width:100px;" ng-model="dateCmd1" placeholder="From" type="text" name="name" class="form-control" />
+                                                                                        <div class="input-group-addon">
+                                                                                            <span class="fa fa-th"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="input-group date dp" style="width:100px;" data-provider="datepicker">
+                                                                                        <input id="dateCmd2" ng-model="dateCmd2" style="width:100px;" type="text" placeholder="To" name="name" class="form-control" />
+                                                                                        <div class="input-group-addon">
+                                                                                            <span class="fa fa-th"></span>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="text" class="form-control" ng-model="nameCmd" style="width:100%;" name="name" value=" " />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <select class="form-control" ng-model="idSexe" style="width:100%;">
+                                                                                        <option></option>
+                                                                                        <option>M</option>
+                                                                                        <option>F</option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input ng-model="phoneSearch" type="text" class="form-control" style="width:70px;" name="name" value=" " />
+                                                                                </td>
+                                                                                <td>
+                                                                                    @{
+
+                                if (!auth.Priority.Equals("user"))
+                                {
+                                                                <select class="form-control" id="cbo_succ_BCmd" ng-model="cbo_succ_BCmd" ng-change="getDepartementBySucc('Bcmd')" style="width:100px;">
+                                                                    <option></option>
+                                                                    <option ng-repeat="succ in ListSuccursales">
+                                                                        {{succ.name}}
+                                                                    </option>
+                                                                </select>
+                                }
+                                else
+                                {
+                                                                <h5>
+                                                                    @auth.nameSuccursale
+                                                                </h5>
+                                }
+                                                                                    }
+
+                                                                                </td>
+
+                                                                                <td>
+                                                                                    <select class="form-control" ng-model="cbo_depart_BCmd" id="cbo_depart_BCmd" style="width:100px;">
+                                                                                        <option></option>
+                                                                                        <option ng-repeat="depart in listdepartementbyBCmd ">
+                                                                                            {{depart.code_depart}}
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <select class="form-control" ng-model="cbo_health_BCmd" style="width:100px;">
+                                                                                        <option ng-repeat="center_health in tabHealthBCmd">
+                                                                                            {{center_health}}
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr ng-repeat="employed in tabBCmdFacture" style="cursor:pointer;">
+                                                                                <td>
+                                                                                    <input type="checkbox" id="{{'c'+employed.id}}" name="name" ng-click="selectedcmd(employed)" value=" " />
+                                                                                </td>
+                                                                                <td>{{employed.id}}</td>
+                                                                                <td>{{employed.datecmd}}</td>
+                                                                                <td>{{employed.Employed.name}}</td>
+                                                                                <td>{{employed.Employed.sex}}</td>
+                                                                                <td>{{employed.Employed.phone}}</td>
+                                                                                <td>{{employed.Employed.ID_Succursale}}</td>
+                                                                                <td>{{employed.Employed.ID_Departement}}</td>
+                                                                                <td>{{employed.idHealth}}</td>
+                                                                                @*<td>
+                        <img src="~/Images/{{employed.Employed.picture}}" alt="image profil" style="height:70px;width:70px;" />
+                    </td>*@
+
+
+
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+
+
+
+                                                                    <table class="table" style="font-size:12px;" ng-show="isVisibleTabFactureDep">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    <input data-toggle="modal" id="validate" data-target="#myModalEmployed" type="button" name="name" class="btn btn-primary" value="Validate" />
+                                                                                </th>
+                                                                                <th>
+                                                                                    <input type="button" name="name" value="Cancel" ng-click="cancelValidate()" class="btn btn-default" />
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    <button class="btn btn-success" type="button" ng-click="lama()">Search</button>
+                                                                                </th>
+                                                                                <th>
+                                                                                    <button class="btn btn-default" type="button" ng-click="resetCmd()">Reset filter</button>
+                                                                                </th>
+
+                                                                                <th colspan="5">
+                                                                                    <div style="width:auto;float:right;padding-right:3em;" class="form-group">
+                                                                                        <label> Categories</label>
+                                                                                        <select class="form-control" ng-change="changeFacture()" ng-model="cbofacture">
+                                                                                            <optgroup label="Beneficiaries"></optgroup>
+                                                                                            <option>Employee</option>
+                                                                                            <option>Dependents</option>
+                                                                                            <option>Visitor</option>
+                                                                                            <optgroup label="Others"></optgroup>
+                                                                                            <option>Casual</option>
+                                                                                            <option>Contractor</option>
+                                                                                        </select>
+
+                                                                                    </div>
+
+                                                                                </th>
+                                                                                <th colspan="2">
+
+
+                                                                                    <button type="button" class="btn btn-warning" ng-disabled="btnDisabled" ng-click="exportationData()" style="float:right;">Export data</button>
+                                                                                    <select class="form-control" ng-model="cboCategExport" style="float:right;width:100px;">
+                                                                             
+                                                                                        <option value="PDF">PDF</option>
+                                                                    
+
+                                                                                    </select>
+
+
+                                                                                </th>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <th>
+                                                                                    <input type="checkbox" id="check_dep" ng-click="checkAllInvoiceDependents()" name="name" value=" " />
+                                                                                     Select 
+                                                                                </th>
+                                                                                <th>Vocuher Id</th>
+                                                                                <th>Date</th>
+                                                                                <th>Name</th>
+                                                                                <th>Gender</th>
+                                                                                <th>Employee</th>
+                                                                                <th>Company</th>
+                                                                                <th>Departement</th>
+                                                                                <th>Hospital</th>
+                                                                             
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="text" class="form-control" ng-model="idCmd" style="width:100%" name="name" value=" " />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="input-group date dp" style="width:100px;" data-provider="datepicker">
+                                                                                        <input id="dateCmdD1" style="width:100px;" ng-model="dateCmdD1" placeholder="From" type="text" name="name" class="form-control" />
+                                                                                        <div class="input-group-addon">
+                                                                                            <span class="fa fa-th"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="input-group date dp" style="width:100px;" data-provider="datepicker">
+                                                                                        <input id="dateCmdD2" ng-model="dateCmdD2" style="width:100px;" type="text" placeholder="To" name="name" class="form-control" />
+                                                                                        <div class="input-group-addon">
+                                                                                            <span class="fa fa-th"></span>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="text" class="form-control" ng-model="nameCmd" style="width:100%;" name="name" value=" " />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <select class="form-control" ng-model="idSexe" style="width:100%;">
+                                                                                        <option></option>
+                                                                                        <option>M</option>
+                                                                                        <option>F</option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input ng-model="NameEmployeeSearch" type="text" class="form-control" style="width:70px;" name="name" value=" " />
+                                                                                </td>
+                                                                                <td>
+                                                                                    @{
+
+                                if (!auth.Priority.Equals("user"))
+                                {
+                                                                        <select class="form-control" id="cbo_succ_BCmd2" ng-model="cbo_succ_BCmd2" ng-change="getDepartementBySucc('Bcmd2')" style="width:100px;">
+                                                                            <option></option>
+                                                                            <option ng-repeat="succ in ListSuccursales">
+                                                                                {{succ.name}}
+                                                                            </option>
+                                                                        </select>
+                                }
+                                else
+                                {
+                                                                        <h5>
+                                                                            @auth.nameSuccursale
+                                                                        </h5>
+                                }
+                                                                                    }
+
+                                                                                </td>
+
+                                                                                <td>
+                                                                                    <select class="form-control" ng-model="cbo_depart_BCmd2" id="cbo_depart_BCmd2" style="width:100px;">
+                                                                                        <option></option>
+                                                                                        <option ng-repeat="depart in listdepartementbyBCmd2 ">
+                                                                                            {{depart.code_depart}}
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <select class="form-control" ng-model="cbo_health_BCmd" style="width:100px;">
+                                                                                        <option ng-repeat="center_health in tabHealthBCmd">
+                                                                                            {{center_health}}
+                                                                                        </option>
+                                                                                    </select>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                          @*  <tr ng-repeat="employed in tabBCmdFacture" ng-click="selectedEmployedfacture(employed)" style="cursor:pointer;">*@
+                                                                            <tr ng-repeat="employed in tabBCmdFacture" style="cursor:pointer;">
+                                                                               <td>
+                                                                                   <input type="checkbox" id="{{'d'+employed.id}}" name="name" ng-click="selectedcmd2(employed)" value=" " />
+                                                                               </td>
+                                                                                 <td>{{employed.id}}</td>
+                                                                                <td>{{employed.datecmd}}</td>
+                                                                                <td>{{employed.nameAuthor}}</td>
+                                                                                <td>{{employed.sexeAuthor}}</td>
+                                                                                <td>{{employed.Employed.name}}</td>                                                       
+                                                                                <td>{{employed.Employed.ID_Succursale}}</td>
+                                                                                <td>{{employed.Employed.ID_Departement}}</td>
+                                                                                <td>{{employed.idHealth}}</td>
+                                                                                @*<td>
+                                                                                    <img src="~/Images/{{employed.Partner.picture}}" alt="image profil" style="height:70px;width:70px;" />
+                                                                                </td>*@
+
+
+
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+
+
+                                                                    <table class="table" style="font-size:12px;" ng-show="isVisibleTabVisitor ">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    <input data-toggle="modal" id="validate" data-target="#myModalEmployed" type="button" name="name" class="btn btn-primary" value="Validate" />
+                                                                                </th>
+                                                                                <th>
+                                                                                    <input type="button" name="name" value="Cancel" ng-click="cancelValidate()" class="btn btn-default" />
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                              
+                                                                                <th><label> Categories</label></th>
+                                                                                <th>
+                                                                                 
+                                                                                        <select class="form-control" ng-change="changeFacture()" id="cbofacture" ng-model="cbofacture">
+                                                                                            <optgroup label="Beneficiaries"></optgroup>
+                                                                                            <option>Employee</option>
+                                                                                            <option>Dependents</option>
+                                                                                            <option>Visitor</option>
+                                                                                            <optgroup label="Ohters"></optgroup>
+                                                                                            <option>Casual</option>
+                                                                                            <option>Contractor</option>
+                                                                                        </select>
+
+                                                                               
+
+                                                                                </th>
+                                                                                <th>
+
+
+                                                                                    
+                                                                                    <select class="form-control" ng-model="cboCategExport" style="width:100%;">
+                                                                                    
+                                                                                        <option value="PDF">PDF</option>
+                                                                                     
+
+                                                                                    </select>
+
+
+                                                                                </th>
+                                                                                <th>
+                                                                                    <button type="button" class="btn btn-warning" ng-disabled="btnDisabled" ng-click="exportationData()" style="">Export data</button>
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                               <th colspan="7" >
+                                                                                   <div class="form-group input-group" style="width:100%">
+                                                                                       <input type="search" name="name" ng-model="query" class="form-control" value=" " />
+                                                                                       <span class="input-group-btn">
+                                                                                           <button class="btn btn-primary" type="button" ng-click="" style="height:35px;">
+                                                                                               <i class="fa fa-search"></i>
+                                                                                           </button>
+                                                                                       </span>
+                                                                                   </div>
+                                                                               </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    <input type="checkbox" id="check_vis" name="name" value=" " ng-click="checkAllInvoiceVisitors()" />Select 
+                                                                                
+                                                                                </th>
+                                                                                <th>Voucher Id</th>
+                                                                                <th>Date</th>
+                                                                                <th>Name</th>
+                                                                                <th>Gender</th>
+                                                                                <th>Hospital</th>                                                                             
+                                                                                <th>Company</th>
+                                                                               
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="visitor in TabVisitorVouchers | filter:query">
+                                                                                <td><input type="checkbox" id="{{'v'+visitor.id}}" ng-click="selectedcmd3(visitor)" name="name" value=" " /></td>
+                                                                                <td>{{visitor.id}}</td>
+                                                                                <td>{{visitor.datecmd}}</td>
+                                                                                <td>{{visitor.nameAuthor}}</td>
+                                                                                <td>{{visitor.sexeAuthor}}</td>
+                                                                                <td>{{visitor.idHealth}}</td>
+                                                                                <td>{{visitor.Employed.ID_Succursale}}</td>
+                                                                               
+                                                                            </tr>
+                                                                         
+
+                                                                        </tbody>
+                                                                    </table>
+
+
+                                                                    <table class="table" style="font-size:12px;" ng-show="isVisibleTabCasual ">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    <input data-toggle="modal" id="validate" data-target="#myModalEmployed" type="button" name="name" class="btn btn-primary" value="Validate" />
+                                                                                </th>
+                                                                                <th>
+                                                                                    <input type="button" name="name" value="Cancel" ng-click="cancelValidate()" class="btn btn-default" />
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+
+                                                                                <th><label> Categories</label></th>
+                                                                                <th>
+
+                                                                                    <select class="form-control" ng-change="changeFacture()" id="cbofacture" ng-model="cbofacture">
+                                                                                        <optgroup label="Beneficiaries"></optgroup>
+                                                                                        <option>Employee</option>
+                                                                                        <option>Dependents</option>
+                                                                                        <option>Visitor</option>
+                                                                                        <optgroup label="Others"></optgroup>
+                                                                                        <option>Casual</option>
+                                                                                        <option>Contractor</option>
+                                                                                    </select>
+
+
+
+                                                                                </th>
+                                                                                <th>
+
+
+
+                                                                                    <select class="form-control" ng-model="cboCategExport" style="width:100%;">
+                                                                                
+                                                                                        <option value="PDF">PDF</option>
+
+                                                                                    </select>
+
+
+                                                                                </th>
+                                                                                <th>
+                                                                                    <button type="button" class="btn btn-warning" ng-disabled="btnDisabled" ng-click="exportationData()" style="">Export data</button>
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th colspan="7">
+                                                                                    <div class="form-group input-group" style="width:100%">
+                                                                                        <input type="search" name="name" ng-model="queryCasual" class="form-control" value=" " />
+                                                                                        <span class="input-group-btn">
+                                                                                            <button class="btn btn-primary" type="button" ng-click="" style="height:35px;">
+                                                                                                <i class="fa fa-search"></i>
+                                                                                            </button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th><input type="checkbox" id="check_ca" ng-click="checkAllInvoiceCasuals()" name="name" value=" " />Select</th>
+                                                                                <th>Voucher Id</th>
+                                                                                <th>Date</th>
+                                                                                <th>Name</th>
+                                                                                <th>Company</th>
+                                                                                <th>Hospital</th>
+                     
+                                                                                <th>Visited Company</th>
+                                                                              
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="casual in TabCasualVouchers | filter:queryCasual">
+                                                                                <td><input id="{{'ca'+casual.id}}" type="checkbox" ng-click="selectedcmd4(casual)" name="name" value=" " /></td>
+                                                                                <td>{{casual.id}}</td>
+                                                                                <td>{{casual.datecmd}}</td>
+                                                                                <td>{{casual.nameAuthor}}</td>
+                                                                                <td>
+                                                                                    {{casual.sexeAuthor}}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{casual.idHealth}}
+                                                                                </td>
+                                                                                
+                                                                                <td>{{casual.Employed.ID_Succursale}}</td>
+
+                                                                            </tr>
+
+
+                                                                        </tbody>
+                                                                    </table>
+
+
+
+                                                                    <table class="table" style="font-size:12px;" ng-show="isVisibleTabContractor">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>
+                                                                                    <input data-toggle="modal" id="validate" data-target="#myModalEmployed" type="button" name="name" class="btn btn-primary" value="Validate" />
+                                                                                </th>
+                                                                                <th>
+                                                                                    <input type="button" name="name" value="Cancel" ng-click="cancelValidate()" class="btn btn-default" />
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+
+                                                                                <th><label> Categories</label></th>
+                                                                                <th>
+
+                                                                                    <select class="form-control" ng-change="changeFacture()" id="cbofacture" ng-model="cbofacture">
+                                                                                        <optgroup label="Beneficiaries"></optgroup>
+                                                                                        <option>Employee</option>
+                                                                                        <option>Dependents</option>
+                                                                                        <option>Visitor</option>
+                                                                                        <optgroup label="Others"></optgroup>
+                                                                                        <option>Casual</option>
+                                                                                        <option>Contractor</option>
+                                                                                    </select>
+
+
+
+                                                                                </th>
+                                                                                <th>
+
+
+
+                                                                                    <select class="form-control" ng-model="cboCategExport" style="width:100%;">
+                                                                           
+                                                                                        <option value="PDF">PDF</option>
+
+                                                                                    </select>
+
+
+                                                                                </th>
+                                                                                <th>
+                                                                                    <button type="button" class="btn btn-warning" ng-disabled="btnDisabled" ng-click="exportationData()" style="">Export data</button>
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th colspan="7">
+                                                                                    <div class="form-group input-group" style="width:100%;">
+                                                                                        <input type="search" name="name" ng-model="queryContractor" class="form-control" value=" " />
+                                                                                        <span class="input-group-btn">
+                                                                                            <button class="btn btn-primary" type="button" ng-click="" style="height:35px;">
+                                                                                                <i class="fa fa-search"></i>
+                                                                                            </button>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </th>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th><input id="check_co" ng-click="checkAllInvoiceContractor()" type="checkbox" name="name" value=" " />Select</th>
+                                                                                <th>Voucher Id</th>
+                                                                                <th>Date</th>
+                                                                                <th>Name</th>
+                                                                                <th>Company</th>
+                                                                                <th>Hospital</th>
+                                                                                <th>Visited Company</th>
+                                                                                
+
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="contractor in TabContractorVouchers | filter:queryContractor">
+                                                                                <td><input type="checkbox" id="{{'co'+contractor.id}}" ng-click="selectedcmd5(contractor)" name="name" value=" " /></td>
+                                                                                <td>{{contractor.id}}</td>
+                                                                                <td>{{contractor.datecmd}}</td>
+                                                                                <td>{{contractor.nameAuthor}}</td>
+                                                                                <td>
+                                                                                    {{contractor.sexeAuthor}}
+                                                                                </td>
+                                                                                <td>
+                                                                                    {{contractor.idHealth}}
+                                                                                </td>
+
+                                                                                <td>{{contractor.Employed.ID_Succursale}}</td>
+
+                                                                            </tr>
+
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <!-- /.panel-body -->
+                                                        </div>
+                                                        <!-- /.panel -->
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="alert alert-success" id="alertSucc" style="display:none;float:left;width:70px;background-color:white;">
+                                                       
+                                                    </div>
+                                                    <button type="button" class="btn btn-default" style="display:none" data-dismiss="modal" id="btnCloseIt">Close</button>
+                                                    <button type="button" style="display:none;" ng-click="AddPartner()" id="" class="btn btn-primary"><i class="fa fa-plus"></i>Ajouter</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <table class="table" style="font-size:12px;" id="tbleCout">
+                                    <thead>
+                                        <tr>
+                                            <th>Voucher Id</th>
+                                            <th>Beneficiary' Name</th>
+                                            <th id="TSex">Gender</th>
+                                            <th>Company</th>
+
+                                            <th id="TDepart">Department</th>
+                                            <th id="DateV">Date</th>
+                                            <th>Cost</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="idTabCout">
+                                      
+                                        
+                                    </tbody>
+
+                                </table>
+                                
+
+                                @*<div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Nom beneficiaire</label>
+                                        <input type="text" ng-model="nameBenef" name="name" disabled class="form-control" value=" " />
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label>Téléphone</label>
+                                        <input type="text" ng-model="phoneBenef" name="name" disabled class="form-control" value=" " />
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Succursale</label>
+                                        <input type="text" ng-model="SuccBenef" disabled name="name" class="form-control" value=" " />
+
+
+                                    </div>
+
+
+                                </div>*@
+
+                                @*<div class="col-lg-6" style="float:right;">
+                                    <div class="form-group">
+                                        <label>Departement</label>
+                                        <input type="text" ng-model="departBenef" disabled name="name" class="form-control" value=" " />
+
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label>Coût facture</label>
+
+                                        @Html.TextBoxFor(Model => Model.C_cout, new { Class = "form-control", data_ng_model = "coutBenef" })
+
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Fichier Facture</label>
+                                        <div class="form-group input-group">
+
+
+                                            <input type="text" id="fileUpload" name="name" class="form-control" />
+                                            <span class="input-group-addon btn btn-primary" style="background-color: #337ab7;color:white;" ng-click="getFileFacture()"><i class="fa fa-paperclip"></i></span>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>*@
+
+                                @Html.TextAreaFor(Model => Model.C_fileupload, new { Class = "form-control", style = "display:none;", @Id = "fileBenef" })
+                                @Html.TextBoxFor(Model => Model.C_id_bon, new { Class = "form-control", style = "display:none;", data_ng_model = "idBon" })
+                                <div style="width:100%;text-align:center;">
+                                    @if (!auth.Priority.Equals("middle"))
+                                    {
+                                    <button id="sendFacture" disabled type="button" ng-click="sendFacture()" class="btn btn-primary" style="width:25%;float:left;margin-left:1em;">Register</button>
+                                        
+                                    }
+
+                                    <button type="submit" class="btn btn-success" id="btnSubmit" style="width:25%;float:left;margin-left:1em;display:none;">Enregistrer</button>
+                                </div>
+
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+                                    @* <img src="~/Content/img/user2-160x160.jpg" alt="Alternate Text" style="width:260px;height:180px;" />*@
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </div>
+
+                        </div>
+
+
+                            }
+                        </form>
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    function refresh() {
+        document.location.reload();
+    }
+    $(function() {
+        $('.dp').datepicker({
+            dateFormat:'m/dd/yyyy'
+        })
+    });
+    console.log(new Date())
+</script>

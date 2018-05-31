@@ -1,0 +1,610 @@
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll.config
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\BanroWebApp.pdb
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\ClosedXML.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\DocumentFormat.OpenXml.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\EntityFramework.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Owin.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.Razor.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\WebGrease.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\ClosedXML.pdb
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.Razor.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.pdb
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\EntityFramework.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\System.Web.Helpers.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\System.Web.Optimization.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\System.Web.Razor.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\EntityFramework.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\EntityFramework.SqlServer.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csproj.ResolveComReference.cache
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.dll
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.pdb
+C:\Users\Lama\Documents\Visual Studio 2013\Projects\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll.config
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\BanroWebApp.pdb
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\ClosedXML.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\DocumentFormat.OpenXml.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Owin.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Razor.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\WebGrease.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\ClosedXML.pdb
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Razor.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.pdb
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Helpers.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Optimization.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Razor.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csproj.ResolveComReference.cache
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.dll
+C:\Users\user\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.pdb
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll.config
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\BanroWebApp.pdb
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\ClosedXML.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\DocumentFormat.OpenXml.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\EntityFramework.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Owin.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Razor.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\WebGrease.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\ClosedXML.pdb
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\EntityFramework.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Razor.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.pdb
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.Helpers.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.Optimization.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.Razor.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csprojResolveAssemblyReference.cache
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csproj.ResolveComReference.cache
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.dll
+C:\Users\Yann_Vegas\Documents\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.pdb
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll.config
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\BanroWebApp.pdb
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\ClosedXML.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\DocumentFormat.OpenXml.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Owin.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Razor.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\WebGrease.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\ClosedXML.pdb
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Razor.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.pdb
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Helpers.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Optimization.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Razor.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csprojResolveAssemblyReference.cache
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csproj.ResolveComReference.cache
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.dll
+C:\Users\Yann_Vegas\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.pdb
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll.config
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\BanroWebApp.pdb
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\ClosedXML.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\DocumentFormat.OpenXml.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Owin.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Razor.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\WebGrease.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\ClosedXML.pdb
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.Razor.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.pdb
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Helpers.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Optimization.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.Razor.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csprojResolveAssemblyReference.cache
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csproj.ResolveComReference.cache
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.dll
+C:\Users\Lama\Desktop\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.pdb
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll.config
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\BanroWebApp.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\BanroWebApp.pdb
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\ClosedXML.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\DocumentFormat.OpenXml.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\EntityFramework.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Owin.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Razor.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\WebGrease.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\ClosedXML.pdb
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\EntityFramework.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Helpers.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Mvc.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Optimization.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.Razor.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Newtonsoft.Json.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Antlr3.Runtime.pdb
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.Helpers.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.Optimization.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.Razor.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csproj.ResolveComReference.cache
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.dll
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.pdb
+C:\Users\Lama\Documents\BanroWebApp\BanroWebApp\obj\Debug\BanroWebApp.csprojResolveAssemblyReference.cache
+E:\DevLama\Banro\BanroWebApp\bin\BanroWebApp.dll.config
+E:\DevLama\Banro\BanroWebApp\bin\BanroWebApp.dll
+E:\DevLama\Banro\BanroWebApp\bin\BanroWebApp.pdb
+E:\DevLama\Banro\BanroWebApp\bin\Antlr3.Runtime.dll
+E:\DevLama\Banro\BanroWebApp\bin\ClosedXML.dll
+E:\DevLama\Banro\BanroWebApp\bin\DocumentFormat.OpenXml.dll
+E:\DevLama\Banro\BanroWebApp\bin\EntityFramework.dll
+E:\DevLama\Banro\BanroWebApp\bin\EntityFramework.SqlServer.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Google.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Web.Infrastructure.dll
+E:\DevLama\Banro\BanroWebApp\bin\Newtonsoft.Json.dll
+E:\DevLama\Banro\BanroWebApp\bin\Owin.dll
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.Helpers.dll
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.Mvc.dll
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.Optimization.dll
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.Razor.dll
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.WebPages.Deployment.dll
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.WebPages.dll
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.WebPages.Razor.dll
+E:\DevLama\Banro\BanroWebApp\bin\WebGrease.dll
+E:\DevLama\Banro\BanroWebApp\bin\ClosedXML.pdb
+E:\DevLama\Banro\BanroWebApp\bin\EntityFramework.xml
+E:\DevLama\Banro\BanroWebApp\bin\EntityFramework.SqlServer.xml
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.Helpers.xml
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.Mvc.xml
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.Optimization.xml
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.Razor.xml
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.WebPages.xml
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.WebPages.Deployment.xml
+E:\DevLama\Banro\BanroWebApp\bin\System.Web.WebPages.Razor.xml
+E:\DevLama\Banro\BanroWebApp\bin\Newtonsoft.Json.xml
+E:\DevLama\Banro\BanroWebApp\bin\Antlr3.Runtime.pdb
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Google.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+E:\DevLama\Banro\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\DevLama\Banro\BanroWebApp\bin\fr\System.Web.Helpers.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\System.Web.Mvc.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\System.Web.Optimization.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\System.Web.Razor.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\System.Web.WebPages.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\System.Web.WebPages.Deployment.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\System.Web.WebPages.Razor.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\Microsoft.Owin.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Security.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+E:\DevLama\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+E:\DevLama\Banro\BanroWebApp\obj\Debug\BanroWebApp.csprojResolveAssemblyReference.cache
+E:\DevLama\Banro\BanroWebApp\obj\Debug\BanroWebApp.csproj.ResolveComReference.cache
+E:\DevLama\Banro\BanroWebApp\obj\Debug\BanroWebApp.dll
+E:\DevLama\Banro\BanroWebApp\obj\Debug\BanroWebApp.pdb
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\BanroWebApp.dll.config
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\BanroWebApp.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\BanroWebApp.pdb
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Antlr3.Runtime.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\ClosedXML.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\DocumentFormat.OpenXml.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\EntityFramework.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\EntityFramework.SqlServer.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Newtonsoft.Json.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Owin.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.Helpers.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.Mvc.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.Optimization.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.Razor.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.WebPages.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.WebPages.Razor.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\WebGrease.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\ClosedXML.pdb
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\EntityFramework.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\EntityFramework.SqlServer.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.Helpers.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.Mvc.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.Optimization.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.Razor.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.WebPages.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\System.Web.WebPages.Razor.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Newtonsoft.Json.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Antlr3.Runtime.pdb
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\System.Web.Helpers.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\System.Web.Optimization.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\System.Web.Razor.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\System.Web.WebPages.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\System.Web.WebPages.Razor.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\Microsoft.Owin.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Host.SystemWeb.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Security.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Security.Facebook.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Security.Google.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Security.Twitter.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\obj\Debug\BanroWebApp.csprojResolveAssemblyReference.cache
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\obj\Debug\BanroWebApp.csproj.ResolveComReference.cache
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\obj\Debug\BanroWebApp.dll
+C:\Users\Bluesquare-DRC\Documents\Banro\BanroWebApp\obj\Debug\BanroWebApp.pdb

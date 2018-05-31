@@ -1,0 +1,18 @@
+﻿@model BanroWebApp.Models.MonthList
+@{
+    ViewBag.Title = "CostPerHospital";
+}
+
+<h2>CostPerHospital</h2>
+
+<form method="post">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.DropDownListFor(Model=>Model.FromMonth,(IEnumerable<SelectListItem>)ViewBag.MonthList)<br/>
+        @Html.DropDownListFor(Model=>Model.ToMonth,(IEnumerable<SelectListItem>)ViewBag.MonthList)<br/>
+        @Html.DropDownListFor(Model=>Model.year,(IEnumerable<SelectListItem>)ViewBag.YearList)<br/>
+        <button type="submit" class="btn btn-success" >LAMA</button>
+    }
+    
+</form>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a963a33625574a26b722c9daf96fe85b" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="BANROModel.employee_contractor" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="BANROModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="BANROModel.t_beneficiaires" Width="1.5" PointX="3" PointY="12" />
+        <EntityTypeShape EntityType="BANROModel.t_bon_commandes" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="BANROModel.t_categories" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BANROModel.t_centre_soins" Width="1.5" PointX="5.25" PointY="0.875" />
+        <EntityTypeShape EntityType="BANROModel.t_contractor" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="BANROModel.t_departement" Width="1.5" PointX="3" PointY="16.875" />
+        <EntityTypeShape EntityType="BANROModel.t_factures" Width="1.5" PointX="9.75" PointY="5.375" />
+        <EntityTypeShape EntityType="BANROModel.t_logger" Width="1.5" PointX="8.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BANROModel.t_sickness" Width="1.5" PointX="9.75" PointY="1.75" />
+        <EntityTypeShape EntityType="BANROModel.t_succursales" Width="1.5" PointX="0.75" PointY="8.5" />
+        <EntityTypeShape EntityType="BANROModel.t_test" Width="1.5" PointX="10.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BANROModel.t_vouchers_casuals" Width="1.5" PointX="6" PointY="9.125" />
+        <EntityTypeShape EntityType="BANROModel.t_vouchers_contractor" Width="1.5" PointX="7.5" PointY="4.5" />
+        <AssociationConnector Association="BANROModel.FK_employee_contractor_t_contractor" />
+        <AssociationConnector Association="BANROModel.FK_t_vouchers_contractor_employee_contractor" />
+        <AssociationConnector Association="BANROModel.FK_t_beneficiaires_t_succursales" />
+        <AssociationConnector Association="BANROModel.FK_t_bon_commandes_t_centre_soins" />
+        <AssociationConnector Association="BANROModel.FK_t_factures_t_bon_commandes" />
+        <AssociationConnector Association="BANROModel.FK_t_vouchers_casuals_t_centre_soins" />
+        <AssociationConnector Association="BANROModel.FK_t_vouchers_contractor_t_centre_soins" />
+        <AssociationConnector Association="BANROModel.FK_t_contractor_t_succursales" />
+        <AssociationConnector Association="BANROModel.FK_t_departement_t_succursales" />
+        <AssociationConnector Association="BANROModel.FK_t_vouchers_casuals_t_succursales" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

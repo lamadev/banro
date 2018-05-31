@@ -1,0 +1,3 @@
+le mot de passe est hashé, donc utilisez un mot de passe par defaut en MD5
+mot de passe Clair :101010
+Hashé :6d071901727aec1ba6d8e2497ef5b709

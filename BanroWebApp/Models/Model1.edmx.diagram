@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b7dc1b46502e40ad9a99369de9a71030" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="BANROBFModel.employee_contractor" Width="1.5" PointX="3.75" PointY="23" />
+        <EntityTypeShape EntityType="BANROBFModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2" />
+        <EntityTypeShape EntityType="BANROBFModel.t_beneficiaires" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BANROBFModel.t_bon_commandes" Width="1.5" PointX="3" PointY="6.75" />
+        <EntityTypeShape EntityType="BANROBFModel.t_centre_soins" Width="1.5" PointX="0.75" PointY="7.125" />
+        <EntityTypeShape EntityType="BANROBFModel.t_contractor" Width="1.5" PointX="1.5" PointY="23.25" />
+        <EntityTypeShape EntityType="BANROBFModel.t_departement" Width="1.5" PointX="1.5" PointY="11.25" />
+        <EntityTypeShape EntityType="BANROBFModel.t_factures" Width="1.5" PointX="5.25" PointY="11.25" />
+        <EntityTypeShape EntityType="BANROBFModel.t_logger" Width="1.5" PointX="3" PointY="2.125" />
+        <EntityTypeShape EntityType="BANROBFModel.T_logs" Width="1.5" PointX="7.75" PointY="2" />
+        <EntityTypeShape EntityType="BANROBFModel.t_succursales" Width="1.5" PointX="1.5" PointY="19.25" />
+        <EntityTypeShape EntityType="BANROBFModel.t_vouchers_casuals" Width="1.5" PointX="3" PointY="14.625" />
+        <EntityTypeShape EntityType="BANROBFModel.t_vouchers_contractor" Width="1.5" PointX="6" PointY="6.75" />
+        <EntityTypeShape EntityType="BANROBFModel.t_categories" Width="1.5" PointX="8.75" PointY="6" />
+        <EntityTypeShape EntityType="BANROBFModel.t_sickness" Width="1.5" PointX="8.75" PointY="8" />
+        <EntityTypeShape EntityType="BANROBFModel.t_test" Width="1.5" PointX="8.75" PointY="10" />
+        <AssociationConnector Association="BANROBFModel.FK_employee_contractor_t_contractor" />
+        <AssociationConnector Association="BANROBFModel.FK_t_vouchers_contractor_employee_contractor" />
+        <AssociationConnector Association="BANROBFModel.FK_t_beneficiaires_t_departement" />
+        <AssociationConnector Association="BANROBFModel.FK_t_bon_commandes_t_beneficiaires1" />
+        <AssociationConnector Association="BANROBFModel.FK_t_logger_t_beneficiaires" />
+        <AssociationConnector Association="BANROBFModel.FK_t_bon_commandes_t_centre_soins" />
+        <AssociationConnector Association="BANROBFModel.FK_t_factures_t_bon_commandes" />
+        <AssociationConnector Association="BANROBFModel.FK_t_vouchers_casuals_t_centre_soins" />
+        <AssociationConnector Association="BANROBFModel.FK_t_vouchers_contractor_t_centre_soins" />
+        <AssociationConnector Association="BANROBFModel.FK_t_departement_t_succursales" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

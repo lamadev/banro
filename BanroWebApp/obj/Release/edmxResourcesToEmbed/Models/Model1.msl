@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BANROModelStoreContainer" CdmEntityContainer="BANROEntities">
+    <EntitySetMapping Name="employee_contractor">
+      <EntityTypeMapping TypeName="BANROModel.employee_contractor">
+        <MappingFragment StoreEntitySet="employee_contractor">
+          <ScalarProperty Name="C_idContractor" ColumnName="C_idContractor" />
+          <ScalarProperty Name="C_phone" ColumnName="C_phone" />
+          <ScalarProperty Name="C_adresse" ColumnName="C_adresse" />
+          <ScalarProperty Name="C_sex" ColumnName="C_sex" />
+          <ScalarProperty Name="C_name" ColumnName="C_name" />
+          <ScalarProperty Name="C_id" ColumnName="C_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BANROModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_beneficiaires">
+      <EntityTypeMapping TypeName="BANROModel.t_beneficiaires">
+        <MappingFragment StoreEntitySet="t_beneficiaires">
+          <ScalarProperty Name="C_motif_visit" ColumnName="C_motif_visit" />
+          <ScalarProperty Name="C_id_visitor" ColumnName="C_id_visitor" />
+          <ScalarProperty Name="C_statusChild" ColumnName="C_statusChild" />
+          <ScalarProperty Name="C_id_depart" ColumnName="C_id_depart" />
+          <ScalarProperty Name="C_id_categorie" ColumnName="C_id_categorie" />
+          <ScalarProperty Name="C_id_parent" ColumnName="C_id_parent" />
+          <ScalarProperty Name="C_id_partenaire" ColumnName="C_id_partenaire" />
+          <ScalarProperty Name="C_picture" ColumnName="C_picture" />
+          <ScalarProperty Name="C_phone" ColumnName="C_phone" />
+          <ScalarProperty Name="C_statusmaritalk" ColumnName="C_statusmaritalk" />
+          <ScalarProperty Name="C_sex" ColumnName="C_sex" />
+          <ScalarProperty Name="C_datenais" ColumnName="C_datenais" />
+          <ScalarProperty Name="C_name" ColumnName="C_name" />
+          <ScalarProperty Name="C_id_succ" ColumnName="C_id_succ" />
+          <ScalarProperty Name="C_id" ColumnName="C_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_bon_commandes">
+      <EntityTypeMapping TypeName="BANROModel.t_bon_commandes">
+        <MappingFragment StoreEntitySet="t_bon_commandes">
+          <ScalarProperty Name="C_motif" ColumnName="C_motif" />
+          <ScalarProperty Name="C_approuve" ColumnName="C_approuve" />
+          <ScalarProperty Name="C_namedoctor" ColumnName="C_namedoctor" />
+          <ScalarProperty Name="C_datefin" ColumnName="C_datefin" />
+          <ScalarProperty Name="C_datedeb" ColumnName="C_datedeb" />
+          <ScalarProperty Name="C_id_centre" ColumnName="C_id_centre" />
+          <ScalarProperty Name="C_id_bene" ColumnName="C_id_bene" />
+          <ScalarProperty Name="C_id_bon" ColumnName="C_id_bon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_categories">
+      <EntityTypeMapping TypeName="BANROModel.t_categories">
+        <MappingFragment StoreEntitySet="t_categories">
+          <ScalarProperty Name="C_id_categ" ColumnName="C_id_categ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_centre_soins">
+      <EntityTypeMapping TypeName="BANROModel.t_centre_soins">
+        <MappingFragment StoreEntitySet="t_centre_soins">
+          <ScalarProperty Name="C_phone" ColumnName="C_phone" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="C_name" ColumnName="C_name" />
+          <ScalarProperty Name="C_id_centre" ColumnName="C_id_centre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_contractor">
+      <EntityTypeMapping TypeName="BANROModel.t_contractor">
+        <MappingFragment StoreEntitySet="t_contractor">
+          <ScalarProperty Name="C_idSucc" ColumnName="C_idSucc" />
+          <ScalarProperty Name="C_phone" ColumnName="C_phone" />
+          <ScalarProperty Name="C_adresse" ColumnName="C_adresse" />
+          <ScalarProperty Name="C_name" ColumnName="C_name" />
+          <ScalarProperty Name="C_id" ColumnName="C_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_departement">
+      <EntityTypeMapping TypeName="BANROModel.t_departement">
+        <MappingFragment StoreEntitySet="t_departement">
+          <ScalarProperty Name="C_id_succ" ColumnName="C_id_succ" />
+          <ScalarProperty Name="C_id_depart" ColumnName="C_id_depart" />
+          <ScalarProperty Name="C_id" ColumnName="C_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_factures">
+      <EntityTypeMapping TypeName="BANROModel.t_factures">
+        <MappingFragment StoreEntitySet="t_factures">
+          <ScalarProperty Name="C_fileupload" ColumnName="C_fileupload" />
+          <ScalarProperty Name="C_cout" ColumnName="C_cout" />
+          <ScalarProperty Name="C_timefacture" ColumnName="C_timefacture" />
+          <ScalarProperty Name="C_datefacture" ColumnName="C_datefacture" />
+          <ScalarProperty Name="C_id_bon" ColumnName="C_id_bon" />
+          <ScalarProperty Name="C_id_fact" ColumnName="C_id_fact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_logger">
+      <EntityTypeMapping TypeName="BANROModel.t_logger">
+        <MappingFragment StoreEntitySet="t_logger">
+          <ScalarProperty Name="C_employeeId" ColumnName="C_employeeId" />
+          <ScalarProperty Name="C_idSucc" ColumnName="C_idSucc" />
+          <ScalarProperty Name="C_priority" ColumnName="C_priority" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="C_username" ColumnName="C_username" />
+          <ScalarProperty Name="C_id" ColumnName="C_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_sickness">
+      <EntityTypeMapping TypeName="BANROModel.t_sickness">
+        <MappingFragment StoreEntitySet="t_sickness">
+          <ScalarProperty Name="C_Name" ColumnName="C_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_succursales">
+      <EntityTypeMapping TypeName="BANROModel.t_succursales">
+        <MappingFragment StoreEntitySet="t_succursales">
+          <ScalarProperty Name="C_phone" ColumnName="C_phone" />
+          <ScalarProperty Name="C_adresse" ColumnName="C_adresse" />
+          <ScalarProperty Name="C_name" ColumnName="C_name" />
+          <ScalarProperty Name="C_id" ColumnName="C_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_test">
+      <EntityTypeMapping TypeName="BANROModel.t_test">
+        <MappingFragment StoreEntitySet="t_test">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_vouchers_casuals">
+      <EntityTypeMapping TypeName="BANROModel.t_vouchers_casuals">
+        <MappingFragment StoreEntitySet="t_vouchers_casuals">
+          <ScalarProperty Name="C_cout" ColumnName="C_cout" />
+          <ScalarProperty Name="C_cause" ColumnName="C_cause" />
+          <ScalarProperty Name="C_id_company" ColumnName="C_id_company" />
+          <ScalarProperty Name="C_id_centre" ColumnName="C_id_centre" />
+          <ScalarProperty Name="C_motif" ColumnName="C_motif" />
+          <ScalarProperty Name="C_date_casual" ColumnName="C_date_casual" />
+          <ScalarProperty Name="C_company_casual" ColumnName="C_company_casual" />
+          <ScalarProperty Name="C_name_casual" ColumnName="C_name_casual" />
+          <ScalarProperty Name="C_id_voucher" ColumnName="C_id_voucher" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_vouchers_contractor">
+      <EntityTypeMapping TypeName="BANROModel.t_vouchers_contractor">
+        <MappingFragment StoreEntitySet="t_vouchers_contractor">
+          <ScalarProperty Name="C_cout" ColumnName="C_cout" />
+          <ScalarProperty Name="C_motif" ColumnName="C_motif" />
+          <ScalarProperty Name="C_approuve" ColumnName="C_approuve" />
+          <ScalarProperty Name="C_namedoctor" ColumnName="C_namedoctor" />
+          <ScalarProperty Name="C_datefin" ColumnName="C_datefin" />
+          <ScalarProperty Name="C_datedeb" ColumnName="C_datedeb" />
+          <ScalarProperty Name="C_id_centre" ColumnName="C_id_centre" />
+          <ScalarProperty Name="C_id_Employed" ColumnName="C_id_Employed" />
+          <ScalarProperty Name="C_id_voucher" ColumnName="C_id_voucher" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

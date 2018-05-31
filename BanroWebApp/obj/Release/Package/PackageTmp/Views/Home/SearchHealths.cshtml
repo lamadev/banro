@@ -1,0 +1,130 @@
+﻿@model BanroWebApp.Models.t_centre_soins
+
+@{
+    Layout = "~/Views/Shared/_Menu.cshtml";
+     BanroWebApp.Models.Authenticate auth=null;
+    if (Session["userinfo"]!=null)
+    {
+         auth=(BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }else
+    {
+        Response.Redirect("~/");
+    }
+}
+<div id="page-wrapper" ng-app="app" ng-controller="CtrlHome">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Search a Medical Facility <i class="fa fa-bank" style="float:right;"></i>
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="form-group input-group">
+                <input type="search" name="name" ng-model="query" class="form-control" value=" " />
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" ng-click="" style="height:35px;">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+            <hr />
+            @Html.ValidationSummary(true)
+            <div class="panel-body">
+                <div class="row">
+
+                  
+
+                    <div class="table-responsive" style="">
+                        <table class="table" style="font-size:14px;">
+                            <thead>
+                                <tr>
+                                    <th>Hospital's Name</th>
+                                    <th>Address</th>
+                                    <th>Phone Number</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="health in tabListHealths | filter:query" style="cursor:pointer;" ng-click="getHealth(health)">
+                                    <td>
+                                        {{health.C_name}}
+                                    </td>
+                                    <td>
+                                        {{health.adresse}}
+                                    </td>
+                                    <td>
+                                        {{health.C_phone}}
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+           
+        </div>
+    }
+    <button class="btn btn-primary" data-toggle="modal" data-target="#myModalChild" style="float:right;margin-top:-.5em;display:none;" id="btnModif"><i class="fa fa-plus"></i> Ajouter</button>
+    <div class="modal fade" id="myModalChild" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="">
+                <div class="modal-header" style="background-color: #337ab7;color:white;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Search a Hospital</h4>
+                </div>
+
+                <div class="modal-body" style="width:100%;">
+                    <form role="form" method="post" style="width:100%;">
+                        <div class="panel-body" style="width:100%">
+                            <div class="row" style="width:100%">
+                                <div class="col-lg-6" style="width:100%">
+                                    <div class="form-group">
+                                        <label>Hospital's Name</label>
+                                        <input type="text" ng-model="nameHealth" name="name" value=" " class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Adress</label>
+                                        <input type="text" ng-model="adresseHealth" name="name" value=" " class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone number</label>
+                                        <input type="text" ng-model="phoneHealth" name="name" value=" " class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+          
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="alert alert-success" id="alertSucc" ng-show="isVisible" style="width:100%;">
+                        Successfull Modify
+                    </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @if (auth.Priority.Equals("administrator"))
+                    {
+                    <button type="button" ng-click="ModifiyHospital()" class="btn btn-primary"><i class="fa fa-plus"></i>Modify</button>
+                            
+                    }
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+
+</div>

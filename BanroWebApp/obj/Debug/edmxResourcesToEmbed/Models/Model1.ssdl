@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="employee_contractor">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_name" Type="varchar" MaxLength="50" />
+    <Property Name="C_sex" Type="varchar" MaxLength="50" />
+    <Property Name="C_adresse" Type="varchar" MaxLength="50" />
+    <Property Name="C_phone" Type="varchar" MaxLength="50" />
+    <Property Name="C_idContractor" Type="int" />
+    <Property Name="C_status_system" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="t_beneficiaires">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_id_succ" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_mat" Type="varchar" MaxLength="50" />
+    <Property Name="C_name" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_datenais" Type="varchar" MaxLength="50" />
+    <Property Name="C_sex" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_statusmaritalk" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_phone" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_picture" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_id_partenaire" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_id_parent" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_id_categorie" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_id_depart" Type="int" />
+    <Property Name="C_statusChild" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_id_visitor" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_motif_visit" Type="nvarchar" MaxLength="255" />
+    <Property Name="C_status_system" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_company_visitor" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_company_visited" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="t_bon_commandes">
+    <Key>
+      <PropertyRef Name="C_id_bon" />
+    </Key>
+    <Property Name="C_id_bon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_id_bene" Type="int" />
+    <Property Name="C_id_centre" Type="int" />
+    <Property Name="C_datedeb" Type="varchar" MaxLength="50" />
+    <Property Name="C_datefin" Type="varchar" MaxLength="50" />
+    <Property Name="C_namedoctor" Type="varchar" MaxLength="50" />
+    <Property Name="C_approuve" Type="varchar" MaxLength="50" />
+    <Property Name="C_motif" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_categories">
+    <Key>
+      <PropertyRef Name="C_id_categ" />
+    </Key>
+    <Property Name="C_id_categ" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_centre_soins">
+    <Key>
+      <PropertyRef Name="C_id_centre" />
+    </Key>
+    <Property Name="C_id_centre" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_name" Type="varchar" MaxLength="50" />
+    <Property Name="adresse" Type="varchar" MaxLength="50" />
+    <Property Name="C_phone" Type="varchar" MaxLength="50" />
+    <Property Name="C_status_system" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_contractor">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_name" Type="varchar" MaxLength="50" />
+    <Property Name="C_adresse" Type="varchar" MaxLength="50" />
+    <Property Name="C_phone" Type="varchar" MaxLength="50" />
+    <Property Name="C_idSucc" Type="varchar" MaxLength="50" />
+    <Property Name="C_status_system" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_departement">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_id_depart" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="C_id_succ" Type="varchar" MaxLength="50" />
+    <Property Name="C_status_system" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_factures">
+    <Key>
+      <PropertyRef Name="C_id_fact" />
+    </Key>
+    <Property Name="C_id_fact" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_id_bon" Type="int" />
+    <Property Name="C_datefacture" Type="varchar" MaxLength="50" />
+    <Property Name="C_timefacture" Type="varchar" MaxLength="50" />
+    <Property Name="C_cout" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="C_fileupload" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="t_logger">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_username" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="nvarchar(max)" />
+    <Property Name="C_priority" Type="varchar" MaxLength="50" />
+    <Property Name="C_idSucc" Type="varchar" MaxLength="50" />
+    <Property Name="C_employeeId" Type="int" />
+    <Property Name="C_status_system" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="T_logs">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_user" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_date" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_time" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_action" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_object" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_company" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_mat" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_sickness">
+    <Key>
+      <PropertyRef Name="C_Name" />
+    </Key>
+    <Property Name="C_Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="t_succursales">
+    <Key>
+      <PropertyRef Name="C_id" />
+    </Key>
+    <Property Name="C_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="C_company" Type="varchar" MaxLength="50" />
+    <Property Name="C_name" Type="varchar" MaxLength="100" />
+    <Property Name="C_adresse" Type="nvarchar" MaxLength="50" />
+    <Property Name="C_phone" Type="varchar" MaxLength="50" />
+    <Property Name="C_status_system" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_vouchers_casuals">
+    <Key>
+      <PropertyRef Name="C_id_voucher" />
+    </Key>
+    <Property Name="C_id_voucher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_name_casual" Type="varchar" MaxLength="50" />
+    <Property Name="C_company_casual" Type="varchar" MaxLength="50" />
+    <Property Name="C_date_casual" Type="varchar" MaxLength="50" />
+    <Property Name="C_motif" Type="varchar" MaxLength="50" />
+    <Property Name="C_id_centre" Type="int" />
+    <Property Name="C_id_company" Type="varchar" MaxLength="50" />
+    <Property Name="C_department" Type="varchar" MaxLength="50" />
+    <Property Name="C_cause" Type="varchar" MaxLength="150" />
+    <Property Name="C_cout" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="C_service" Type="varchar" MaxLength="100" />
+    <Property Name="C_datenaiss" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="t_vouchers_contractor">
+    <Key>
+      <PropertyRef Name="C_id_voucher" />
+    </Key>
+    <Property Name="C_id_voucher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="C_id_Employed" Type="int" />
+    <Property Name="C_id_centre" Type="int" />
+    <Property Name="C_datedeb" Type="varchar" MaxLength="50" />
+    <Property Name="C_datefin" Type="varchar" MaxLength="50" />
+    <Property Name="C_namedoctor" Type="varchar" MaxLength="50" />
+    <Property Name="C_approuve" Type="varchar" MaxLength="50" />
+    <Property Name="C_motif" Type="varchar" MaxLength="50" />
+    <Property Name="C_cout" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="C_service" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_employee_contractor_t_contractor">
+    <End Role="t_contractor" Type="Self.t_contractor" Multiplicity="0..1" />
+    <End Role="employee_contractor" Type="Self.employee_contractor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_contractor">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="employee_contractor">
+        <PropertyRef Name="C_idContractor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_bon_commandes_t_centre_soins">
+    <End Role="t_centre_soins" Type="Self.t_centre_soins" Multiplicity="0..1" />
+    <End Role="t_bon_commandes" Type="Self.t_bon_commandes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_centre_soins">
+        <PropertyRef Name="C_id_centre" />
+      </Principal>
+      <Dependent Role="t_bon_commandes">
+        <PropertyRef Name="C_id_centre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_contractor_t_succursales">
+    <End Role="t_succursales" Type="Self.t_succursales" Multiplicity="0..1" />
+    <End Role="t_contractor" Type="Self.t_contractor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_succursales">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="t_contractor">
+        <PropertyRef Name="C_idSucc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_departement_t_succursales">
+    <End Role="t_succursales" Type="Self.t_succursales" Multiplicity="0..1" />
+    <End Role="t_departement" Type="Self.t_departement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_succursales">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="t_departement">
+        <PropertyRef Name="C_id_succ" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_factures_t_bon_commandes">
+    <End Role="t_bon_commandes" Type="Self.t_bon_commandes" Multiplicity="0..1" />
+    <End Role="t_factures" Type="Self.t_factures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_bon_commandes">
+        <PropertyRef Name="C_id_bon" />
+      </Principal>
+      <Dependent Role="t_factures">
+        <PropertyRef Name="C_id_bon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_vouchers_casuals_t_centre_soins">
+    <End Role="t_centre_soins" Type="Self.t_centre_soins" Multiplicity="0..1" />
+    <End Role="t_vouchers_casuals" Type="Self.t_vouchers_casuals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_centre_soins">
+        <PropertyRef Name="C_id_centre" />
+      </Principal>
+      <Dependent Role="t_vouchers_casuals">
+        <PropertyRef Name="C_id_centre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_vouchers_casuals_t_succursales">
+    <End Role="t_succursales" Type="Self.t_succursales" Multiplicity="0..1" />
+    <End Role="t_vouchers_casuals" Type="Self.t_vouchers_casuals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_succursales">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="t_vouchers_casuals">
+        <PropertyRef Name="C_id_company" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_vouchers_contractor_employee_contractor">
+    <End Role="employee_contractor" Type="Self.employee_contractor" Multiplicity="0..1" />
+    <End Role="t_vouchers_contractor" Type="Self.t_vouchers_contractor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employee_contractor">
+        <PropertyRef Name="C_id" />
+      </Principal>
+      <Dependent Role="t_vouchers_contractor">
+        <PropertyRef Name="C_id_Employed" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_t_vouchers_contractor_t_centre_soins">
+    <End Role="t_centre_soins" Type="Self.t_centre_soins" Multiplicity="0..1" />
+    <End Role="t_vouchers_contractor" Type="Self.t_vouchers_contractor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="t_centre_soins">
+        <PropertyRef Name="C_id_centre" />
+      </Principal>
+      <Dependent Role="t_vouchers_contractor">
+        <PropertyRef Name="C_id_centre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="employee_contractor" EntityType="Self.employee_contractor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_beneficiaires" EntityType="Self.t_beneficiaires" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_bon_commandes" EntityType="Self.t_bon_commandes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_categories" EntityType="Self.t_categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_centre_soins" EntityType="Self.t_centre_soins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_contractor" EntityType="Self.t_contractor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_departement" EntityType="Self.t_departement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_factures" EntityType="Self.t_factures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_logger" EntityType="Self.t_logger" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_logs" EntityType="Self.T_logs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_sickness" EntityType="Self.t_sickness" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_succursales" EntityType="Self.t_succursales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_test" EntityType="Self.t_test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_vouchers_casuals" EntityType="Self.t_vouchers_casuals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_vouchers_contractor" EntityType="Self.t_vouchers_contractor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_employee_contractor_t_contractor" Association="Self.FK_employee_contractor_t_contractor">
+      <End Role="t_contractor" EntitySet="t_contractor" />
+      <End Role="employee_contractor" EntitySet="employee_contractor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_bon_commandes_t_centre_soins" Association="Self.FK_t_bon_commandes_t_centre_soins">
+      <End Role="t_centre_soins" EntitySet="t_centre_soins" />
+      <End Role="t_bon_commandes" EntitySet="t_bon_commandes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_contractor_t_succursales" Association="Self.FK_t_contractor_t_succursales">
+      <End Role="t_succursales" EntitySet="t_succursales" />
+      <End Role="t_contractor" EntitySet="t_contractor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_departement_t_succursales" Association="Self.FK_t_departement_t_succursales">
+      <End Role="t_succursales" EntitySet="t_succursales" />
+      <End Role="t_departement" EntitySet="t_departement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_factures_t_bon_commandes" Association="Self.FK_t_factures_t_bon_commandes">
+      <End Role="t_bon_commandes" EntitySet="t_bon_commandes" />
+      <End Role="t_factures" EntitySet="t_factures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_vouchers_casuals_t_centre_soins" Association="Self.FK_t_vouchers_casuals_t_centre_soins">
+      <End Role="t_centre_soins" EntitySet="t_centre_soins" />
+      <End Role="t_vouchers_casuals" EntitySet="t_vouchers_casuals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_vouchers_casuals_t_succursales" Association="Self.FK_t_vouchers_casuals_t_succursales">
+      <End Role="t_succursales" EntitySet="t_succursales" />
+      <End Role="t_vouchers_casuals" EntitySet="t_vouchers_casuals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_vouchers_contractor_employee_contractor" Association="Self.FK_t_vouchers_contractor_employee_contractor">
+      <End Role="employee_contractor" EntitySet="employee_contractor" />
+      <End Role="t_vouchers_contractor" EntitySet="t_vouchers_contractor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_t_vouchers_contractor_t_centre_soins" Association="Self.FK_t_vouchers_contractor_t_centre_soins">
+      <End Role="t_centre_soins" EntitySet="t_centre_soins" />
+      <End Role="t_vouchers_contractor" EntitySet="t_vouchers_contractor" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

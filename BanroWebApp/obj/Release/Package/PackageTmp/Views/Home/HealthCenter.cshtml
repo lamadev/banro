@@ -1,0 +1,82 @@
+﻿@model BanroWebApp.Models.t_centre_soins
+
+@{
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    ViewBag.Title = "HealthCenter";
+}
+@{
+    BanroWebApp.Models.Authenticate auth = null;
+    if (Session["userinfo"]!=null)
+    {
+        auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Add a new Medical Facility/Hospital<i class="fa fa-bank" style="float:right;"></i>
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <a href="SearchHealths" class="btn btn-primary" style="float:right;margin-top:-2.5em;">List of Hospitals <i class="fa fa-list" ></i></a>
+        <hr />
+        <div class="alert alert-success" id="alertSucc" style="display:none;">
+            Successfull registration
+        </div>
+        @Html.ValidationSummary(true)
+        @{
+        if (ViewBag.queryMessage=="200")
+        {
+            <script type="text/javascript">
+                document.querySelector('#alertSucc').style = "display:normal;text-align:center;";
+                
+
+                window.setTimeout(function () {
+                    document.querySelector('#alertSucc').style = "display:none;";
+
+                }, 3000);
+            </script>
+        }
+        }
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Medical Facility/Hospital</label>
+                        @Html.TextBoxFor(model => model.C_name, new { Class = "form-control", placeholder = "",@Id="cname" })
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        @Html.TextBoxFor(model => model.adresse, new { Class = "form-control", placeholder = "",@Id="caddress" })
+                    </div>
+                    <div class="form-group">
+                        <label>Phone number</label>
+                        @Html.TextBoxFor(model => model.C_phone, new { Class = "form-control", placeholder = "", @Id = "cphone" })
+                    </div>
+                    </div>
+                </div>
+            </div>
+                   
+            
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Register" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+                }
+
+            
+
+            </div>

@@ -1,0 +1,61 @@
+﻿@model BanroWebApp.Models.t_beneficiaires
+@{
+    BanroWebApp.Models.Authenticate auth = null;
+    if (Session["userinfo"] != null)
+    {
+        auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+
+    Layout = "~/Views/Shared/_Menu.cshtml";
+}
+
+
+    <div id="page-wrapper" data-ng-app="app" ng-controller="CtrlHome">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header">
+                    Add a new  beneficiary <i class="fa fa-users" style="float:right;"></i>
+                </h3>
+                <div class="form-group">
+                    <label >Categories of beneficiaries</label>
+                    <button class="btn btn-default" style="float:right;margin-top:-5px;" ng-click="refreshing()">
+                        <i class="fa fa-refresh"></i>
+                    </button>
+                    <select class="form-control" ng-model="category" id="category" ng-change="actionRouters()">
+                        <option></option>
+                        <option>Employee</option>
+                        @*<option>Conjoint</option>
+                        <option>Enfant</option>*@
+                        <option>Visitor</option>
+                    </select>
+                </div>
+                <hr />
+            </div>
+
+
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        @{
+        if (Request.HttpMethod.Equals("POST") && ViewBag.resultBene == "Saved")
+        {
+            <div class="alert alert-success" id="alertDep">
+                    Enregistrement effectué avec succes <a href="#" class="alert-link">Cliquez ici</a>.
+                </div>
+        }
+    }
+        <div class="row" ng-view>
+
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+
+<link rel="stylesheet" href="~/Content/bootstrap-datepicker.standalone.min.css" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<script src="~/Scripts/Mypicker.js"></script>

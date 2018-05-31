@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "generatePDF";
+}
+
+<h2>generatePDF</h2>
+
+<div class="table-responsive">
+
+    <table class="table">
+        @using (Html.BeginForm("ExportTable", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            BanroWebApp.Models.BANROEntities dbcontext = new BanroWebApp.Models.BANROEntities();
+            var Query = from ds in dbcontext.t_succursales
+                        select ds;
+
+
+            foreach (var item in Query)
+            {
+                <tr>
+                    <td>
+                        @item.C_id
+                    </td>
+                    <td>
+                        @item.C_name
+                    </td>
+                    <td>
+                        @item.C_adresse
+                    </td>
+                    <td>
+                        @item.C_phone
+                    </td>
+                </tr>
+            }
+
+
+            <input type="submit" value="Go" />
+        }
+    </table>
+
+   
+  
+</div>

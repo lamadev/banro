@@ -1,0 +1,26 @@
+﻿
+@{
+    String year = (DateTime.Now.Year - 18).ToString();
+    String year2 = (DateTime.Now.Year - 25).ToString();
+
+}
+
+<h1>
+    @year
+    
+   
+</h1>
+@{ 
+    BanroWebApp.Models.BANROEntities db = new BanroWebApp.Models.BANROEntities();
+    var sal = from ds in db.t_beneficiaires
+              where ds.C_datenais.EndsWith(year) && !ds.C_id_parent.Equals(null) || ds.C_datenais.EndsWith(year2)
+
+              select ds;
+
+    foreach (var item in sal)
+    {
+        <label>@item.C_name</label><br/>
+        item.C_statusChild = "active";
+    }
+    db.SaveChanges();
+}

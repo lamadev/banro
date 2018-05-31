@@ -1,0 +1,680 @@
+﻿@model BanroWebApp.Models.t_beneficiaires
+@{
+    ViewBag.Title = "ViewEmployed";
+    BanroWebApp.Models.Authenticate auth = null;
+    if (Session["userinfo"] != null)
+    {
+        auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+    
+} 
+
+ 
+<div class="col-lg-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+           @if (auth.Priority.Equals("administrator") || auth.Priority.Equals("user"))
+           {
+               <label>
+                   Add a new employee
+               </label>
+            <button class="btn btn-success" id="btnUpdateEmployed" style="float:right;margin-top:-.5em;margin-left:10px;" ng-show="isBtnVisible" ng-click="udpateEmployed()"><i class="fa fa-pencil"></i> Modify</button>
+            <button class="btn btn-success" id="btnInsertEmployed" style="float:right;margin-top:-.5em;margin-left:10px;" ng-click="addEmployed()" ng-hide="isBtnVisible"><i class="fa fa-plus"></i> Register</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myModalSearch" style="float:right;margin-top:-.5em;" ng-click=""><i class="fa fa-search"></i> Search</button>
+               
+           }
+           else
+           {
+               <label>
+                   Search Employee
+               </label>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#myModalSearch" style="float:right;margin-top:-.5em;" ng-click=""><i class="fa fa-search"></i> Search</button>
+               
+           }
+            
+
+         
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="alert alert-warning" id="alertWarnning" style="display:none;text-align:center;">
+                    Lease wait.....
+                </div>
+                <div class="alert alert-success" id="alertSuccess" style="display:none;text-align:center;">
+                    Successfull registration
+                </div>
+                <div class="alert alert-success" id="alertSuccess2" ng-show="isModify" style="text-align:center;">
+                    Successfull Modify
+                </div>
+                <img id="pictureEmployed" src="data:image/png;base64,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" alt="Alternate Text" style="width:150px;height:150px;border:1px solid silver;" />
+                <div style="display:inline-block;margin-top:1em;margin-left:1em;">
+                    @*<button type="button" class="btn btn-primary btn-circle btn-lg">
+                        <i class="fa fa-camera"></i>
+                    </button>*@
+
+                    <button type="button" ng-click="browserPicture()" class="btn btn-success btn-circle btn-lg">
+                        <i class="fa fa-image"></i>
+                    </button>
+
+                </div>
+                
+                <hr />
+                <div class="col-lg-6">
+                    
+                    
+
+                        <div class="form-group">
+                            <label>Beneficiary's Name</label>
+                            @Html.TextBoxFor(Model => Model.C_name, new { Class = "form-control",data_ng_model="nameBene" })
+                        </div>
+                        <div class="form-group">
+                            <label>Phone number</label>
+                            @Html.TextBoxFor(Model => Model.C_name, new { Class = "form-control", data_ng_model = "phoneBene" })
+                        </div>
+                        <div class="form-group">
+                            <label>Gender</label>
+                            @Html.DropDownListFor(Model => Model.C_sex, (IEnumerable<SelectListItem>)ViewBag.Sex, new { Class = "form-control", data_ng_model = "sexBene" })
+                        </div>
+                    <div class="form-group">
+                        <label>Marital Status</label>
+                        <select class="form-control" id="cboEtatCivil" ng-model="cboEtatCivil" ng-change="EtatCivil()">
+
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Divorced">Divorced</option>
+                            <option value="Widow(er)">Widow(er)</option>
+                        </select>
+                    </div>
+                    <div class="row" style="">
+                       
+                    
+                        <div class="col-lg-6" style="width:100%;">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Family <button class="btn btn-primary" data-toggle="modal" data-target="#myModalChild" style="float:right;margin-top:-.5em;" id="btnChild" ng-click="ClearChild()"><i class="fa fa-plus"></i> Add</button>
+                                     <button class="btn btn-primary" data-toggle="modal" data-target="#myModalChild" style="float:right;margin-top:-.5em;display:none;" id="btnChild2" ><i class="fa fa-plus"></i> Ajouter</button>
+
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table" style="font-size:12px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Child's Name</th>
+                                                    <th>Born on</th>
+                                                    <th>Gender</th>
+                                                    <th>Status</th>
+                                                    <th>Edition</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="children in tabChild">
+                                                    <td>{{children.name}}</td>
+                                                    <td>{{children.datenais}}</td>
+                                                    <td>{{children.sex}}</td>
+                                                    <td>{{children.status}}</td>
+                                                    <td><a href="#/employed" ng-click="editChild(children)">edit</a></td>
+
+                                                </tr>
+                                              
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+
+                    
+
+                </div>
+                <div class="col-lg-6" style="float:right;">
+                  @if (!auth.Priority.Equals("user"))
+                  {
+                      
+                  
+                    <div class="form-group">
+                        <label>Company's name</label>
+                        <select class="form-control" ng-model="cbo_succ" id="cbo_succ" ng-change="getDepartementBySucc('Employed')">
+                            <option ng-repeat="succ in ListSuccursales">{{succ.name}}</option>
+                        </select>
+                    </div>
+                  }
+                  else
+                  {
+                      
+                    <div class="form-group" style="display:none;">
+                        <label>Succursale</label>
+                        <input type="text" id="cbo_succ" class="form-control" ng-model="cbo_succ" />
+                    </div>  
+                  }
+                    <div class="form-group">
+                        <label>Department</label>
+                        <select class="form-control" ng-model="cbo_depart" id="cbo_departEmployed" ng-change="beneficiaireDepartement('Employed')">
+                            <option ng-repeat="dep in ListDepartementBySucc">{{dep.code_depart}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Born On</label>
+                        <input  type="text" id="datepicker" ng-model="dateEmployed" class="form-control" />
+                    </div>
+                    <div class="form-group" style="visibility:hidden">
+                        <label>Marital Status</label>
+                        <select class="form-control">
+                            <option value="value"></option>
+                            <option value="value">Celibataire</option>
+                            <option value="value">Marié(e)</option>
+                            <option value="value">Divorcé(e)</option>
+                        </select>
+                    </div>
+                    <div class="row" style="">
+
+
+                        <div class="col-lg-6" style="width:100%;">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Spouse
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModalSearchConjoint" id="btnaddSearchPartner" style="float:right;margin-top:-.5em;display:none;"><i class="fa fa-search"></i> Search</button>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModalPartner" id="btnaddPartner" style="float:right;margin-top:-.5em;margin-right:0.5em;" ng-show="btnAddPartner" ng-click="cleanConjoint()"><i class="fa fa-plus"></i> Add</button>
+                                     <button class="btn btn-primary" data-toggle="modal" data-target="#myModalPartner" id="btnaddPartner2" style="float:right;margin-top:-.5em;margin-right:0.5em;display:none;" ><i class="fa fa-plus"></i> Ajouter</button>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table" style="font-size:12px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Spouse's Name</th>
+                                                    <th>Gender</th>
+                                                    <th>Phone number</th>
+                                                    <th>Edition</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="partner in tabPartner">
+                                                    <td>{{partner.name}}</td>
+                                                    <td>{{partner.sex}}</td>
+                                                    <td>{{partner.phone}}</td>
+                                                    <td><a href="#/employed" ng-click="editPartner(partner)">edit</a></td>
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.col-lg-6 (nested) -->
+                <!-- /.col-lg-6 (nested) -->
+            </div>
+            <!-- /.row (nested) -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+
+<div class="modal fade" id="myModalChild" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">{{titleChild}}</h4>
+            </div>
+
+            <div class="modal-body">
+                <form role="form" method="post">
+                    <img id="pict_child" src="data:image/png;base64,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" alt="Alternate Text" style="width:150px;height:150px;border:1px solid silver;" />
+                    <div style="display:inline-block;margin-top:1em;margin-left:1em;">
+                        @*<button type="button" class="btn btn-primary btn-circle btn-lg">
+                            <i class="fa fa-camera"></i>
+                        </button>*@
+
+                        <button type="button" ng-click="browserPictureChild()" class="btn btn-success btn-circle btn-lg">
+                            <i class="fa fa-image"></i>
+                        </button>
+
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <label>Child's Name</label>
+                        @Html.TextBoxFor(Model => Model.C_id, new { Class = "form-control", @Value = @ViewBag.Id_Succ, @Id = "id_succ",data_ng_model="nameChild" })
+                    </div>
+                    <div class="form-group">
+                        <label>Born On</label>
+                        @Html.TextBoxFor(Model => Model.C_id, new { Class = "form-control", @Value = @ViewBag.Id_Succ, @Id = "id_succ", data_ng_model = "dateChild",type="text" })
+                    </div>
+                    <div class="form-group">
+                        <label>Sex</label>
+                        @Html.DropDownListFor(Model => Model.C_sex, (IEnumerable<SelectListItem>)ViewBag.Sex, new { Class = "form-control",data_ng_model="sexChild" })
+
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select class="form-control" ng-model="statusChild">
+                            <option ng-repeat="status in listStatus">{{status}}</option>
+                            
+                        </select>
+                    </div>
+
+                    
+
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-success" id="alertSucc" ng-show="{{isVisible}}" style="display:none;float:left;width:70px;background-color:white;">
+                    Successfull Modify
+                </div>
+                <button type="button" id="btnFermer" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" ng-click="AddChild('new')" class="btn btn-primary"><i class="fa fa-plus"></i>Add-New</button>
+                <button type="button" ng-click="AddChild('close')" class="btn btn-primary"><i class="fa fa-plus"></i>Add-Closer</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+    
+
+
+<div class="modal fade" id="myModalPartner" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">{{titleConjoint}}</h4>
+            </div>
+
+            <div class="modal-body">
+                <form role="form" method="post">
+                    <img id="picturePartner" src="data:image/png;base64,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" alt="Alternate Text" style="width:150px;height:150px;border:1px solid silver;" />
+                    <div style="display:inline-block;margin-top:1em;margin-left:1em;">
+                        <button type="button" class="btn btn-primary btn-circle btn-lg">
+                            <i class="fa fa-camera"></i>
+                        </button>
+
+                        <button type="button" ng-click="browserPicturePartner()" class="btn btn-success btn-circle btn-lg">
+                            <i class="fa fa-image"></i>
+                        </button>
+
+                    </div>
+                    <hr />
+                    
+                    <div class="form-group" id="controlChoice">
+                        <label>Employee ?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" ng-click="controlsSucc('yes')">Oui
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option1" ng-click="controlsSucc('no')" checked>non
+                            </label>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group">
+                        <label>Spouse's Name</label>
+                        @Html.TextBoxFor(Model => Model.C_id, new { Class = "form-control", @Value = @ViewBag.Id_Succ, @Id = "id_succ", data_ng_model = "namePartner" })
+                    </div>
+                    <div class="form-group">
+                        <label>Sex</label>
+                        @Html.DropDownListFor(Model => Model.C_sex, (IEnumerable<SelectListItem>)ViewBag.Sex, new { Class = "form-control", data_ng_model = "sexPartner" })
+
+                    </div>
+                    <div class="form-group">
+                        <label>Phone number</label>
+                        @Html.TextBoxFor(Model => Model.C_id, new { Class = "form-control", @Value = @ViewBag.Id_Succ, @Id = "id_succ", data_ng_model = "phonePartner" })
+                    </div>
+                    <div class="form-group">
+                        <label>Born On</label>
+                        @Html.TextBoxFor(Model => Model.C_id, new { Class = "form-control", @Value = @ViewBag.Id_Succ, @Id = "id_succ", data_ng_model = "datenaisPartner",type="text" })
+                    </div>
+                    @{
+                        if (!auth.Priority.Equals("user"))
+                        {
+                            <div class="form-group" id="group-succ" style="display:none;">
+                        <label>List of Companies</label>
+                        <select class="form-control" ng-model="cbo_succPart" id="cbo_succPart" ng-change="getDepartementBySucc('Partner')">
+                            <option ng-repeat="succ in ListSuccursales">{{succ.name}}</option>
+                        </select>
+                    </div>   
+                    
+                    <div class="form-group" id="group-depart" style="display:none;">
+                        <label>List of Departments</label>
+                        <select class="form-control" ng-model="cbo_departPart" id="cbo_departPart" ng-change="beneficiaireDepartement('Partner')">
+                            <option ng-repeat="dep in ListDepartementBySucc2">{{dep.code_depart}}</option>
+                        </select>
+                    </div>        
+                        }
+                        else
+                        {
+                            <div class="form-group" id="group-succ" style="display:none;">
+                        <label>Succursale</label>
+                                <input type="text" class="form-control" ng-model="cbo_succPart2" id="cbo_succPart"  />
+                    </div>   
+                    
+                    <div class="form-group" id="group-depart" style="display:none;">
+                        <label>Departement</label>
+                        <select class="form-control" ng-model="cbo_departPart" id="cbo_departPart" ng-change="beneficiaireDepartement('Partner')">
+                            <option ng-repeat="dep in ListDepartementBySucc2">{{dep.code_depart}}</option>
+                        </select>
+                    </div>
+                        }
+                    }
+
+                    
+
+
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-success" id="alertSucc" style="display:none;float:left;width:70px;background-color:white;">
+                    Successfull Modify 
+                </div>
+                <button type="button" class="btn btn-primary" ng-click="EditConjoint()" id="btnClose" ng-show="!visibleAddPartner">Modify</button>
+                <button type="button" class="btn btn-primary" style="display:none;" data-dismiss="modal" id="btnClosePartner" ng-show="!visibleAddPartner">Modify</button>
+                <button type="button" ng-click="AddPartner()" id="" class="btn btn-primary" ng-show="visibleAddPartner"><i class="fa fa-plus"></i>Add</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="myModalSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Search employee</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" ng-model="nameEmployed" placeholder="Write employee's">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" ng-click="seachEmployed('Master')" style="height:35px;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-6" style="width:100%;">
+                        <div class="panel panel-default">
+
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table" style="font-size:12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Employee's Name </th>
+                                                <th>Gender</th>
+                                                <th>Phone number</th>
+                                                <th>Company</th>
+                                                <th>Department</th>
+                                                <th>Picture</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="employed in tabSearchEmployed" ng-click="selectedEmployed(employed)" style="cursor:pointer;">
+                                                <td>{{employed.name}}</td>
+                                                <td>{{employed.sex}}</td>
+                                                <td>{{employed.phone}}</td>
+                                                <td>{{employed.ID_Succursale}}</td>
+                                                <td>{{employed.ID_Departement}}</td>
+                                                <td>
+                                                    <img src="~/Images/{{employed.picture}}" alt="image profil" style="height:70px;width:70px;" />
+                                                </td>
+
+
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="alert alert-success" id="alertSucc" style="display:none;float:left;width:70px;background-color:white;">
+                        Successfull Modify
+                    </div>
+                    <button type="button" class="btn btn-default" style="display:none" data-dismiss="modal" id="btnCloseIt">Close</button>
+                    <button type="button" style="display:none;" ng-click="AddPartner()" id="" class="btn btn-primary"><i class="fa fa-plus"></i>Ajouter</button>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="myModalSearchConjoint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Search Spouse</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" ng-model="nameEmployedConjoint" placeholder="Entrez le nom de l'employé(e)">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" ng-click="seachEmployedConjoint('Master')" style="height:35px;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-6" style="width:100%;">
+                        <div class="panel panel-default">
+
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table" style="font-size:12px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Spouse name</th>
+                                                <th>Sex</th>
+                                                <th>Phone number</th>
+                                                <th>Company</th>
+                                                <th>Department</th>
+                                                <th>Picture</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="employed in tabSearchEmployedConjoint" ng-click="selectedEmployedConjoint(employed)" style="cursor:pointer;">
+                                                <td>{{employed.name}}</td>
+                                                <td>{{employed.sex}}</td>
+                                                <td>{{employed.phone}}</td>
+                                                <td>{{employed.ID_Succursale}}</td>
+                                                <td>{{employed.ID_Departement}}</td>
+                                                <td>
+                                                    <img src="~/Images/{{employed.picture}}" alt="image profil" style="height:70px;width:70px;" />
+                                                </td>
+
+
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="alert alert-success" id="alertSucc" style="display:none;float:left;width:70px;background-color:white;">
+                        Successfull Modify
+                    </div>
+                    <button type="button" class="btn btn-default" style="display:none" data-dismiss="modal" id="btnCloseIt2">Close</button>
+                    <button type="button" style="display:none;" ng-click="AddPartner()" id="" class="btn btn-primary"><i class="fa fa-plus"></i>Ajouter</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModalChildTransfert" id="btnTransfert" style="display:none;">XXXXXX</button>
+<div class="modal fade" id="myModalChildTransfert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Child swapping</h4>
+            </div>
+
+            <div class="modal-body">
+                <form role="form" method="post">
+             
+                    <div class="row" style="">
+
+
+                        <div class="col-lg-6" style="width:100%;">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    {{EmployedSelected.name}} <button ng-click="transfertEmployed()" class="btn btn-primary" style="float:right;margin-top:-.5em;"><i class="fa fa-reload"></i>Transferer</button>
+                                    
+
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table" style="font-size:12px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Child's Name</th>
+                                                    <th>Born On</th>
+                                                    <th>Sex</th>
+                                                    <th>Status</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="children in tabChild">
+                                                    <td>{{children.name}}</td>
+                                                    <td>{{children.datenais}}</td>
+                                                    <td>{{children.sex}}</td>
+                                                    <td>{{children.status}}</td>
+                                                   @* <td><a href="#/employed" ng-click="editChild(children)">editer</a></td>*@
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+
+                    <div class="row" style="">
+
+
+                        <div class="col-lg-6" style="width:100%;">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    {{EmployedSelected.partner.name}}<button class="btn btn-primary" style="float:right;margin-top:-.5em;" ng-click="transfertPartner()"><i class="fa fa-load"></i>Transferer</button>
+                                    
+
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table" style="font-size:12px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Child's Name</th>
+                                                    <th>Born on</th>
+                                                    <th>Sex</th>
+                                                    <th>Status</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="children in EmployedSelected.partner.Childs">
+                                                    <td>{{children.name}}</td>
+                                                    <td>{{children.datenais}}</td>
+                                                    <td>{{children.sex}}</td>
+                                                    <td>{{children.status}}</td>
+                                                    @*<td><a href="#/employed" ng-click="editChild(children)">editer</a></td>*@
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.table-responsive -->
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-6 -->
+                    </div>
+                    <!-- /.row -->
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+               
+                
+                <button type="button" ng-click="transfertValidation()" class="btn btn-primary"><i class="fa fa-check"></i>Validate transfer</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<script type="text/javascript">
+   
+</script>

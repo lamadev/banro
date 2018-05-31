@@ -1,0 +1,225 @@
+﻿@model BanroWebApp.Models.t_vouchers_contractor
+@{
+    ViewBag.Title = "MedicalCrusherIssued";
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    BanroWebApp.Models.Authenticate auth = null;
+    if (Session["userinfo"] != null)
+    {
+        auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+}
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">
+                Contractor Panel <i class="fa fa-bank" style="float:right;"></i>
+            </h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    @{
+        System.Web.Script.Serialization.JavaScriptSerializer serial = new System.Web.Script.Serialization.JavaScriptSerializer();
+        if (Request.HttpMethod.Equals("POST"))
+        {
+            <div class="alert alert-success" id="alertDep">
+                @ViewBag.message
+            </div>
+        }
+    }
+
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Add a new Medical Voucher<button id="btnModalContractor" style="float:right;margin-top:-.5em" class="btn btn-success" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i> Search</button>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <form method="post">
+                            
+
+
+                                @using (Html.BeginForm())
+                                {
+                                    <div class="col-lg-6">
+
+                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" style="">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="background-color: #337ab7;color:white;">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title" id="myModalLabel">
+                                                        List of Employee Contractors
+                                                    </h4>
+                                                </div>
+
+                                                <div class="modal-body">
+
+                                                    <div class="dataTable_wrapper" ng-show="isVisibilityTabDependecies">
+                                                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:10px;">
+                                                            <thead>
+                                                                <tr>
+                                                                    @*<th>Id bon</th>*@
+                                                                    <th>Id </th>
+                                                                    <th>Name</th>
+                                                                    <th>Gender</th>
+                                                                    <th>Phone</th>
+                                                                    <th>Address</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+
+                                                                @{
+                                    var db = new BanroWebApp.Models.BANROEntities();
+                                    var Query = from ds in db.employee_contractor
+                                                join contractor in db.t_contractor
+                                                on ds.C_idContractor equals contractor.C_id
+                                                where contractor.C_idSucc.Equals(auth.Succursale)
+                                                select new { ds, contractor };
+
+                                    foreach (var item in Query)
+                                    {
+                                        BanroWebApp.Models.Employee_Contractor ctr = new BanroWebApp.Models.Employee_Contractor
+                                        {
+                                            id = item.ds.C_id,
+                                            name = item.ds.C_name,
+                                            phone = item.ds.C_phone,
+                                            adress = item.ds.C_adresse,
+                                            Sexe = (item.ds.C_sex == "M" ? "Masculin" : "Feminin"),
+                                            idCompany = item.contractor.C_name
+                                        };
+                                        var data = serial.Serialize(ctr);
+                                        <tr class="odd gradeX" onclick="getEmployeeContractor(@data)">
+                                            <td>@item.ds.C_id</td>
+                                            <td>@item.ds.C_name</td>
+                                            <td>@item.ds.C_sex</td>
+                                            <td>@item.ds.C_phone</td>
+                                            <td>@item.ds.C_adresse</td>
+
+
+                                        </tr>
+                                    }
+                                                                }
+                                                            </tbody>
+                                                        </table>
+
+
+
+
+
+
+
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" disabled class="form-control" name="name" value=" " id="nameContractor" />
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label>Doctor name</label>
+                                        @Html.TextBoxFor(Model => Model.C_namedoctor, new { Class = "form-control", placeholder = "Doctor name", @Id = "AddressHome" })
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Approve</label>
+                                        @Html.TextBoxFor(Model => Model.C_approuve, new { Class = "form-control", placeholder = "Approve", @Id = "tapprouve" })
+                                        @*@Html.TextBoxFor(Model => Model.C_phone, new { Class = "form-control", placeholder = "N° phone de la société", @id = "phoneContractor" })*@
+
+                                    </div>
+
+                                    <div class="form-group" ng-show="dategroup">
+                                        <label>Starting Date</label>
+                                        <div class="input-group date dp" style="" data-provider="datepicker">
+                                            @Html.TextBoxFor(Model => Model.C_datedeb, new { Class = "form-control", placeholder = "From", @Id = "ValidateFrom" })
+                                            @* <input id="date1Export" style="" placeholder="From" type="text" name="name" class="form-control" />*@
+                                            <div class="input-group-addon">
+                                                <span class="fa fa-th"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group" ng-show="dategroup">
+                                        <label>Ending Date</label>
+                                        <div class="input-group date dp" style="" data-provider="datepicker">
+                                            @Html.TextBoxFor(Model => Model.C_datefin, new { Class = "form-control", placeholder = "To", @Id = "validateTo" })
+                                            @* <input id="date1Export" style="" placeholder="From" type="text" name="name" class="form-control" />*@
+                                            <div class="input-group-addon">
+                                                <span class="fa fa-th"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div style="width:100%;text-align:center;">
+                                        @{
+                                    if (auth.Priority.Equals("user"))
+                                    {
+                                        <button type="reset" class="btn btn-default" style="color:#0094ff;width:25%;">Add</button>
+                                        <button type="submit" class="btn btn-default" id="btnSenderC" style="color:#0094ff;width:25%;" id="btnSenderC">Register</button>
+                                    }
+                                        }
+                                        
+                                    </div>
+
+                               
+
+                            </div>
+                            <div class="col-lg-6">
+                               <div class="form-group">
+                                   <label>Hospital</label>
+                                   @Html.DropDownListFor(Model => Model.C_id_centre, (IEnumerable<SelectListItem>)ViewBag.listHospital, new {Class="form-control",@Id="idHospital" })
+                               </div>
+                                <div class="form-group">
+                                    <label>Cause</label>
+                                    @Html.DropDownListFor(Model => Model.C_motif, (IEnumerable<SelectListItem>)ViewBag.lstMotif, new { Class = "form-control", @Id = "idHospital" })
+                                </div>
+                                <div class="form-group" style="display:none;">
+                                    <label>Code Employee</label>
+                                    @Html.TextBoxFor(Model => Model.C_id_Employed, new { Class="form-control",@Id="idEmployedContractor"})
+                                </div>
+                            </div>
+                                }
+                        </form>
+                    </div>
+                    <!-- /.col-lg-6 (nested) -->
+                  
+                    <!-- /.col-lg-6 (nested) -->
+                </div>
+                <!-- /.row (nested) -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+
+</script>

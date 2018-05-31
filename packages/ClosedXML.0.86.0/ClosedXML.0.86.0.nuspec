@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>ClosedXML</id>
+    <version>0.86.0</version>
+    <title>ClosedXML</title>
+    <authors>Amir Ghezelbash, Francois Botha, Manuel De Leon</authors>
+    <owners>Amir Ghezelbash, Francois Botha, Manuel De Leon</owners>
+    <licenseUrl>https://github.com/ClosedXML/ClosedXML/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ClosedXML/ClosedXML</projectUrl>
+    <iconUrl>https://download-codeplex.sec.s-msft.com/Download?ProjectName=closedxml&amp;DownloadId=167541&amp;Build=21031</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ClosedXML makes it easier for developers to create Excel 2007/2010/2013 files. It provides a nice object oriented way to manipulate the files (similar to VBA) without dealing with the hassles of XML Documents. It can be used by any .NET language like C# and Visual Basic (VB).</description>
+    <summary />
+    <releaseNotes>Please see https://github.com/ClosedXML/ClosedXML/releases</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>Excel OpenXML</tags>
+    <dependencies>
+      <group targetFramework=".NETFramework4.0">
+        <dependency id="DocumentFormat.OpenXml" version="2.5.0" />
+      </group>
+      <group targetFramework=".NETFramework3.5">
+        <dependency id="DocumentFormat.OpenXml" version="1.0.0" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

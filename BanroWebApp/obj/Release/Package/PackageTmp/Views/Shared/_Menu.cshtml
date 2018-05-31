@@ -1,0 +1,373 @@
+﻿@Scripts.Render("~/bundles/angular")
+@{
+    BanroWebApp.Models.Authenticate auth2 = null;
+    if (Session["userinfo"]!=null)
+    {
+        auth2=(BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/Home");
+    }
+  
+}
+
+<div id="wrappermenubar">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a style="font-family:Yu Gothic;" class="navbar-brand" href="index.html">Family Composition</a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-top-links navbar-right">
+
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li>
+                        <div id="profiler">
+                            @*<img src="~/Content/img/user2-160x160.jpg" alt="">*@
+                            <span>@HttpContext.Current.User.Identity.Name</span>
+                            <p id="roleSpan">
+                                @auth2.Priority.ToLower()
+
+                            </p>
+                            <span id="spanSucc" style="display:none;">@auth2.Succursale</span>
+                        </div>
+                    </li>
+
+                    <li class="divider"></li>
+                    <li>
+                        <a href="../logout" class="" style="text-align:center;">Deconnexion</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+
+                    <li>
+                        <a href="Dashboard"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                    </li>
+                    @if (Session["userinfo"]!=null)
+                    {
+                        BanroWebApp.Models.Authenticate auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+                        if (!auth.Priority.Equals("user"))
+                        {
+                            
+                    
+                    <li>
+                        <a href="#"><i class="fa fa-bank"></i> Company<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            @if (auth.Priority.Equals("administrator") || auth.Priority.Equals("middle"))
+                            {
+                                 <li>
+                                    <a href="AddSuccursale">Add </a>
+                                </li>
+                            }
+                           
+                            <li>
+                                <a href="SearchSuccursale">Search</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                        }
+                    }
+                        <li>
+                        <a href="#"><i class="fa fa-briefcase"></i> Department<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            @if (!auth2.Priority.Equals("middle"))
+                            {
+                                <li>
+                                    <a href="AddDepartement">Add </a>
+                                </li>    
+                            }
+                            
+                            <li>
+                                <a href="SearchDepartement">Search</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-users"></i> Beneficiairies<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            @if (auth2.Priority.Equals("administrator") || auth2.Priority.Equals("user"))
+                            {
+                                <li>
+                                    <a href="AddBeneficiaire">Add New</a>
+                                </li>    
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="AddBeneficiaire">View Beneficiaries</a>
+                                </li>
+                            }
+                            
+                            @*<li>
+                                    <a href="morris.html">Search</a>
+                                </li>*@
+                            @*<li>
+                                    <a href="morris.html">Etat</a>
+                                </li>*@
+                            @*<li class="divider" style="border-top:1px solid silver"></li>
+                                <li>
+                                    <a href="#"> Categories<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="panels-wells.html">Panels and Wells</a>
+                                        </li>
+                                        <li>
+                                            <a href="buttons.html">Buttons</a>
+                                        </li>
+                                        <li>
+                                            <a href="notifications.html">Notifications</a>
+                                        </li>
+                                        <li>
+                                            <a href="typography.html">Typography</a>
+                                        </li>
+                                        <li>
+                                            <a href="icons.html"> Icons</a>
+                                        </li>
+                                        <li>
+                                            <a href="grid.html">Grid</a>
+                                        </li>
+                                    </ul>
+
+                                </li>*@
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                    @{
+                        if (auth2.Priority.Equals("user") || auth2.Priority.Equals("administrator"))
+                        {
+                            <li>
+                                <a href="#"><i class="fa fa-briefcase"></i> Contractor<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="Contractor">Add New</a>
+                                    </li>
+                                    <li>
+                                        <a href="AddEmployeeContractor">Add employee</a>
+                                    </li>
+                                    <li>
+                                        <a href="VoucherContractor">Add Voucher</a>
+                                    </li>
+                                </ul>
+                        <!-- /.nav-second-level -->
+                    </li> 
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#"><i class="fa fa-briefcase"></i> Contractor<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="Contractor">View Contractor</a>
+                                    </li>
+                                    <li>
+                                        <a href="AddEmployeeContractor">View Employee</a>
+                                    </li>
+                                 
+                                </ul>
+                        <!-- /.nav-second-level -->
+                    </li> 
+                        }
+
+                        if (auth2.Priority.Equals("user") || auth2.Priority.Equals("administrator"))
+                        {
+                         <li>
+                                <a href="#"><i class="fa fa-users"></i> Casual<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="VoucherCasual">Add New Voucher</a>
+                                    </li>
+                                    
+                                </ul>
+                        <!-- /.nav-second-level -->
+                    </li>   
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#"><i class="fa fa-users"></i> Casual<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="VoucherCasual">View Casual</a>
+                                    </li>
+                                    
+                                </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                        }
+                                 
+                        
+                    }
+
+                    @{
+                        if (auth2.Priority.Equals("administrator"))
+                        {
+                             <li>
+                        <a href="#"><i class="fa fa-medkit"></i> Medical facility / Hospital<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="HealthCenter">Add New</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>         
+                        }
+                        else if (auth2.Priority.Equals("middle"))
+                        {
+                             <li>
+                            <a href="#"><i class="fa fa-medkit"></i> Medical facility / Hospital<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="SearchHealths">View Hospitals</a>
+                                </li>
+                            </ul>
+                        <!-- /.nav-second-level -->
+                    </li>  
+                        }
+                    }
+                   @if (!auth2.Priority.Equals("middle"))
+                    {       
+                    <li>
+                        <a href="#"><i class="fa fa-file-text"></i> Voucher<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                           
+                                <li>
+                                    <a href="AddBonCommand">Add New </a>
+                                </li>    
+                           
+                           
+                            
+                            
+                                @*<a href="ReportingSystem">Edition et Recherche</a>*@
+                           
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                            }
+                    <li>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-print"></i> Reporting System<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="MedicalCrusherIssued">1. Medical Voucher issued</a>
+                            </li>
+                            <li>
+                                <a href="#">2. Report of medical vouchers <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="GeneralReport">General Report</a>
+                                    </li>
+                                    <li>
+                                        <a href="HED">Hospital and employees VS dependents</a>
+                                    </li>
+                                    <li>
+                                        <a href="DepartementReporting">For departement</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="SuccursaleReporting">3. Actual vs. previous month </a>
+
+                            </li>
+                            <li>
+                                <a href="ConsultancyCost">4. Consultancy Cost</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-list"></i> History of medical vouchers and cost <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="HMVCEmployed">
+                                            <i class="fa fa-user"></i> For Employee
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="HMVCDependecies">
+                                            <i class="fa fa-users"></i> For Dependents
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="HMVCcostdepartmentCompany">
+                                            <i class="fa fa-building"></i> Cost per departement per company
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="HMVCCostHospital">
+                                            <i class="fa fa-building"></i> Cost per Hospital
+                                        </a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+                           
+                        </ul>
+                        
+                    </li>
+                    
+                    <li>
+                        <a href="#"><i class="fa fa-list-alt"></i> Invoicing<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            @if (!auth2.Priority.Equals("middle"))
+                            {
+                                <li>
+                                    <a href="AddFacture">Add New</a>
+                                </li>    
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="AddFacture">View</a>
+                                </li>
+                            }
+                            
+                         
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+
+    <div style="position:fixed;bottom:0;display:inline-block;">
+        <h5 style="text-align:center;font-weight:bold;">
+            @auth2.nameSuccursale
+        </h5>
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+@RenderBody()
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Styles.Render("~/Content/css")
+@{
+    <script type="text/javascript">
+  
+</script>
+}

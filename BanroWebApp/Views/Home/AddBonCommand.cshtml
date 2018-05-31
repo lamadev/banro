@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "AddBonCommand";
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    BanroWebApp.Models.Authenticate auth = null;
+    if (Session["userinfo"] != null)
+    {
+        auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+}
+
+<div id="page-wrapper" data-ng-app="app" ng-controller="CtrlHome" >
+    <div class="row" id="headerBC" ng-show="printerView" >
+        <div class="col-lg-12">
+            <h3 class="page-header">
+                Create a new voucher<i class="fa fa-users" style="float:right;"></i>
+            </h3>
+            <div class="form-group">
+                <label>Categories of beneficiaries</label>
+                <button class="btn btn-default" style="float:right;margin-top:-5px;" ng-click="refreshing()">
+                    <i class="fa fa-refresh"></i>
+                </button>
+                <select class="form-control" ng-model="cboCategBeneficiaire" id="category" ng-change="actionRoutersBCmd()">
+                    <option></option>
+                    <option>Employee</option>
+                    <option>Spouse</option>
+                    <option>Child</option>
+                     <option>Visitor</option>
+                </select>
+            </div>
+            <hr />
+        </div>
+
+
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <div class="row" ng-view>
+
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->

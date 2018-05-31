@@ -1,0 +1,162 @@
+﻿@{
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    ViewBag.Title = "About";
+    BanroWebApp.Models.Authenticate auth = null;
+    if (Session["userinfo"] != null)
+    {
+        auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+}
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard
+      
+            </h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-bank fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">
+                               @{
+                                   BanroWebApp.Models.BANROEntities dbContext = new BanroWebApp.Models.BANROEntities();
+                                   @dbContext.t_succursales.ToList().Count
+                               }
+                            </div>
+                            <div>Companies</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-users fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">
+                                @{
+                                    if (auth.Priority.Equals("user"))
+                                    {
+                                        var Query = from ds in dbContext.t_beneficiaires
+                                                    where ds.C_id_succ.Equals(auth.Succursale)
+                                                    select ds;
+
+                                        @Query.ToList().Count;
+                                    }
+                                    else
+                                    {
+                                        var Query = from ds in dbContext.t_beneficiaires
+                                                   
+                                                    select ds;
+
+                                        @Query.ToList().Count;
+                                    }
+                                }
+                            </div>
+                            <div>Employees</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-medkit fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">
+                                @{
+                                    @dbContext.t_centre_soins.ToList().Count;
+                                }
+                            </div>
+                            <div>Medical Facility</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-child fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">
+                                @{
+                                    if (auth.Priority.Equals("user"))
+                                    {
+                                        var Query = from beneficiairy in dbContext.t_beneficiaires
+                                                    join voucher in dbContext.t_bon_commandes
+                                                    on beneficiairy.C_id equals voucher.C_id_bene
+                                                    where beneficiairy.C_id_succ.Equals(auth.Succursale)
+                                                    select beneficiairy;
+                                        @Query.ToList().Count;
+                                    }
+                                    else
+                                    {
+                                        var Query = from voucher in dbContext.t_bon_commandes
+                                                    select voucher;
+                                        @Query.ToList().Count;
+                                    }
+                                }
+                            </div>
+                            <div>Vouchers</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>

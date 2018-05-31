@@ -1,0 +1,550 @@
+﻿@model BanroWebApp.Models.t_factures
+@{
+    ViewBag.Title = "AddBonCommand";
+    Layout = "~/Views/Shared/_Menu.cshtml";
+}
+
+
+<div id="page-wrapper">
+    <div class="row" id="headerReporting">
+        <div class="col-lg-12">
+            <h3 class="page-header">
+                Reporting System  <i class="fa fa-file-archive-o" style="float:right;"></i>
+            </h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    @{
+        if (Request.HttpMethod.Equals("POST") && ViewBag.messageFacture == "200")
+        {
+            <div class="alert alert-success" id="alertDep" style="text-align:center;">
+                <i class="fa fa-check"></i> Enregistremment effecté avec succès
+            </div>
+        }
+    }
+    <!-- /.row -->
+    @*<div class="input-group date" data-provider="datepicker" id="dp">
+            <input type="text" name="name" class="form-control" value=" " />
+            <div class="input-group-addon">
+                <span class="fa fa-th"></span>
+            </div>
+        </div>*@
+
+    <div class="alert alert-success hide" id="alertImport" style="text-align:center;">
+        <i class="fa fa-check"></i> <span id="messageImport">Importation des données en cours.....</span>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+ 
+                <div class="panel-heading col-lg-12" style="background-color:white;" id="headerDate">
+                    <table style="padding:0;width:60%;float:right;">
+                        <tr>
+                            <td style="padding-right:10px;">
+
+
+                                <div class="input-group date dp" data-provider="datepicker">
+                                    <input type="text" name="name" class="form-control" id="datedeb" />
+                                    <div class="input-group-addon">
+                                        <span class="fa fa-th"></span>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td style="padding-right:10px;">-</td>
+                            <td style="padding-right:10px;">
+
+                                <div class="input-group date dp" data-provider="datepicker">
+                                    <input type="text" name="name" class="form-control" id="datefin" />
+                                    <div class="input-group-addon">
+                                        <span class="fa fa-th"></span>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="panel-body">
+                    <div class="row">
+
+                        <form method="post">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                            <div data-ng-app="app" ng-controller="CtrlHome">
+                                <div class="modal fade" id="myModalEmployed" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-show="isVisiblebcEmployed">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: #337ab7;color:white;">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Rechercher les bons  de commande</h4>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="form-group input-group">
+                                                    <input type="text" class="form-control" ng-model="nameUser" placeholder="Entrez le nom de l'employé(e)">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-primary" type="button" ng-click="SearchBCmdForFacture()" style="height:35px;">
+                                                            <i class="fa fa-search"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                                <hr />
+                                                <div class="row">
+                                                    <div class="col-lg-6" style="width:100%;">
+                                                        <div class="panel panel-default">
+
+                                                            <!-- /.panel-heading -->
+                                                            <div class="panel-body">
+                                                                <div class="table-responsive">
+                                                                    <table class="table" style="font-size:12px;" ng-show="tableForEmployed">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Id Bon</th>
+                                                                                <th>Nom</th>
+                                                                                <th>Sexe</th>
+                                                                                <th>Phone</th>
+                                                                                <th>Succursale</th>
+                                                                                <th>Departement</th>
+                                                                                <th>Hopital</th>
+                                                                                <th>Photo</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="employed in tabBCmdFacture" ng-click="selectedEmployedfacture(employed)" style="cursor:pointer;">
+                                                                                <td>{{employed.id}}</td>
+                                                                                <td>{{employed.Employed.name}}</td>
+                                                                                <td>{{employed.Employed.sex}}</td>
+                                                                                <td>{{employed.Employed.phone}}</td>
+                                                                                <td>{{employed.Employed.ID_Succursale}}</td>
+                                                                                <td>{{employed.Employed.ID_Departement}}</td>
+                                                                                <td>{{employed.idHealth}}</td>
+                                                                                <td>
+                                                                                    <img src="~/Images/{{employed.Employed.picture}}" alt="image profil" style="height:70px;width:70px;" />
+                                                                                </td>
+
+
+
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                    <table class="table" style="font-size:12px;" ng-show="tableForPartner">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Id Bon</th>
+                                                                                <th>Nom</th>
+                                                                                <th>Sexe</th>
+                                                                                <th>Phone</th>
+                                                                                <th>Hopital</th>
+                                                                                <th>Partner</th>
+                                                                                <th>Succursale</th>
+                                                                                <th>Departement</th>
+                                                                                <th>Photo</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="employed in tabBCmdFacture" ng-click="selectedEmployedfacture(employed)" style="cursor:pointer;">
+                                                                                <td>{{employed.id}}</td>
+                                                                                <td>{{employed.Partner.name}}</td>
+                                                                                <td>{{employed.Partner.sex}}</td>
+                                                                                <td>{{employed.Partner.phone}}</td>
+                                                                                <td>{{employed.idHealth}}</td>
+                                                                                <td>{{employed.Partner.partner.name}}</td>
+                                                                                <td>{{employed.Partner.partner.ID_Succursale}}</td>
+                                                                                <td>{{employed.Partner.partner.ID_Departement}}</td>
+
+                                                                                <td>
+                                                                                    <img src="~/Images/{{employed.Partner.picture}}" alt="image profil" style="height:70px;width:70px;" />
+                                                                                </td>
+
+
+
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+
+
+                                                                    <table class="table" style="font-size:12px;" ng-show="tableChildren">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Id Bon</th>
+                                                                                <th>Nom</th>
+                                                                                <th>Sexe</th>
+                                                                                <th>Phone</th>
+                                                                                <th>Hopital</th>
+                                                                                <th>Parent</th>
+                                                                                <th>Succursale</th>
+                                                                                <th>Departement</th>
+                                                                                <th>Photo</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr ng-repeat="employed in tabBCmdFacture" ng-click="selectedEmployedfacture(employed)" style="cursor:pointer;">
+                                                                                <td>{{employed.id}}</td>
+                                                                                <td>{{employed.Child.name}}</td>
+                                                                                <td>{{employed.Child.sex}}</td>
+                                                                                <td>{{employed.Child.datenais}}</td>
+                                                                                <td>{{employed.idHealth}}</td>
+                                                                                <td>{{employed.Employed.name}}</td>
+                                                                                <td>{{employed.Employed.ID_Succursale}}</td>
+                                                                                <td>{{employed.Employed.ID_Departement}}</td>
+
+                                                                                <td>
+                                                                                    <img src="~/Images/{{employed.Child.picture}}" alt="image profil" style="height:70px;width:70px;" />
+                                                                                </td>
+
+
+
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <!-- /.panel-body -->
+                                                        </div>
+                                                        <!-- /.panel -->
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="alert alert-success" id="alertSucc" style="display:none;float:left;width:70px;background-color:white;">
+                                                        Modification éffectuée avec succès!
+                                                    </div>
+                                                    <button type="button" class="btn btn-default" style="display:none" data-dismiss="modal" id="btnCloseIt">Close</button>
+                                                    <button type="button" style="display:none;" ng-click="AddPartner()" id="" class="btn btn-primary"><i class="fa fa-plus"></i>Ajouter</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" onload="teste()" style="font-size:10px;" ng-show="TableDataVisible">
+                                    <div class="col-lg-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Facturations and dependecies
+                                            </div>
+                                            <!-- /.panel-heading -->
+                                            <div class="panel-body">
+                                                <table width="100%" class="table table-striped table-bordered table-hover" id="tableprint" style="font-size:10px;display:none;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Employed</th>
+                                                            <th>Sex</th>
+                                                            <th>Phone</th>
+                                                            <th>Succursal</th>
+                                                            <th>Departement</th>
+                                                            <th>Fact. Individuals</th>
+                                                            <th>Depencies</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="">
+                                                        <tr class="odd gradeX" ng-repeat="data in printData">
+                                                            <td>{{data.id}}</td>
+                                                            <td>{{data.name}}</td>
+                                                            <td>{{data.sex}}</td>
+                                                            <td>{{data.phone}}</td>
+                                                            <td>{{data.ID_Succursal}}</td>
+                                                            <td>{{data.ID_Departement}}</td>
+                                                            <td>{{data.ctrFact}}</td>
+                                                            <td>{{data.ctrdependecies}}</td>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="dataTable_wrapper" id="tablebasic">
+                                                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:10px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Id</th>
+                                                                <th>Employed</th>
+                                                                <th>Sex</th>
+                                                                <th>Phone</th>
+                                                                <th>Succursal</th>
+                                                                <th>Departement</th>
+                                                                <th>Fact. Individuals</th>
+                                                                <th>Depencies</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{
+                                BanroWebApp.Models.RequestEmployed ReqEmployed = new BanroWebApp.Models.RequestEmployed();
+
+                                foreach (var item in ReqEmployed.getListEmployed())
+                                {
+
+                                                                <tr class="odd gradeX">
+                                                                    <td>@item.id</td>
+                                                                    <td style="cursor:pointer" ng-click="EmployedFacturation(@item.id)">@item.name</td>
+                                                                    <td>@item.sex</td>
+                                                                    <td class="center">@item.phone</td>
+                                                                    <td class="center">@item.ID_Succursale</td>
+                                                                    <td class="center">@item.ID_Departement</td>
+                                                                    <td class="center">@item.CtrBon</td>
+                                                                    <td>@item.nbreDepencies</td>
+                                                                </tr>
+                                }
+
+                                                            }
+
+
+                                                        </tbody>
+                                                       
+                                                    </table>
+                                                    
+
+
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- /.modal -->
+                                        </div>
+                                        <!-- /.row -->
+                                        <!-- /.row -->
+
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#myModal" style="display:none;" id="btnModalReporting">
+                                    Launch Demo Modal
+                                </button>
+                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" style="">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="background-color: #337ab7;color:white;">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">
+                                                    {{currentBeneficiaire}}
+                                                </h4>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="dataTable_wrapper" ng-show="isVisibilityTabFacturation">
+                                                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:10px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Id bon</th>
+                                                                <th>Health Center</th>
+                                                                <th>Doctor</th>
+                                                                <th>Motif</th>
+
+                                                                <th>Date Bon</th>
+                                                                <th>Date Facture</th>
+                                                                <th>Cout</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="odd gradeX" ng-repeat="Individual in TabReportEmployed.Facturations">
+                                                                <td>
+                                                                    {{Individual.id}}
+                                                                </td>
+                                                                <td>
+                                                                    {{Individual.idHealth}}
+                                                                </td>
+                                                                <td>
+                                                                    {{Individual.nameDoctor}}
+                                                                </td>
+                                                                <td>
+                                                                    {{Individual.motif}}
+                                                                </td>
+                                                                <td>
+                                                                    {{Individual.datecmd}}
+                                                                </td>
+                                                                <td>
+                                                                    {{Individual.dateFacture}}
+                                                                </td>
+                                                                <td>
+                                                                    {{Individual.cout}}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <div style="display:inline-block;width:100%;">
+                                                        <h5 style="width:auto;float:right;">
+                                                            Total :{{totalPayIndividual}} $
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                                <div class="dataTable_wrapper" ng-show="isVisibilityTabDependecies">
+                                                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:10px;">
+                                                        <thead>
+                                                            <tr>
+                                                                @*<th>Id bon</th>*@
+                                                                <th>Name dependecy</th>
+                                                                <th>Health Center</th>
+                                                                <th>Doctor</th>
+                                                                <th>Motif</th>
+
+                                                                <th>Date Bon</th>
+                                                                <th>Date Facture</th>
+                                                                <th>Cout</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr class="odd gradeX" ng-repeat="dependecies in TabReportEmployed.dependecies">
+                                                                @*<td>
+                                            {{dependecies.id}}
+                                        </td>*@
+
+                                                                <td>
+                                                                    {{dependecies.nameAuthor}}
+                                                                </td>
+                                                                <td>
+                                                                    {{dependecies.idHealth}}
+                                                                </td>
+                                                                <td>
+                                                                    {{dependecies.nameDoctor}}
+                                                                </td>
+                                                                <td>
+                                                                    {{dependecies.motif}}
+                                                                </td>
+                                                                <td>
+                                                                    {{dependecies.datecmd}}
+                                                                </td>
+                                                                <td>
+                                                                    {{dependecies.dateFacture}}
+                                                                </td>
+                                                                <td>
+                                                                    {{dependecies.cout}}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    <div style="display:inline-block;width:100%;">
+                                                        <h5 style="width:auto;float:right;">
+                                                            Total :{{totalPayDependecies}} $
+                                                        </h5>
+                                                    </div>
+
+
+
+
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="alert alert-success" id="alertdep" style="display:none;float:left;width:70px;background-color:white;">
+                                                    Modification éffectuée avec succès!
+                                                </div>
+                                                <button type="button" class="btn btn-success" data-dismiss="modal">Imprimer</button>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+
+                                <div class="row" onload="teste()" ng-show="TableDataDateVisible" style="font-size:10px;" ng-show="TableDataVisible">
+                                    <div class="col-lg-12">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Facturations and dependecies
+                                                <button class="btn btn-primary" type="button" style="float:right;margin-top:-0.56em;" ng-click="viewTabReporting()"><i class="fa fa-refresh"></i></button>
+                                            </div>
+                                            <!-- /.panel-heading -->
+                                            <div class="panel-body">
+                                                <div class="dataTable_wrapper">
+                                                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:10px;">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Id</th>
+                                                                <th>Employed</th>
+                                                                <th>Sex</th>
+                                                                <th>Phone</th>
+                                                                <th>Succursal</th>
+                                                                <th>Departement</th>
+                                                                <th>Fact. Individuals</th>
+                                                                <th>Depencies</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="data in TabReportingDate">
+                                                                <td class="center">
+                                                                    {{data.id}}
+                                                                </td>
+                                                                <td class="center" style="cursor:pointer" ng-click="EmployedFacturation(data.id)">
+                                                                    {{data.name}}
+                                                                </td>
+                                                                <td class="center">
+                                                                    {{data.sex}}
+                                                                </td>
+                                                                <td class="center">
+                                                                    {{data.phone}}
+                                                                </td>
+                                                                <td class="center">
+                                                                    {{data.ID_Succursale}}
+                                                                </td>
+                                                                <td class="center">
+                                                                    {{data.ID_Departement}}
+                                                                </td>
+                                                                <td class="center">
+                                                                    {{data.Facturations.length}}
+                                                                </td>
+                                                                <td class="center">
+                                                                    {{data.dependecies.length}}
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                                    <div style="width:100%;text-align:center;">
+
+
+                                                        <button type="button" ng-click="getDateReporting()" id="btnFind" class="btn btn-primary" style="width:25%;float:left;margin-left:1em;">Rechercher</button>
+                                                        <button type="button" id="btnPrint" ng-click="getPrintReporting()" class="btn btn-success" style="width:25%;float:left;margin-left:1em;">Imprimer</button>
+                                                    </div>
+                                                </div>
+                                                }
+</form>
+
+                        <!-- /.col-lg-6 (nested) -->
+                        <div class="col-lg-6">
+                            @* <img src="~/Content/img/user2-160x160.jpg" alt="Alternate Text" style="width:260px;height:180px;" />*@
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+
+
+
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+</div>
+<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+  
+
+</script>

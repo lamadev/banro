@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BanroWebApp.Models.t_succursales>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("ExportData", "StudentDetail", FormMethod.Post, new { enctype="multipart/form-data"}))
+{
+    <table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.C_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.C_adresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.C_phone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_adresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.C_phone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.C_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.C_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.C_id })
+        </td>
+        
+    </tr>
+}
+        <tr>
+            <input type="submit" name="name" value="Export" />
+        </tr>
+</table>
+
+}
