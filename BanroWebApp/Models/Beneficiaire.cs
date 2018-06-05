@@ -57,7 +57,7 @@ namespace BanroWebApp.Models
         {
             
                 var base64 = source;
-                String ImageCreated=DateTime.Now.Day+""+DateTime.Now.Month+""+DateTime.Now.Year+""+DateTime.Now.Hour+""+DateTime.Now.Minute+""+DateTime.Now.Second+DateTime.Now.Millisecond + ".jpg";
+                String Picture=DateTime.Now.Day+""+DateTime.Now.Month+""+DateTime.Now.Year+""+DateTime.Now.Hour+""+DateTime.Now.Minute+""+DateTime.Now.Second+DateTime.Now.Millisecond + ".jpg";
                 pathServer = pathServer + "/" +DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg";
                 base64 = base64.ToString().Substring((base64.ToString().IndexOf(",") + 1));
                 byte[] img = Convert.FromBase64String(base64);
@@ -69,7 +69,8 @@ namespace BanroWebApp.Models
                 fs.Flush();
                 fs.Close();
                 this.picture = pathServer;
-            return (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
+                 return pathServer.Split('/')[1];
+           // return (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
         }
     }
 
@@ -110,7 +111,8 @@ namespace BanroWebApp.Models
                 fs.Flush();
                 fs.Close();
                 this.picture = pathServer;
-                return  (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
+                 return pathServer.Split('/')[1];
+                //return  (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
             }
             catch (Exception)
             {
@@ -145,7 +147,8 @@ namespace BanroWebApp.Models
                 fs.Flush();
                 fs.Close();
                 this.picture = pathServer;
-                return (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
+                 return pathServer.Split('/')[1];
+                //return (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
             }
             catch (Exception)
             {
@@ -209,7 +212,8 @@ namespace BanroWebApp.Models
                 fs.Flush();
                 fs.Close();
                 //this.DocumentFacture= pathServer;
-                return (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
+                 return pathServer.Split('/')[1];
+               // return (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
             }
             catch (Exception)
             {
