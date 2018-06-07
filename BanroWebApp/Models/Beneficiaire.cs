@@ -119,7 +119,8 @@ namespace BanroWebApp.Models
 
 
             }
-            return (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
+            return "default.jpg";
+            //return (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
         }
     }
 
