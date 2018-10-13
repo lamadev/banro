@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -298,6 +299,10 @@ namespace BanroWebApp.Models
                     {
                         CultureInfo cInfo = new CultureInfo("en-US");
                         Thread.CurrentThread.CurrentCulture = cInfo;
+                        String year = DateTime.Now.Year.ToString();
+                        String months = DateTime.Now.Month.ToString().Length == 1 ? "0" + DateTime.Now.Month.ToString() : DateTime.Now.Month.ToString();
+                        String day = DateTime.Now.Day.ToString().Length == 1 ? "0" + DateTime.Now.Day.ToString() : DateTime.Now.Day.ToString();
+                        String dateNow1 = months + "/" + "/" + day + "/" + year;
                         __medicalVouchersIssued(DateTime.Now.ToShortDateString());
                     }
                     if (scope.Equals("Choose"))
@@ -681,7 +686,7 @@ namespace BanroWebApp.Models
             Thread.CurrentThread.CurrentCulture = cInfo;
             this.__getListDepencies.Clear();
             int ctr = 0;
-
+            
 
 
             var req = from ds in dbContext.t_beneficiaires
@@ -1090,8 +1095,10 @@ namespace BanroWebApp.Models
 
         private void __RMV_General_Report(DateTime from, DateTime to)
         {
-           
-            String dte = from.ToShortDateString();
+
+            String dte = from.Month.ToString() + "/" + (from.Day.ToString().Length == 1 ? "0" + from.Day.ToString() : from.Day.ToString()) + "/" + from.Year.ToString();
+
+            
             var listCompanies = from ds in dbContext.t_succursales
                                 select ds;
             foreach (var item in listCompanies)
