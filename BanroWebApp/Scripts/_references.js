@@ -6,6 +6,7 @@
 /// <reference path="angular-route.min.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="bootstrap-datepicker.min.js" />
+/// <reference path="chartdata.js" />
 /// <reference path="controllers.js" />
 /// <reference path="dataTables.bootstrap.min.js" />
 /// <reference path="datatables.responsive.js" />

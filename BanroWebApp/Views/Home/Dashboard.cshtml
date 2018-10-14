@@ -34,14 +34,18 @@
                             <div class="huge">
                                @{
                                    BanroWebApp.Models.BANROEntities dbContext = new BanroWebApp.Models.BANROEntities();
-                                   @dbContext.t_succursales.ToList().Count
-                               }
+                                   var QueryDep = from ds in dbContext.t_departement
+                                               where ds.C_id_succ.Equals(auth.Succursale)
+                                               select ds;
+
+                                @QueryDep.ToList().Count;
+                            }
                             </div>
-                            <div>Companies</div>
+                            <div>Departments</div>
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="ViewDepartments">
                     <div class="panel-footer">
                         <span class="pull-left"></span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -88,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="ViewEmployeeList">
                     <div class="panel-footer">
                         <span class="pull-left"></span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -114,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#">
+                <a href="ViewFacilities">
                     <div class="panel-footer">
                         <span class="pull-left"></span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

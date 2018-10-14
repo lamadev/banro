@@ -178,6 +178,7 @@
     <Compile Include="Controllers\DashboarderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentDetailController.cs" />
+    <Compile Include="Controllers\ApiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -354,6 +355,7 @@
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\chartdata.js" />
     <Content Include="Scripts\Controllers.js" />
     <Content Include="Scripts\dataTables.bootstrap.min.js" />
     <Content Include="Scripts\dataTables.responsive.js" />
@@ -449,6 +451,9 @@
     <Content Include="Views\Home\ViewAge.cshtml" />
     <Content Include="Views\Home\viewstatusEcontractor.cshtml" />
     <Content Include="Views\Home\viewbeneficiairies.cshtml" />
+    <Content Include="Views\Home\ViewDepartments.cshtml" />
+    <Content Include="Views\Home\ViewEmployeeList.cshtml" />
+    <Content Include="Views\Home\ViewFacilities.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

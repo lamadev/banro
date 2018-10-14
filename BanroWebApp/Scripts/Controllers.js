@@ -1,4 +1,5 @@
-﻿app.controller('CtrlHome', function (FactoryHome, $scope, $timeout,$http) {
+﻿
+app.controller('CtrlHome', function (FactoryHome, $scope, $timeout, $http) {
     console.log("Okay Good");
     $scope.idAuthSucc="";
     $scope.roleUser = "";

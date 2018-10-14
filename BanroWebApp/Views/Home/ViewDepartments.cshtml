@@ -1,0 +1,164 @@
+﻿@model BanroWebApp.Models.t_succursales
+@{
+    Layout = "~/Views/Shared/_Menu.cshtml";
+    // ViewBag.Title = "SearchSuccursale";
+    BanroWebApp.Models.Authenticate auth = null;
+    BanroWebApp.Models.BANROEntities dbContext = new BanroWebApp.Models.BANROEntities();
+    if (Session["userinfo"] != null)
+    {
+        auth = (BanroWebApp.Models.Authenticate)Session["userinfo"];
+    }
+    else
+    {
+        Response.Redirect("~/");
+    }
+}
+
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header">
+                 View Departments <i class="fa fa-home" style="float:right;"></i>
+            </h3>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+    @using (@Html.BeginForm())
+    {
+        @*<div class="form-group input-group">
+
+                <form method="get">
+
+                    <input type="text" name="namesucc" id="namesucc" class="form-control" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" style="height:34px;">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+
+
+                </form>
+            </div>*@
+    }
+    <div style="width:100%;position:relative;left:0px;margin-left:0px;border:1px solid silver" ng-app="appchart" id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3 class="page-header"></h3>
+
+                <div class="btn-group" role="group" aria-label="Basic example" style="float:right">
+                    <button type="button" onclick="display('table')" class="btn btn-primary"><i class="fa fa-list-alt"></i></button>
+                    <button type="button" onclick="display('chart')" class="btn btn-success"><i class="fa fa-bar-chart"></i></button>
+                </div>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row" onload="teste()" style="font-size:10px;" ng-controller="chart">
+            {{lama}}
+            <div class="panel-body">
+                <div class="dataTable_wrapper" id="dataTable-wrapper">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" style="font-size:10px;">
+                        <thead>
+                            <tr>
+                                <th>Code Dep.</th>
+                                <th>Department Name</th>
+                                <th>Employees</th>
+                                <th>Status</th>
+                            
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                String yearFilter = "/" + DateTime.Now.Year.ToString();
+                                List<Dictionary<String, Object>> DictionaryDepart = new List<Dictionary<string, object>>();
+                                foreach (var item in dbContext.t_departement.Where(e=>e.C_id_succ.Equals(auth.Succursale)))
+                                {
+                                    int? currentId = item.C_id;
+                                    var Queries = from ds in dbContext.t_beneficiaires
+                                                  where ds.C_id_depart == currentId
+                                                  select ds;
+
+                                    Dictionary<String, Object> dict = new Dictionary<string, object>();
+                                    dict.Add("id", currentId);
+                                    dict.Add("name", item.C_id_depart);
+                                    dict.Add("count", Queries.ToList().Count);
+                                    dict.Add("status", item.C_status_system);
+                                    DictionaryDepart.Add(dict);
+                                }
+                             
+
+                                foreach (var item in DictionaryDepart)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item["id"]
+                                        </td>
+                                        <td>
+                                            @item["name"]
+
+                                        </td>
+                                        <td>
+                                            @item["count"]
+                                        </td>
+                                        <td>
+                                            @{
+                                                if (int.Parse(item["status"].ToString()) == 1)
+                                                {
+                                                    <i class="fa fa-check-circle" style="font-size:20px;color:darkgreen"></i> <label>Active</label>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa fa-check-circle" style="font-size:20px;color:darkred"></i> <label>Inactive</label>
+                                                }
+                                            }
+                                        </td>
+
+
+
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                    
+                </div>
+                <canvas   id="myChart" width="400" height="400" style="display:none"></canvas>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- /#page-wrapper -->
+<script src="~/Scripts/chartdata.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+<script>
+
+                $(document).ready(function () {
+
+                    $('#dataTables-example').DataTable({
+                        responsive: true
+                    });
+                });
+                var tab = document.querySelector('#dataTable-wrapper');
+                var chart = document.querySelector('#myChart');
+                var ctx = document.getElementById("myChart").getContext('2d');
+               
+                function display(e) {
+                    if (e=="table") {
+                        chart.style.display = "none";
+                        tab.style.display = "inherit";
+                    } else {
+                        chart.style.display = "inherit";
+                        tab.style.display = "none";
+                    }
+                }
+
+</script>
+

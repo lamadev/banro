@@ -550,7 +550,21 @@ namespace BanroWebApp.Controllers
             }
             return View();
         }
+        public ActionResult ViewDepartments()
+        {
+            return View();
+        }
 
+        public ActionResult ViewFacilities()
+        {
+            return View();
+        }
+
+        public ActionResult ViewEmployeeList()
+        {
+            return View();
+
+        }
         /* Methodes POST 
         [HttpPost]
         public ActionResult AddSuccursale(Models.t_succursales succ)

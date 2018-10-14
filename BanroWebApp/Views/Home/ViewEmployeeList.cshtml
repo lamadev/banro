@@ -1,4 +1,5 @@
-﻿@model BanroWebApp.Models.t_succursales
+﻿
+@model BanroWebApp.Models.t_succursales
 @{
     Layout = "~/Views/Shared/_Menu.cshtml";
     // ViewBag.Title = "SearchSuccursale";
@@ -19,7 +20,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h3 class="page-header">
-                Logs  <i class="fa fa-cogs" style="float:right;"></i>
+                Employees List  <i class="fa fa-re" style="float:right;"></i>
             </h3>
         </div>
         <!-- /.col-lg-12 -->
@@ -46,7 +47,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h3 class="page-header"></h3>
-               
+
 
             </div>
             <!-- /.col-lg-12 -->
@@ -59,8 +60,8 @@
                         <thead>
                             <tr>
                                 <th>Id Matricule</th>
-                                <th>Username</th>
-                                <th>Company</th>
+                                <th><i class="fa fa-user"></i>Employee</th>
+                                <th>Employee</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Action</th>
@@ -69,8 +70,13 @@
                         </thead>
                         <tbody>
 
-                            @{ 
-                                String yearFilter ="/"+DateTime.Now.Year.ToString();
+                            @{
+                                List<Dictionary<String, Object>> ViewDictionary = new List<Dictionary<string, object>>();
+                                var QueryEmp = from emp in dbContext.t_beneficiaires
+                                               where !emp.C_id_succ.Equals(null) && emp.C_id_depart != null
+                                               select emp;
+
+                                String yearFilter = "/" + DateTime.Now.Year.ToString();
                                 var Query = from ds in dbContext.T_logs
                                             where ds.C_date.EndsWith(yearFilter)
                                             orderby ds.C_id descending
@@ -80,14 +86,14 @@
                                 {
                                     <tr>
                                         <td>
-                                                @item.C_mat
+                                            @item.C_mat
                                         </td>
                                         <td>
                                             @item.C_user
 
                                         </td>
                                         <td>
-                                           @item.C_company
+                                            @item.C_company
                                         </td>
                                         <td>
                                             @item.C_date
