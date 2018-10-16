@@ -565,6 +565,10 @@ namespace BanroWebApp.Controllers
             return View();
 
         }
+        public ActionResult ViewVouchers()
+        {
+            return View();
+        }
         /* Methodes POST 
         [HttpPost]
         public ActionResult AddSuccursale(Models.t_succursales succ)
