@@ -569,6 +569,16 @@ namespace BanroWebApp.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult ViewVouchers(t_factures invoice)
+        {
+            invoice.C_datefacture = String.Format("{0}/{1}/{2}", DateTime.Now.Month.ToString(), DateTime.Now.Day.ToString(), DateTime.Now.Year.ToString());
+            invoice.C_timefacture = DateTime.Now.TimeOfDay.ToString();
+            dbContext.t_factures.Add(invoice);
+            dbContext.SaveChanges();
+            return RedirectToAction("ViewVouchers","Home");
+        }
         /* Methodes POST 
         [HttpPost]
         public ActionResult AddSuccursale(Models.t_succursales succ)

@@ -1,4 +1,4 @@
-﻿
+﻿@model BanroWebApp.Models.t_factures
 @{
     ViewBag.Title = "AddBonCommand";
     Layout = "~/Views/Shared/_Menu.cshtml";
@@ -12,19 +12,22 @@
         Response.Redirect("~/");
     }
 }
-
+<title>Vouchers Management</title>
 <div id="page-wrapper" style="overflow:hidden">
+    
     <div class="row" id="headerBC" ng-show="printerView">
         <div class="col-lg-12">
             <h3 class="page-header">
                 View Vouchers <i class="fa fa-list" style="float:right;"></i>
+
             </h3>
             <div class="btn-group" role="group" aria-label="Basic example" style="float:right">
                 <button type="button" onclick="display('table')" class="btn btn-primary"><i class="fa fa-list-alt"></i></button>
                 <button type="button" onclick="display('chart')" class="btn btn-success"><i class="fa fa-bar-chart"></i></button>
+              
 
             </div>
-          
+            
             <hr />
         </div>
         <!-- /.col-lg-12 -->
@@ -133,6 +136,8 @@
                             dict.Add("name", item.ds.C_name);
                             dict.Add("picture", item.ds.C_picture);
                             dict.Add("datenaiss", item.ds.C_datenais);
+                            dict.Add("voucherid", item.vouchers.C_id_bon.ToString());
+
                             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
                             var data = js.Serialize(dict);
                             <tr style="cursor:pointer" onclick="getModal(@data)">
@@ -214,7 +219,7 @@
                                             
                                             status = "0.00$";
                                             @status;
-                                            statusVoucher = "unpaid";
+                                            statusVoucher = "NotInvoiced";
 
                                         }
                                         else
@@ -222,13 +227,13 @@
                                             
                                             string status = invoice.C_cout.ToString() + "$";
                                             @status;
-                                            statusVoucher = "paid";
+                                            statusVoucher = "Invoiced";
                                         }
                                     }
                                 </td>
                                 <td>
                                    @{
-                                       if (statusVoucher.Equals("paid"))
+                                       if (statusVoucher.Equals("Invoiced"))
                                        {
                                         <i class="fa fa-check-circle" style="color:green;font-size:14px;padding-right:5px;"></i>
                                         @statusVoucher
@@ -248,7 +253,9 @@
                 </tbody>
             </table>
         </div>
-        <canvas id="myChart" style=""></canvas>
+        <canvas id="myChart" style="display:none;"></canvas>
+        <canvas id="myChart2" style="display:none;"></canvas>
+        <canvas id="myChart3" style="display:none;"></canvas>
     </div>
     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" style="display:none;" id="modal">
         Launch Demo Modal
@@ -258,28 +265,29 @@
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #337ab7;color:white;">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel"></h4>
+                    <h4 class="modal-title" id="myModalLabel"> Add a new invoice</h4>
                 </div>
 
                 <div class="modal-body">
                     <form role="form" method="post">
+                        @using (Html.BeginForm())
+                            {
+                                Html.AntiForgeryToken();
+
+
+
                         <div class="panel-body" ng-show="isVisiblebcEmployed">
                             <div class="row">
-                                <div class="alert alert-warning" id="alertWarnning" style="display:none;text-align:center;">
-                                    Patientez, traitement en cours....
-                                </div>
-                                <div class="alert alert-success" id="alertSuccessBC" style="display:none;text-align:center;">
-                                    Enregistrement effectué avec succès....
-                                </div>
-                                <div class="alert alert-success" id="alertSuccess2" ng-show="isModify" style="text-align:center;">
-                                    Modification effectué avec succès....
+                              
+                                <div class="alert alert-danger" id="alertError" style="text-align:center;display:none;">
+                                    Please, the value should not be negative
                                 </div>
                                 <img id="pictureEmployedBC" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQQAAAC0CAYAAABytVLLAAAK4klEQVR4Xu2bB4sVyxZGyyxizmLAhAFzzvrbzVkUc44ooo45p3e/hjr0OzOjnzr3eR7fKrhczsw+3bXX7loVehzW19f3vdAgAAEI/ENgGELgOYAABCoBhMCzAAEIdAggBB4GCEAAIfAMQAAC/QmwQuCpgAAEWCHwDEAAAqwQeAYgAIEfEGDLwOMBAQiwZeAZgAAE2DLwDEAAAmwZeAYgAAGHAGcIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAhhBSaNCHgEEAIDiViIBBCACGEFJo0IeAQQAgOJWIgEEIAIYQUmjQh4BBACA4lYiAQQgAh9Fih37x5Uy5cuFA+fvxYRowYUSZPnlyWLl1axo4d2+np58+fy9WrV8uzZ8/Kt2/fyvjx48uyZcvKpEmTOjHv378v58+fL/r/9+/fy8SJE8vq1avL6NGjfyvj+/fvl7t375bZs2c3/Wm3V69elevXrzf3UtO91J92n4e6P7+VBF/6KQGE8FNE/7uA169fl+PHjw94w+3btzcD/+vXr+XgwYPly5cv/eI2b97cCESD7+jRo40s2m3kyJFl165dZdSoUb+UlK534sSJIhHNnDmzrF27tvP9vr6+cubMmX7XGzZsWNm9e3cZM2bMkPfnlzpP8C8RQAi/hOvfDT558mR5+fJlcxMNbA3At2/fNp81+2/ZsqXcvHmz3L59u/nZtGnTigb548ePm88zZswo69atK5cuXSoPHz7s/EzyeP78efN5yZIlZdGiRVYi9+7da+6lftQ2a9assmbNms7ndp8lC8XWe82dO7esXLlyyPpjdZqgPyKAEP4I39B9Wcv6I0eONLOpVgJaEehnhw4darYPWuprxtVMrW2FPu/Zs6doJpYAJJIpU6aU5cuXd74zbty4smPHjmalcODAgWZ1oeX8qlWryuXLlxuZDB8+vNlK6DraqkgeitOgl3yqWAYTglYikpbuvWnTpqbP+/fvb64jQeg6NYfB+rN169ahA8mV/ogAQvgjfEP3ZQ1CDfZPnz6V+fPnl8WLFzcX1/agCkGS0ODSANdqYOrUqUXbjAkTJpR58+Y1g1rfrzFz5sxpBr/asWPHOiLRtkH3qqsPSURikCTU6uDW7yUa/U5nFpr9B1shaBsi+ej+urb6qDy0GvlZfyQ63YP29wkghL9fg0F7oK2ADgbVNLNv3Lixmem7zwb0e8lAwtCevca0hXDlypXy4MGDzkpDA1crku5raWDu27evOdBstyqUbiFotaLfdTf1R9dRc/qDEHrjQUQIvVGHfr3QjKyT/dq09NaZQVsI+qyVxYsXL5owbTV0sFhjVqxY0awc1G7cuFHu3LnTiKMe9mk7oO1Gu23YsKG5T3cbTAi3bt0q+m+gpsNHrWLc/vRoKaK6hRB6rNwfPnxo3jS0D/LWr19fpk+f3uzL6+Bqz9RaouvVn84EtGw/fPhwM/O33wicO3euPHnypHkVqC2DxKCmVcK7d+86QtEqY6A2kBDa/dH5gM4Q1G8dNEpUOufYuXNnp89Of3qsHHHdQQg9VHINJg3m+kpRe3nN2HU53R6A+luAhQsXNr2/du1a0RuBum2QUCSE9pahHv7Vw0ld8+nTp+Xs2bP/RaC+unRWCFqZnDp1qglt90evIfU6slsIP+tPD5UitisIoYdKXweSuqQ9vLYJmmnVNNg1w9bVgM4Ktm3b1gx8zd6SRZ39NUNrxaDvaDVQD/p0nfpqUvE6sKzXrxh0OKi3F917+oFWCFrNSGB6s6Dtit4W6F51hSMh7N27t9PnH/Wnh8oQ3RWE0CPlH2yA1u5JEDqk08zbPavXGP114IIFC8qjR4/KxYsXB8ysnhG05aPv6XCwvmJsz+T1IgMJQSLQ4Nd3B2p6y6A3GE5/eqQM8d1ACD3yCLS3AwN1qb3319sCvTVotzr46s8GOuyrh4ztpb6uq32+7l9fD+oaWn3odWa3ELploW3O6dOn+0lBf5Sk+9Wzih/1p0dKQDe0Ev1nxvkOif8/AvrbBP2dgAacDvS0hehuWtLXf8ugJf3v/jsGh476oj5pq6F76YDzb/bH6TMx/QkgBJ4KCECgQwAh8DBAAAIIgWcAAhBgy8AzAAEI/IAAWwYeDwhAgC0DzwAEIMCWgWcAAhBgy8AzAAEIOAQ4Q3AoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHAEJwKBEDgRACCCGk0KQJAYcAQnAoEQOBEAIIIaTQpAkBhwBCcCgRA4EQAgghpNCkCQGHwH8AFmb1VN5FaGoAAAAASUVORK5CYII=" alt="Alternate Text" style="width:150px;height:150px;border:1px solid silver;" />
 
 
                                 <hr />
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-6" style="width:100%">
 
 
 
@@ -287,274 +295,24 @@
                                         <label>Beneficiary's Name</label>
                                         <input type="text" id="nameEmployedBC" value="" disabled class="form-control" ng-model="nameEmployedBC" />
                                     </div>
-                                    @*<div class="form-group">
-                                            <label>Nom médecin</label>
-                                            <input type="text" name="namedoctor" value="" class="form-control" ng-model="namedoctor" />
-                                        </div>*@
-
-                                    <div class="form-group" ng-show="viewMarital">
-                                        <label>Marital Status</label>
-                                        <input type="text" ng-model="cboEtatCivilBC" disabled class="form-control" name="name" value=" " />
-                                    </div>
-                                    <div class="form-group" style="">
-                                        <label>Approve</label>
-                                        <select class="form-control" ng-model="cboApprouve">
-                                            <option>OUI</option>
-
-                                        </select>
-                                    </div>
-                                    <div class="form-group" style="display:none">
-                                        <label>Motivation</label>
-                                        @{
-                                            BanroWebApp.Models.BANROEntities db2 = new BanroWebApp.Models.BANROEntities();
-                                            var Query2 = from ds in db.t_sickness
-                                                         orderby ds.C_Name
-                                                         select ds;
-
-                                            <select ng-model="tmotif" ng-change="changeMotif()" class="form-control">
-
-
-                                                @foreach (var item in Query2)
-                                                {
-                                                    <option>  @item.C_Name</option>
-                                                }
-                                            </select>
-                                        }
-
-
-
-                                    </div>
-                                    <div class="form-group" style="display:none;" id="ctrMotif">
-                                        <label>Others Sicknesses</label>
-                                        <input type="text" id="tmotif2" name="name" class="form-control" value=" " />
-                                    </div>
-                                    <div>
-                                        <label>Comments</label>
-                                        <textarea style="width:100%;" rows="5" ng-model="tmotif" class="form-control" placeholder="Write Comments here"></textarea>
-                                    </div>
-                                    @*<div class="row" style="">
-
-
-                                            <div class="col-lg-6" style="width:100%;">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        La famille <button class="btn btn-primary" data-toggle="modal" data-target="#myModalChild" style="float:right;margin-top:-.5em;" id="btnChild" ng-click="ClearChild()"><i class="fa fa-plus"></i> Ajouter</button>
-                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModalChild" style="float:right;margin-top:-.5em;display:none;" id="btnChild2"><i class="fa fa-plus"></i> Ajouter</button>
-
-                                                    </div>
-                                                    <!-- /.panel-heading -->
-                                                    <div class="panel-body">
-                                                        <div class="table-responsive">
-                                                            <table class="table" style="font-size:12px;">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Nom</th>
-                                                                        <th>Datenais</th>
-                                                                        <th>Sexe</th>
-                                                                        <th>Etat</th>
-                                                                        <th>Edition</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr ng-repeat="children in tabChild">
-                                                                        <td>{{children.name}}</td>
-                                                                        <td>{{children.datenais}}</td>
-                                                                        <td>{{children.sex}}</td>
-                                                                        <td>{{children.status}}</td>
-                                                                        <td><a href="#/employed" ng-click="editChild(children)">editer</a></td>
-
-                                                                    </tr>
-
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        <!-- /.table-responsive -->
-                                                    </div>
-                                                    <!-- /.panel-body -->
-                                                </div>
-                                                <!-- /.panel -->
-                                            </div>
-                                            <!-- /.col-lg-6 -->
-                                        </div>*@
-                                    <!-- /.row -->
-
-
-
-                                </div>
-                                <div class="col-lg-6" style="float:right;">
-
                                     <div class="form-group">
-                                        <label>Starting date</label>
-                                        <table style="width:100%">
-                                            <tr>
-                                                <td>
-                                                    <select class="form-control" ng-model="cbodayDeb" id="cbodayDeb">
-                                                        <option ng-repeat="day in arrayDay">
-                                                            {{day}}
-                                                        </option>
-
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select ng-model="cbomonthDeb" id="cbomonthDeb" class="form-control">
-                                                        <option value="1">January</option>
-                                                        <option value="2">February</option>
-                                                        <option value="3">March</option>
-                                                        <option value="4">April</option>
-                                                        <option value="5">May</option>
-                                                        <option value="6">June</option>
-                                                        <option value="7">July</option>
-                                                        <option value="8">August</option>
-                                                        <option value="9">September</option>
-                                                        <option value="10">October</option>
-                                                        <option value="11">November</option>
-                                                        <option value="12">December</option>
-
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select ng-model="cboyearDeb" id="cboyearDeb" class="form-control">
-                                                        <option ng-repeat="year in arrayYear">
-                                                            {{year}}
-                                                        </option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Medical Services</label>
-                                        <select ng-model="cboservices" id="cboservices" class="form-control">
-                                            <optgroup label="HOSPITALISATION">
-                                                <option>
-                                                    GENERALISTE
-                                                </option>
-                                                <option>
-                                                    CHIRURGIE
-                                                </option>
-                                                <option>
-                                                    NEURO CHIRURGIE
-                                                </option>
-                                                <option>
-                                                    PEDIATRIE
-                                                </option>
-                                                <option>
-                                                    DENTISTERIE
-                                                </option>
-                                                <option>
-                                                    OBSTETRIQUE
-                                                </option>
-                                                <option>
-                                                    OPHTAMOLOGIE
-                                                </option>
-                                                <option>
-                                                    PLATRAGE
-                                                </option>
-                                                <option>
-                                                    ORL
-                                                </option>
-                                                <option>
-                                                    DERMATOLOGIE
-                                                </option>
-                                                <option>
-                                                    KINESIHERAPEUTE
-                                                </option>
-                                                <option>
-                                                    PSYCHIATRIE
-                                                </option>
-
-                                            </optgroup>
-                                            <optgroup label="CONSULTATION PRENATALE">
-                                                <option>
-                                                    GYNECHOLOGUE
-                                                </option>
-                                                <option>
-                                                    OBSTETRIQUE
-                                                </option>
-                                                <option>
-                                                    CPN
-                                                </option>
-                                            </optgroup>
-                                            <optgroup label="IMAGERIE MEDICALE">
-                                                <option>
-                                                    RADIOLOGIE
-                                                </option>
-                                                <option>
-                                                    ECHOGRAPHIE
-                                                </option>
-                                                <option>
-                                                    ECG (Electrocardiogramme)
-                                                </option>
-                                                <option>
-                                                    EGG (Electroencephalogramme)
-                                                </option>
-                                                <option>
-                                                    SCANNER
-                                                </option>
-                                            </optgroup>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Age</label>
+                                        <label>Old</label>
                                         <input type="text" disabled id="old" ng-model="oldEmployed" class="form-control" />
                                     </div>
-                                    <div class="form-group" style="">
-                                        <label>Medical Facility</label>
-                                        <select class="form-control" ng-model="cboCenterHealth" ng-change="CenterHealth()">
-                                            <option ng-repeat="healthcenter in tabListHealths">
-                                                {{healthcenter.C_name}}
-                                            </option>
 
-
-                                        </select>
+                                    <div class="form-group">
+                                        <label>Voucher ID</label>
+                                        @Html.TextBoxFor(Model => Model.C_id_bon, new { Class = "form-control", @type = "number",@Id="voucherid" ,style="display:none;"})
                                     </div>
-                                    <div class="row" style="">
-
-
-                                        @*<div class="col-lg-6" style="width:100%;">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading">
-                                                        Conjoint(e)s
-                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModalSearchConjoint" id="btnaddSearchPartner" style="float:right;margin-top:-.5em;display:none;"><i class="fa fa-search"></i> Chercher</button>
-                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModalPartner" id="btnaddPartner" style="float:right;margin-top:-.5em;margin-right:0.5em;" ng-show="btnAddPartner" ng-click="cleanConjoint()"><i class="fa fa-plus"></i> Ajouter</button>
-                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModalPartner" id="btnaddPartner2" style="float:right;margin-top:-.5em;margin-right:0.5em;display:none;"><i class="fa fa-plus"></i> Ajouter</button>
-                                                    </div>
-                                                    <!-- /.panel-heading -->
-                                                    <div class="panel-body">
-                                                        <div class="table-responsive">
-                                                            <table class="table" style="font-size:12px;">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Nom</th>
-                                                                        <th>Sexe</th>
-                                                                        <th>Phone</th>
-                                                                        <th>Edition</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr ng-repeat="partner in tabPartner">
-                                                                        <td>{{partner.name}}</td>
-                                                                        <td>{{partner.sex}}</td>
-                                                                        <td>{{partner.phone}}</td>
-                                                                        <td><a href="#/employed" ng-click="editPartner(partner)">Editer</a></td>
-
-                                                                    </tr>
-
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        <!-- /.table-responsive -->
-                                                    </div>
-                                                    <!-- /.panel-body -->
-                                                </div>
-                                                <!-- /.panel -->
-                                            </div>*@
-                                        <!-- /.col-lg-6 -->
+                                    <div class="form-group">
+                                        <label>Coast</label>
+                                        @Html.TextBoxFor(Model => Model.C_cout, new { Class = "form-control",@type="number",@Id="coast" })
                                     </div>
 
-                                    <!-- /.row -->
+
+
                                 </div>
+                         
 
                                 <!-- /.col-lg-6 (nested) -->
                                 <!-- /.col-lg-6 (nested) -->
@@ -562,8 +320,8 @@
                             <!-- /.row (nested) -->
                         </div>
 
-
-
+                        <button type="submit" id="btnsend" style="display:none;">execute</button>
+                        }
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -571,7 +329,7 @@
                         Successfull modification
                     </div>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" ng-click="ModificationSuccursale()" class="btn btn-primary">Save</button>
+                    <button type="button"  class="btn btn-primary" onclick="submitter()">Save</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -591,17 +349,40 @@
                         responsive: true
                     });
                 });
+                var picture=document.querySelector('#pictureEmployedBC');
+                var tname=document.querySelector("#nameEmployedBC");
+                var told=document.querySelector("#old");
+                var voucherid = document.querySelector('#voucherid');
+                var voucherid = document.querySelector('#voucherid');
+                var alertLabel = document.querySelector('#alertError');
+                var coast = document.querySelector('#coast');
+                var btnsend = document.querySelector('#btnsend');
+
+                function submitter() {
+             
+                    if (coast.value=="") {
+                        alertLabel.style.display = 'inherit';
+                        alertLabel.innerHTML = "Please, the value should not be empty";
+    
+                    } else if (coast.value <=0) {
+                        alertLabel.style.display = 'inherit';
+                        alertLabel.innerHTML = "Please, the value should not be negative or Zero";
+                    } else {
+                        btnsend.click();
+                    }
+                }
                 function getModal(data) {
-                    var picture=document.querySelector('#pictureEmployedBC');
-                    var tname=document.querySelector("#nameEmployedBC");
-                    var told=document.querySelector("#old");
+                    
+               
                     tname.value=data.name;
                     if(data.datenaiss!=""){
                         var year=data.datenaiss.toString().split('/')[2];
-                        var now=new Date().getYear();
-                        told.value=30;
+                        var now = new Date().getFullYear();
+                        var yearbirth = data.datenaiss.toString().split('/')[2];
+                        told.value=now-yearbirth;
 
                     }
+                    voucherid.value=data.voucherid;
                     picture.src="/images/"+data.picture;
                     document.querySelector('#modal').click();
                     console.log(data)
@@ -610,12 +391,22 @@
                 var chart = document.querySelector('#myChart');
                 var ctx = document.getElementById("myChart").getContext('2d');
 
+                var chart2 = document.querySelector('#myChart2');
+                var ctx2 = document.getElementById("myChart2").getContext('2d');
+
+                var chart3 = document.querySelector('#myChart3');
+                var ctx3 = document.getElementById("myChart3").getContext('2d');
+
                 function display(e) {
                     if (e == "table") {
                         chart.style.display = "none";
+                        chart2.style.display = "none";
+                      //  chart3.style.display = "none";
                         tab.style.display = "inherit";
                     } else {
                         chart.style.display = "inherit";
+                        chart2.style.display = "inherit";
+                      //  chart3.style.display = "inherit";
                         tab.style.display = "none";
                     }
                 }
