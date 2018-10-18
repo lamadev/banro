@@ -99,8 +99,7 @@ namespace BanroWebApp.Models
         }
         public String getImageURL(String source, String pathServer)
         {
-            try
-            {
+            
                 var base64 = source;
                 String ImageCreated=DateTime.Now.Day+""+DateTime.Now.Month+""+DateTime.Now.Year+""+DateTime.Now.Hour+""+DateTime.Now.Minute+""+DateTime.Now.Second+DateTime.Now.Millisecond + ".jpg";
                 pathServer = pathServer + "/" + DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg";
@@ -113,13 +112,7 @@ namespace BanroWebApp.Models
                 this.picture = pathServer;
                  return pathServer.Split('/')[1];
                 //return  (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
-            }
-            catch (Exception)
-            {
-
-
-            }
-            return "default.jpg";
+         
             //return (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
         }
     }
@@ -136,8 +129,7 @@ namespace BanroWebApp.Models
         public String account_system { set; get; }
         public String getImageURL(String source, String pathServer)
         {
-            try
-            {
+         
                 var base64 = source;
                 String ImageCreated=DateTime.Now.Day+""+DateTime.Now.Month+""+DateTime.Now.Year+""+DateTime.Now.Hour+""+DateTime.Now.Minute+""+DateTime.Now.Second+DateTime.Now.Millisecond + ".jpg";
                 pathServer = pathServer + "/" + DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg";
@@ -150,13 +142,7 @@ namespace BanroWebApp.Models
                 this.picture = pathServer;
                  return pathServer.Split('/')[1];
                 //return (DateTime.Now.Day + "" + DateTime.Now.Month + "" + DateTime.Now.Year + "" + DateTime.Now.Hour + "" + DateTime.Now.Minute + "" + DateTime.Now.Second + DateTime.Now.Millisecond + ".jpg").ToString();
-            }
-            catch (Exception)
-            {
-
-
-            }
-            return "";
+        
         }
        
     }

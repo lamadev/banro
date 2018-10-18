@@ -71,8 +71,9 @@
 
                             @{ 
                                 String yearFilter ="/"+DateTime.Now.Year.ToString();
+                                String monthFilter = DateTime.Now.Month.ToString()+ "/";
                                 var Query = from ds in dbContext.T_logs
-                                            where ds.C_date.EndsWith(yearFilter)
+                                            where ds.C_date.EndsWith(yearFilter) && ds.C_date.StartsWith(monthFilter)
                                             orderby ds.C_id descending
                                             select ds;
 

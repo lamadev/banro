@@ -565,6 +565,10 @@ namespace BanroWebApp.Controllers
             return View();
 
         }
+        public ActionResult AddNewEmployee()
+        {
+            return View();
+        }
         public ActionResult ViewVouchers()
         {
             return View();

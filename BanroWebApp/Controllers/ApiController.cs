@@ -309,7 +309,61 @@ namespace BanroWebApp.Controllers
             };
             return js.Serialize(DataFullGet);
         }
-        
-        
+        [Route("api/logs")]
+        public String getLogs()
+        {
+            String yearFilter = "/" + DateTime.Now.Year;
+            String monthFilter = DateTime.Now.Month + "/";
+            var query = from users in dbContext.T_logs
+                        join employees in dbContext.t_beneficiaires
+                        on users.C_mat equals employees.C_mat
+                        where users.C_date.StartsWith(monthFilter) && users.C_date.EndsWith(yearFilter)
+                        select users;
+            var queryGroupByUsers = query.GroupBy(e=>e.C_user);
+               
+            JavaScriptSerializer serialize = new JavaScriptSerializer();
+            serialize.MaxJsonLength = int.MaxValue;
+
+            return serialize.Serialize(queryGroupByUsers.ToList());
+                
+        }
+
+        [Route("api/logs/{month}")]
+        public String getLogs(String month)
+        {
+            String yearFilter = "/" + DateTime.Now.Year;
+            String monthFilter = month + "/";
+            var query = from users in dbContext.T_logs
+                        join employees in dbContext.t_beneficiaires
+                        on users.C_mat equals employees.C_mat
+                        where users.C_date.StartsWith(monthFilter) && users.C_date.EndsWith(yearFilter)
+                        select users;
+
+            JavaScriptSerializer serialize = new JavaScriptSerializer();
+            serialize.MaxJsonLength = int.MaxValue;
+
+            return serialize.Serialize(query.ToList());
+
+        }
+
+        [Route("api/logs/{month}/{year}")]
+        public String getLogs(String month,String year)
+        {
+            String yearFilter = "/" +year;
+            String monthFilter = month + "/";
+            var query = from users in dbContext.T_logs
+                        join employees in dbContext.t_beneficiaires
+                        on users.C_mat equals employees.C_mat
+                        where users.C_date.StartsWith(monthFilter) && users.C_date.EndsWith(yearFilter)
+                        select users;
+
+            JavaScriptSerializer serialize = new JavaScriptSerializer();
+            serialize.MaxJsonLength = int.MaxValue;
+
+            return serialize.Serialize(query.ToList());
+
+        }
+
+
     }
 }

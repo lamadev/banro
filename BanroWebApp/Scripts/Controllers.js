@@ -385,7 +385,9 @@ app.controller('CtrlHome', function (FactoryHome, $scope, $timeout, $http) {
             // console.log("Base64", base64);
             console.log(JSON.stringify('New info partner:',$scope.partner))
             FactoryHome.setUpdateEmployed($scope.Employed).then(function (response) {
+                var message = document.querySelector('#alertSuccess2');
                 if (response.toString().trim() == "200") {
+                    message.style.display = 'inherit';
                     $scope.isModify = true;
                 }
                 console.log("RESPONSE :", response);
@@ -449,6 +451,7 @@ app.controller('CtrlHome', function (FactoryHome, $scope, $timeout, $http) {
     $scope.selectedEmployed = function (employed) {
        
         $scope.isBtnVisible = true;
+        document.querySelector('#btnUpdateEmployed').style.display = 'inherit';
         $scope.isAccountStatus = true;
         try {
             document.querySelector('#cboastatus').value = (employed.account_system == "Disabled" ? "0" : "1");
@@ -1607,6 +1610,50 @@ app.controller('CtrlHome', function (FactoryHome, $scope, $timeout, $http) {
     $scope.loadHealth = false;
     console.log(routeViewer);
     switch (routeViewer) {
+        case 'AddNewEmployee':
+            $scope.arrayDay = [];
+            for (var i = 1; i <= 31; i++) {
+                var value = i.toString();
+                if (value.length == 1) {
+                    value = "0" + value;
+                }
+                $scope.arrayDay.push(value);
+
+
+            }
+            $scope.arrayYear = [];
+            for (var i = 1865; i <= new Date().getFullYear() ; i++) {
+                var value = i.toString();
+                if (value.length == 1) {
+                    value = "0" + value;
+                }
+                $scope.arrayYear.push(value);
+
+
+            }
+
+            $scope.arrayYearChild = [];
+            var fixeDate = new Date().getFullYear() - 150;
+            for (var i = fixeDate; i <= new Date().getFullYear() ; i++) {
+                var value = i.toString();
+                if (value.length == 1) {
+                    value = "0" + value;
+                }
+                $scope.arrayYearChild.push(value);
+
+
+            }
+
+            if ($scope.roleUser == "user") {
+                $scope.cbo_succ = $scope.idAuthSucc;
+
+                // alert($scope.idAuthSucc);
+            }
+            $scope.getSuccursales();
+            $scope.getListDepartements();
+            //alert('Heornel LAMA');
+
+            break;
         case 'addlogger':
             document.querySelector('#username').value = "";
             document.querySelector('#pwd1').value = "";

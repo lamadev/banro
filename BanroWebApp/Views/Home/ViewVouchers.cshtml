@@ -137,6 +137,11 @@
                             dict.Add("picture", item.ds.C_picture);
                             dict.Add("datenaiss", item.ds.C_datenais);
                             dict.Add("voucherid", item.vouchers.C_id_bon.ToString());
+                            dict.Add("status",
+                                            (
+                                                item.vouchers.t_factures.FirstOrDefault()==null?"0": item.vouchers.t_factures.FirstOrDefault().C_cout.ToString()
+                                            )
+                                );
 
                             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
                             var data = js.Serialize(dict);
@@ -207,7 +212,7 @@
 
                                         }
                                     }
-                                    @hospiname;
+                                    @hospiname
                                 </td>
                                 <td>
                                     @{
@@ -217,16 +222,16 @@
                                         {
                                             String status = "";
                                             
-                                            status = "0.00$";
-                                            @status;
+                                            status = "0.00";
+                                            @status
                                             statusVoucher = "NotInvoiced";
 
                                         }
                                         else
                                         {
                                             
-                                            string status = invoice.C_cout.ToString() + "$";
-                                            @status;
+                                            string status =Math.Round((decimal)invoice.C_cout,1).ToString();
+                                            @status
                                             statusVoucher = "Invoiced";
                                         }
                                     }
@@ -251,6 +256,12 @@
 
 
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4" style="text-align:right">Total:</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <canvas id="myChart" style="display:none;"></canvas>
@@ -302,7 +313,7 @@
 
                                     <div class="form-group">
                                         <label>Voucher ID</label>
-                                        @Html.TextBoxFor(Model => Model.C_id_bon, new { Class = "form-control", @type = "number",@Id="voucherid" ,style="display:none;"})
+                                        @Html.TextBoxFor(Model => Model.C_id_bon, new { Class = "form-control", @type = "number",@Id="voucherid" ,@disabled="true"})
                                     </div>
                                     <div class="form-group">
                                         <label>Coast</label>
@@ -329,7 +340,7 @@
                         Successfull modification
                     </div>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button"  class="btn btn-primary" onclick="submitter()">Save</button>
+                    <button type="button" id="btnsave"  class="btn btn-primary" onclick="submitter()">Save</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -346,8 +357,43 @@
                 $(document).ready(function () {
 
                     $('#dataTables-example').DataTable({
-                        responsive: true
-                    });
+                        responsive: true,
+                        "footerCallback": function ( row, data, start, end, display ) {
+                            var api = this.api(), data;
+                            var result=0.0;
+                            // Remove the formatting to get integer data for summation
+                            var intVal = function ( i ) {
+                                return typeof i === 'string' ?
+                                    i.replace(/[\$,]/g, '')*1 :
+                                    typeof i === 'number' ?
+                                    i : 0;
+                            };
+ 
+                            // Total over all pages
+                            total = api
+                                .column( 7 )
+                                .data()
+                                .reduce( function (a, b) {
+                                    
+                                    return intVal(a) + intVal(b);
+                                }, 0 );
+ 
+                            // Total over this page
+                            pageTotal = api
+                                .column( 7, { page: 'current'} )
+                                .data()
+                                .reduce( function (a, b) {
+                                    return intVal(a) + intVal(b);
+                                }, 0 );
+ 
+                            // Update footer
+                         
+                            $( api.column(3).footer() ).html(
+                                '$'+pageTotal +' ( $'+ total +' total)'
+                            );
+                        }
+                    } );
+                   
                 });
                 var picture=document.querySelector('#pictureEmployedBC');
                 var tname=document.querySelector("#nameEmployedBC");
@@ -371,9 +417,18 @@
                         btnsend.click();
                     }
                 }
+                var btnsave = document.querySelector('#btnsave')
                 function getModal(data) {
                     
-               
+                    if (parseInt(data.status)>0) {
+                        coast.disabled=true;
+                        coast.value=parseInt(data.status);
+                        btnsave.disabled=true;
+                    }else {
+                        coast.value="";
+                        coast.disabled=false;
+                        btnsave.disabled=false;
+                    }
                     tname.value=data.name;
                     if(data.datenaiss!=""){
                         var year=data.datenaiss.toString().split('/')[2];
@@ -385,7 +440,7 @@
                     voucherid.value=data.voucherid;
                     picture.src="/images/"+data.picture;
                     document.querySelector('#modal').click();
-                    console.log(data)
+                    console.log('Data :',data)
                 }
                 var tab = document.querySelector('#dataTable-wrapper');
                 var chart = document.querySelector('#myChart');

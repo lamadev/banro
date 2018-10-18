@@ -455,6 +455,7 @@
     <Content Include="Views\Home\ViewEmployeeList.cshtml" />
     <Content Include="Views\Home\ViewFacilities.cshtml" />
     <Content Include="Views\Home\ViewVouchers.cshtml" />
+    <Content Include="Views\Home\AddNewEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
