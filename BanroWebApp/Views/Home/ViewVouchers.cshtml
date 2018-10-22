@@ -313,7 +313,7 @@
 
                                     <div class="form-group">
                                         <label>Voucher ID</label>
-                                        @Html.TextBoxFor(Model => Model.C_id_bon, new { Class = "form-control", @type = "number",@Id="voucherid" ,@disabled="true"})
+                                        @Html.TextBoxFor(Model => Model.C_id_bon, new { Class = "form-control", @type = "number",@Id="voucherid"})
                                     </div>
                                     <div class="form-group">
                                         <label>Coast</label>
@@ -375,7 +375,7 @@
                                 .data()
                                 .reduce( function (a, b) {
                                     
-                                    return intVal(a) + intVal(b);
+                                    return parseFloat(a) + parseFloat(b);
                                 }, 0 );
  
                             // Total over this page
@@ -383,7 +383,7 @@
                                 .column( 7, { page: 'current'} )
                                 .data()
                                 .reduce( function (a, b) {
-                                    return intVal(a) + intVal(b);
+                                    return parseFloat(a) + parseFloat(b);
                                 }, 0 );
  
                             // Update footer

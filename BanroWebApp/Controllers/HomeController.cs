@@ -579,6 +579,7 @@ namespace BanroWebApp.Controllers
         {
             invoice.C_datefacture = String.Format("{0}/{1}/{2}", DateTime.Now.Month.ToString(), DateTime.Now.Day.ToString(), DateTime.Now.Year.ToString());
             invoice.C_timefacture = DateTime.Now.TimeOfDay.ToString();
+            invoice.C_fileupload = invoice.C_id_bon.ToString();
             dbContext.t_factures.Add(invoice);
             dbContext.SaveChanges();
             return RedirectToAction("ViewVouchers","Home");
