@@ -54,7 +54,7 @@
                                 <a class="btn btn-danger" href="viewbeneficiairies" style="float:right;" ng-click=""><i class="fa fa-lock"></i> Account Status</a>
                             }
                         }
-                        <a href="AddNewEmployee" class="btn btn-success" style="float:right"><i class="fa fa-plus"></i> Add new employee</a>
+                        <a href="AddNewEmployee" class="btn btn-success" style="float:right"><i class="fa fa-pencil"></i> Create or Update</a>
                         </div>
                     </div>
                 <!-- /.panel-heading -->
@@ -165,16 +165,16 @@
                                                 @{
                                                     if (typeB.Equals("Visitor"))
                                                     {
-                                                        <a href="UpdateBeneficiary/@ParamCategory/@item.C_id"> @item.C_name.ToUpper()</a>
+                                                         @item.C_name.ToUpper()
                                                     }
                                                     else if (typeB.Equals("Children"))
                                                     {
-                                                        <a href="UpdateBeneficiary/@ParamCategory/@item.C_id"> @item.C_name.ToUpper()</a>
+                                                         @item.C_name.ToUpper()
                                                     }
 
                                                     else
                                                     {
-                                                        <a href="UpdateBeneficiary/@ParamCategory/@idEmployee"> @item.C_name.ToUpper()</a>
+                                                        @item.C_name.ToUpper()
                                                     }
                                                 }
                                             </td>

@@ -314,6 +314,7 @@ namespace BanroWebApp.Controllers
         {
             String yearFilter = "/" + DateTime.Now.Year;
             String monthFilter = DateTime.Now.Month + "/";
+            
             var query = from users in dbContext.T_logs
                         join employees in dbContext.t_beneficiaires
                         on users.C_mat equals employees.C_mat

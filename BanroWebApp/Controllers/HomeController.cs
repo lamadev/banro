@@ -616,7 +616,7 @@ namespace BanroWebApp.Controllers
                     C_user = auth.username,
                     C_date = DateTime.Now.ToShortDateString(),
                     C_time = DateTime.Now.ToShortTimeString(),
-                    C_action = "Add new",
+                    C_action = "Add New Subsidiary",
                     C_object = "Subsidiary",
                     C_company = auth.nameSuccursale,
                     C_mat = dbContext.t_beneficiaires.Where(id => id.C_id == auth.idEmpolyee).FirstOrDefault().C_mat
