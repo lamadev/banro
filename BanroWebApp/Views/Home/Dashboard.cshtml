@@ -35,8 +35,8 @@
                                @{
                                    BanroWebApp.Models.BANROEntities dbContext = new BanroWebApp.Models.BANROEntities();
                                    var QueryDep = from ds in dbContext.t_departement
-                                               where ds.C_id_succ.Equals(auth.Succursale)
-                                               select ds;
+                                                  where ds.C_id_succ.Equals(auth.Succursale)
+                                                  select ds;
 
                                 @QueryDep.ToList().Count;
                             }
@@ -136,63 +136,7 @@
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">
-                                @{
-                                    if (auth.Priority.Equals("user"))
-                                    {
-                                        var Query = from beneficiairy in dbContext.t_beneficiaires
-                                                    join voucher in dbContext.t_bon_commandes
-                                                    on beneficiairy.C_id equals voucher.C_id_bene
-                                                    where beneficiairy.C_id_succ.Equals(auth.Succursale)
-                                                    select beneficiairy;
-                                        @Query.ToList().Count;
-                                    }
-                                    else
-                                    {
-                                        var Query = from beneficiairy in dbContext.t_beneficiaires
-                                                    join voucher in dbContext.t_bon_commandes
-                                                    on beneficiairy.C_id equals voucher.C_id_bene
-                                                    where beneficiairy.C_id_succ.Equals(auth.Succursale)
-                                                    select beneficiairy;
-
-                                        int ctrEmployee = Query.ToList().Count;
-
-                                        Query = from beneficiairy in dbContext.t_beneficiaires
-                                                join voucher in dbContext.t_bon_commandes
-                                                on beneficiairy.C_id equals voucher.C_id_bene
-                                                where beneficiairy.C_mat.Equals(null) && !beneficiairy.C_id_partenaire.Equals(null)
-                                                select beneficiairy;
-
-                                        foreach (var item in Query)
-                                        {
-                                            int id = int.Parse(item.C_id_partenaire);
-                                            String matr = dbContext.t_beneficiaires.Where(r => r.C_id == id).FirstOrDefault().C_mat;
-
-                                            if (matr.ToString().Contains(auth.Succursale))
-                                            {
-                                                ctrEmployee++;
-                                            }
-                                        }
-
-                                        Query = from beneficiairy in dbContext.t_beneficiaires
-                                                join voucher in dbContext.t_bon_commandes
-                                                on beneficiairy.C_id equals voucher.C_id_bene
-                                                where beneficiairy.C_mat.Equals(null) && !beneficiairy.C_id_parent.Equals(null)
-                                                select beneficiairy;
-
-                                        foreach (var item in Query)
-                                        {
-                                            int id = int.Parse(item.C_id_parent);
-                                            String matr = dbContext.t_beneficiaires.Where(r => r.C_id == id).FirstOrDefault().C_mat;
-
-                                            if (matr.ToString().Contains(auth.Succursale))
-                                            {
-                                                ctrEmployee++;
-                                            }
-                                        }
-                                        @ctrEmployee;
-                                    }
-
-                                }
+                               @dbContext.t_bon_commandes.Where(e=>e.C_datedeb.EndsWith("/" + DateTime.Now.Year)).ToList().Count
                             </div>
                             <div>Vouchers</div>
                         </div>

@@ -91,6 +91,9 @@
                                         String typeB = "";
                                         String idEmployee = "";
                                         String company = "";
+
+
+
                                         if (!String.IsNullOrEmpty(item.C_mat))
                                         {
                                             typeB = "Employee";
@@ -110,6 +113,7 @@
                                         if (typeB.Equals("Employee"))
                                         {
                                             company = db.t_succursales.Where(s => s.C_id.Equals(item.C_id_succ)).FirstOrDefault().C_name;
+                                            // company = "Company :"+item.C_id_succ;
                                             idEmployee = item.C_mat;
                                         }
                                         if (typeB.Equals("Partner"))
@@ -133,11 +137,21 @@
                                             var QueryEmployee = (from ds in db.t_beneficiaires
                                                                  join succ in db.t_succursales on ds.C_id_succ equals succ.C_id
                                                                  where ds.C_id == id
+
                                                                  select new { ds, succ }).FirstOrDefault();
 
-                                            company = QueryEmployee.succ.C_name;
-                                            idEmployee = QueryEmployee.ds.C_mat;
+                                            if (QueryEmployee!=null)
+                                            {
+                                                  company = QueryEmployee.succ.C_name;
+                                                   idEmployee = QueryEmployee.ds.C_mat;
+                                            }
+                                            //  company = QueryEmployee.succ.C_name;
+                                            //idEmployee = QueryEmployee.ds.C_mat;
+                                            //  company = "Child -id :"+id.ToString();
+                                            //idEmployee = "VIDE";
                                         }
+
+
 
                                         <tr style="cursor:pointer">
                                             @{
@@ -169,7 +183,15 @@
                                                     }
                                                     else if (typeB.Equals("Children"))
                                                     {
-                                                         @item.C_name.ToUpper()
+                                                        try
+                                                        {
+                                                            @item.C_name 
+                                                        }
+                                                        catch (Exception)
+                                                        {
+
+
+                                                        }
                                                     }
 
                                                     else
@@ -229,8 +251,21 @@
                                                                          where ds.C_id == id
                                                                          select new { ds, succ }).FirstOrDefault();
 
-                                                    int idDep = (int)QueryEmployee.ds.C_id_depart;
-                                                    @db.t_departement.Where(s => s.C_id.Equals(idDep)).FirstOrDefault().C_id_depart;
+                                                    // int idDep = (int)QueryEmployee.ds.C_id_depart;
+                                                    // @db.t_departement.Where(s => s.C_id.Equals(idDep)).FirstOrDefault().C_id_depart;
+                                                    String mess = "";
+                                                    if (QueryEmployee==null)
+                                                    {
+                                                        mess = "NULLABLE - "+id;
+                                                        @mess;
+                                                    }
+                                                    else
+                                                    {
+                                                       
+                                                        int idDep = (int)QueryEmployee.ds.C_id_depart;
+                                                         @db.t_departement.Where(s => s.C_id.Equals(idDep)).FirstOrDefault().C_id_depart;
+                                                    }
+
                                                 }
                                             </td>
 

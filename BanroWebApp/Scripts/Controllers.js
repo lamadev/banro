@@ -5759,6 +5759,7 @@ app.controller('CtrlHome', function (FactoryHome, $scope, $timeout, $http) {
                         //window.open(response);
                         document.location.href = response;
                         //console.log("RESPONSE :", response);
+
                     }
                 }, function (error) {
                     console.log("Error Exportation :", error);
@@ -5768,11 +5769,11 @@ app.controller('CtrlHome', function (FactoryHome, $scope, $timeout, $http) {
 
         }
     }
-    $scope.casualSelected = function (casual) {
-        console.log(JSON.strcasual);
-        document.querySelector('#NameCasual').value = casual.NameCasual;
-        var btn = document.querySelector('#btnModalContractor');
-        btn.click();
+    $scope.getcasual= function (casual) {
+        console.log(rcasual);
+       // document.querySelector('#NameCasual').value = casual.NameCasual;
+        //var btn = document.querySelector('#btnModalContractor');
+        //btn.click();
     }
     $scope.SelectPriority = function () {
         $scope.priorityUser = $scope.cbopriority;
